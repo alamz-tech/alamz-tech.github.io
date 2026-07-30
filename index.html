@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alamz Tech — Offline-first AI for back-office, agriculture and education</title>
+
+<!-- ---------------------------------------------------------------------
+     LINK PREVIEWS (LinkedIn, WhatsApp, X, Slack)
+     These are static because crawlers read them before any JS runs. If you
+     change the tagline in config.js, update the description tags below to
+     match — it is the only place content is duplicated.
+
+     These point at https://alamz-tech.github.io — the GitHub Pages URL, which
+     is the live address until a custom domain is registered.
+
+     WHEN YOU BUY alamztech.com, do these three things together:
+       1. Run, from the repo root:
+          sed -i '' -E 's#(href|content)="https://alamz-tech\.github\.io#\1="https://alamztech.com#g' index.html
+       2. Add a file named CNAME at the repo root containing one line:
+          alamztech.com
+       3. Set the custom domain in Settings → Pages and add the DNS records
+          listed in README.md.
+     Doing 1 without 2 (or the reverse) leaves the canonical pointing at a host
+     that is not serving the site.
+
+     og:image and og:url MUST stay absolute. Crawlers fetch them from their own
+     servers and will not resolve a relative path, which is the usual cause of
+     a blank preview card. All four move together.
+     --------------------------------------------------------------------- -->
+<meta name="description" content="Alamz Tech is a venture studio building offline-first AI and software for back-office operations, agriculture and education — designed for low bandwidth, low-cost hardware and real African conditions.">
+<!-- Light is the brand ground by default; app.js updates this when the
+     visitor uses the header's dark-mode toggle. -->
+<meta name="theme-color" content="#FCFBF9" id="theme-color">
+<link rel="canonical" href="https://alamz-tech.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alamz Tech">
+<meta property="og:title" content="Alamz Tech — Offline-first AI for back-office, agriculture and education">
+<meta property="og:description" content="A venture studio building practical AI for the places technology reaches last.">
+<meta property="og:url" content="https://alamz-tech.github.io/">
+<meta property="og:image" content="https://alamz-tech.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alamz Tech — offline-first AI for the places technology reaches last.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://alamz-tech.github.io/assets/og-image.png">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<script>
+  /* Set the theme before first paint so there is no flash of the wrong ground.
+     Kept inline and tiny on purpose — it must run before the stylesheet applies. */
+  (function () {
+    document.documentElement.classList.remove('no-js');
+    try {
+      var t = localStorage.getItem('alamz-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ======================================================================
+     HEADER
+     ====================================================================== -->
+<header class="header" id="header">
+  <div class="shell header__inner">
+    <a class="wordmark" href="#top">
+      <svg class="wordmark__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.5 22.5 21H1.5L12 2.5Z" fill="currentColor" opacity=".18"/>
+        <path d="M12 2.5 22.5 21H1.5L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 9.5 17 19H7l5-9.5Z" fill="currentColor"/>
+      </svg>
+      <span data-bind="brand.wordmark">Alamz Tech</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Sections"></nav>
+
+    <div class="header__actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-live="polite">
+        <span class="vh">Switch colour theme</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z"/>
+        </svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button"
+              aria-expanded="false" aria-controls="mobile-nav">
+        <span class="vh">Open menu</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" aria-hidden="true">
+          <path d="M3.5 7h17M3.5 12h17M3.5 17h17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" data-open="false">
+  <div class="shell">
+    <nav class="mobile-nav__list" id="mobile-nav-list" aria-label="Sections"></nav>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ====================================================================
+       1. HERO — the thesis, stated as a spec sheet
+       ==================================================================== -->
+  <section class="hero" id="top">
+    <div class="shell hero__grid">
+      <div>
+        <p class="hero__tag">Venture studio</p>
+        <h1 class="hero__title">
+          Offline-first AI for the places technology
+          <em>reaches last</em>.
+        </h1>
+        <p class="hero__sub" data-bind="brand.heroSub"></p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#products">
+            See what we're building
+            <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                 stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <!-- The constraints below are real. They come from the Offline LLM
+           Engine's locked build spec. Update them if the spec changes. -->
+      <aside class="datasheet reveal" aria-label="The constraints we design to">
+        <div class="datasheet__head">
+          <span>Design envelope</span>
+          <span class="datasheet__dot" aria-hidden="true"></span>
+        </div>
+        <div class="datasheet__list">
+          <div class="datasheet__row"><span class="datasheet__k">Connectivity</span><span class="datasheet__v">None required</span></div>
+          <div class="datasheet__row"><span class="datasheet__k">Memory</span><span class="datasheet__v">8 GB</span></div>
+          <div class="datasheet__row"><span class="datasheet__k">Accelerator</span><span class="datasheet__v">No GPU</span></div>
+          <div class="datasheet__row"><span class="datasheet__k">Model</span><span class="datasheet__v">Q4_K_M GGUF</span></div>
+          <div class="datasheet__row"><span class="datasheet__k">Runtime</span><span class="datasheet__v">llama.cpp</span></div>
+        </div>
+        <p class="datasheet__foot">
+          The tightest budget we build to. Products that do need a network carry
+          a stated budget of their own.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       2. APPROACH
+       ==================================================================== -->
+  <section class="section" id="approach">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow" data-bind="approach.eyebrow"></p>
+        <p class="rail__meta">Build in-house.<br>Prove it.<br>Spin out what works.</p>
+      </div>
+      <div class="rail__body reveal">
+        <h2 class="contact__heading" data-bind="approach.heading"></h2>
+        <div class="prose" id="approach-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       3. FOCUS AREAS
+       ==================================================================== -->
+  <section class="section" id="focus">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow">Where we work</p>
+        <p class="rail__meta">Three sectors.<br>Honest about which one is furthest along.</p>
+      </div>
+      <div class="rail__body">
+        <h2 class="contact__heading reveal">Three sectors, at three different stages.</h2>
+        <div class="verticals" id="verticals"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4. PRODUCTS
+       ==================================================================== -->
+  <section class="section" id="products">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow">Portfolio</p>
+        <p class="rail__meta">Status labels are accurate.<br>Nothing here is called live until it is.</p>
+      </div>
+      <div class="rail__body">
+        <h2 class="contact__heading reveal">What we are building.</h2>
+        <div class="products" id="products-list"></div>
+        <noscript>
+          <p class="lede">
+            <strong>Offline LLM Engine</strong> (in development) — a reproducible pipeline
+            running quantized language models fully offline on 8 GB laptops, tuned for
+            informal-sector back-office work. Built for the Africa Deep Tech Challenge 2026.
+            <br><br>
+            <strong>CloudPath</strong> (pilot) — an AI coach on Telegram that trains young
+            Africans into cloud and infrastructure roles using free, no-credit-card labs.
+            <br><br>
+            To apply or join a waitlist, email us — the address is in the footer.
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. THE EDGE
+       ==================================================================== -->
+  <section class="section" id="edge">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow" data-bind="edge.eyebrow"></p>
+        <p class="rail__meta">The rules every Alamz product is held to.</p>
+      </div>
+      <div class="rail__body">
+        <h2 class="contact__heading reveal" data-bind="edge.heading"></h2>
+        <p class="lede reveal" data-bind="edge.body"></p>
+        <div class="rules" id="rules"></div>
+
+        <!-- The connectivity spectrum. This exists to answer the obvious
+             objection — that a Telegram-based product plainly needs a network —
+             before a reviewer has to raise it. -->
+        <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem">
+          <h3 class="pcard__name" data-bind="connectivity.heading"></h3>
+          <p class="lede" data-bind="connectivity.body"></p>
+          <div class="spectrum" id="spectrum"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       6. FOUNDER
+       ==================================================================== -->
+  <section class="section" id="founder">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow" data-bind="founder.eyebrow"></p>
+      </div>
+      <div class="rail__body reveal">
+        <div class="founder">
+          <div class="founder__mark" id="founder-mark"></div>
+          <div>
+            <h2 class="founder__name" data-bind="founder.name"></h2>
+            <p class="founder__role" data-bind="founder.role"></p>
+            <div class="prose" id="founder-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       7. CONTACT
+       ==================================================================== -->
+  <section class="section" id="contact">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow" data-bind="contact.eyebrow"></p>
+      </div>
+      <div class="rail__body reveal">
+        <h2 class="contact__heading" data-bind="contact.heading"></h2>
+        <p class="lede" data-bind="contact.body"></p>
+        <!-- Filled by app.js: a mailto if brand.email is set, otherwise a
+             button opening the message form. Never both, never neither. -->
+        <div class="contact__actions" id="contact-actions"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================================
+     FOOTER
+     ====================================================================== -->
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div>
+      <p class="footer__legal" id="copyright"></p>
+      <p class="footer__note" data-bind="footer.note" style="margin-top:.75rem"></p>
+    </div>
+    <nav class="footer__links" id="footer-links" aria-label="Elsewhere"></nav>
+  </div>
+</footer>
+
+<!-- ======================================================================
+     THE FORM — one dialog, one form, fields rebuilt per product status
+     ====================================================================== -->
+<dialog class="dialog" id="dialog" aria-labelledby="dialog-title">
+  <form class="dialog__inner" id="form" novalidate>
+    <div class="dialog__head">
+      <div>
+        <p class="dialog__eyebrow" id="dialog-eyebrow"></p>
+        <h2 class="dialog__title" id="dialog-title"></h2>
+        <p class="dialog__intro" id="dialog-intro"></p>
+      </div>
+      <button class="icon-btn" type="button" id="dialog-close">
+        <span class="vh">Close</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+             stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="dialog__body">
+      <div class="fields" id="fields"></div>
+      <div class="hp" aria-hidden="true">
+        <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+      </div>
+    </div>
+
+    <div class="dialog__foot">
+      <p class="form__msg" id="form-msg" role="status" hidden></p>
+      <button class="btn btn--primary btn--block" type="submit" id="form-submit"></button>
+      <p class="form__privacy" data-bind="form.privacyNote"></p>
+    </div>
+  </form>
+</dialog>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

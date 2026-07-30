@@ -1,0 +1,1036 @@
+/* ============================================================================
+   ALAMZ TECH
+   ----------------------------------------------------------------------------
+   Design notes for whoever edits this next:
+
+   PALETTE — built around the existing Alamz gold/black triangle mark, but the
+   page's ground is near-white, not black. The gold is pulled off metallic-
+   yellow toward a warmer brass and DARKENED on the light ground so accent text
+   actually passes contrast (see --brass-text vs --brass-display below: small
+   text and large display text need different values, which is why there are
+   two tokens rather than one).
+
+   The neutral is NOT a pure grey or a pure white: it carries a faint brass bias
+   so it reads as chosen rather than inherited. A muted teal is the only other
+   hue, and it is semantic — cool means at-rest / in-development, warm means
+   active / shipped. Do not use the teal decoratively or that meaning stops
+   working.
+
+   Dark mode is a genuine alternate, not an inversion, and users can force
+   either with the header toggle.
+
+   Alternative palettes, if you ever want to move away from gold:
+     · Kola      — deep oxblood #8C2F26 accent on warm bone #FBF9F5
+     · Harmattan — dust ochre #B0761F on cool paper #F7F8F7 (more clinical)
+     · Ink       — near-black accent, brass reserved only for status badges
+   Each is a token swap in the :root blocks below; nothing else changes.
+
+   TYPE — deliberately zero webfonts. This site's entire argument is that
+   software should be light enough to work on a bad connection; shipping 200 KB
+   of fonts to say so would undercut it. Character comes from the mono utility
+   face doing real work (labels, badges, all numerals, spec strips) against a
+   tightly-set system sans.
+   ========================================================================== */
+
+/* ============================================================================
+   1. TOKENS
+   ========================================================================== */
+
+:root {
+  /* — colour: LIGHT is the designed default; dark is the alternate — */
+  --ground:        #FCFBF9;   /* near-white, faint warm bias toward the brass */
+  --ground-deep:   #F3F1EC;   /* footer band, datasheet header */
+  --surface:       #FFFFFF;   /* cards lift off the ground */
+  --surface-hi:    #FFFFFF;
+  --line:          #E3DFD6;
+  --line-soft:     #EEEBE4;
+
+  --ink:           #17140F;
+  --ink-mid:       #4B443A;
+  --ink-dim:       #736A5D;
+
+  --brass:         #C6851C;   /* fill: buttons, badges */
+  --brass-soft:    #A96F13;   /* hover — darker on a light ground */
+  --brass-text:    #8A5713;   /* small accent text: 6.4:1 on --ground */
+  --brass-display: #A9651A;   /* large display accent: 4.6:1 on --ground */
+  --brass-ink:     #1A1409;   /* text sitting ON a brass fill: 6.6:1 */
+  --brass-wash:    rgba(198, 133,  28, 0.10);
+  --brass-edge:    rgba(198, 133,  28, 0.34);
+
+  --signal:        #2F7C74;   /* semantic: at-rest / in-development */
+  --signal-text:   #22605A;
+  --signal-wash:   rgba(47, 124, 116, 0.09);
+  --signal-edge:   rgba(47, 124, 116, 0.28);
+
+  --dot:           rgba(176, 120, 28, 0.22);
+  --shadow:        0 1px 2px rgba(60,48,28,.05), 0 10px 28px -14px rgba(60,48,28,.18);
+  --focus:         #8A5713;
+
+  /* — type — */
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", "Segoe UI Mono",
+          "Roboto Mono", Menlo, Consolas, monospace;
+
+  --fs-display: clamp(2.45rem, 1.55rem + 4.1vw, 4.9rem);
+  --fs-h2:      clamp(1.65rem, 1.18rem + 2.05vw, 2.65rem);
+  --fs-h3:      clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+  --fs-lede:    clamp(1.05rem, 0.99rem + 0.34vw, 1.25rem);
+  --fs-body:    1.0625rem;
+  --fs-sm:      0.9375rem;
+  --fs-mono:    0.8125rem;
+  --fs-micro:   0.7rem;
+
+  /* — space — */
+  --s-1: 0.25rem;  --s-2: 0.5rem;   --s-3: 0.75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;   --s-6: 2rem;     --s-7: 3rem;     --s-8: 4rem;
+  --s-9: clamp(4rem, 2.6rem + 6vw, 7.5rem);
+
+  --measure: 62ch;
+  --radius: 3px;          /* near-square: this is instrumentation, not a SaaS card */
+  --radius-lg: 5px;
+  --shell: 1180px;
+  --header-h: 60px;
+}
+
+/* — DELIBERATE: light is the brand ground for everyone, including visitors
+     whose OS is set to dark. This is a brand decision, not an oversight —
+     there is intentionally no `@media (prefers-color-scheme: dark)` block here.
+     Dark is fully designed and one click away via the header toggle, and the
+     choice persists in localStorage, so nobody is stranded on a ground they
+     cannot read.
+
+     If you ever want the site to follow the visitor's OS setting instead,
+     wrap the :root[data-theme="dark"] block below in
+     `@media (prefers-color-scheme: dark) { :root { … } }` as well. — */
+
+/* — the explicit toggle must beat everything, in BOTH directions — */
+:root[data-theme="light"] {
+  --ground:      #FCFBF9;  --ground-deep: #F3F1EC;
+  --surface:     #FFFFFF;  --surface-hi:  #FFFFFF;
+  --line:        #E3DFD6;  --line-soft:   #EEEBE4;
+  --ink:         #17140F;  --ink-mid:     #4B443A;  --ink-dim: #736A5D;
+  --brass:       #C6851C;  --brass-soft:  #A96F13;  --brass-text: #8A5713;
+  --brass-display: #A9651A;
+  --brass-ink:   #1A1409;
+  --brass-wash:  rgba(198, 133, 28, 0.10);
+  --brass-edge:  rgba(198, 133, 28, 0.34);
+  --signal:      #2F7C74;  --signal-text: #22605A;
+  --signal-wash: rgba(47, 124, 116, 0.09);
+  --signal-edge: rgba(47, 124, 116, 0.28);
+  --dot:         rgba(176, 120, 28, 0.22);
+  --shadow:      0 1px 2px rgba(60,48,28,.05), 0 10px 28px -14px rgba(60,48,28,.18);
+  --focus:       #8A5713;
+}
+
+:root[data-theme="dark"] {
+  --ground:      #14110E;  --ground-deep: #0D0B09;
+  --surface:     #1E1915;  --surface-hi:  #262019;
+  --line:        #322B23;  --line-soft:   #241F19;
+  --ink:         #F3EEE5;  --ink-mid:     #C4B9AA;  --ink-dim: #9A8F81;
+  --brass:       #E5A33C;  --brass-soft:  #F0C179;  --brass-text: #E5A33C;
+  --brass-display: #E5A33C;
+  --brass-ink:   #14110E;
+  --brass-wash:  rgba(229, 163, 60, 0.11);
+  --brass-edge:  rgba(229, 163, 60, 0.34);
+  --signal:      #6FA79F;  --signal-text: #7EB8B0;
+  --signal-wash: rgba(111, 167, 159, 0.10);
+  --signal-edge: rgba(111, 167, 159, 0.30);
+  --dot:         rgba(229, 163, 60, 0.16);
+  --shadow:      0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.55);
+  --focus:       #F0C179;
+}
+
+/* ============================================================================
+   2. RESET & BASE
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.12; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img, svg { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection { background: var(--brass); color: var(--brass-ink); }
+
+.skip {
+  position: absolute; left: var(--s-4); top: -100px; z-index: 200;
+  background: var(--brass); color: var(--brass-ink);
+  padding: var(--s-3) var(--s-5); border-radius: var(--radius);
+  font-weight: 600; text-decoration: none;
+  transition: top .16s ease;
+}
+.skip:focus { top: var(--s-4); }
+
+.vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ============================================================================
+   3. LAYOUT PRIMITIVES
+   ========================================================================== */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--s-5);
+}
+
+.section { padding-block: var(--s-9); }
+.section + .section { border-top: 1px solid var(--line-soft); }
+
+/* The asymmetric rail: narrow mono label column + wide content column. */
+.rail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+}
+@media (min-width: 900px) {
+  .rail {
+    grid-template-columns: 172px minmax(0, 1fr);
+    gap: var(--s-8);
+  }
+}
+
+.rail__label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  align-self: start;
+}
+@media (min-width: 900px) {
+  .rail__label { position: sticky; top: calc(var(--header-h) + var(--s-6)); }
+}
+
+.rail__body { min-width: 0; display: flex; flex-direction: column; gap: var(--s-6); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--brass-text);
+  margin: 0;
+}
+
+.rail__meta {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--ink-dim);
+  margin: 0;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 899px) { .rail__meta { display: none; } }
+
+.lede {
+  font-size: var(--fs-lede);
+  line-height: 1.55;
+  color: var(--ink-mid);
+  max-width: var(--measure);
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  max-width: var(--measure);
+  color: var(--ink-mid);
+}
+
+/* ============================================================================
+   4. HEADER
+   ========================================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s ease, background .2s ease;
+}
+.header[data-stuck="true"] { border-bottom-color: var(--line); }
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  width: 100%;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+.wordmark__mark { width: 19px; height: 19px; flex: none; color: var(--brass); }
+
+.nav { display: none; }
+@media (min-width: 860px) {
+  .nav { display: flex; align-items: center; gap: var(--s-5); }
+}
+.nav__link {
+  font-size: var(--fs-sm);
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.nav__link:hover { color: var(--ink); }
+
+.header__actions { display: flex; align-items: center; gap: var(--s-2); }
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--ink-dim);
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+.icon-btn:hover { color: var(--ink); border-color: var(--ink-dim); background: var(--surface); }
+.icon-btn svg { width: 16px; height: 16px; }
+
+.menu-btn { display: inline-grid; }
+@media (min-width: 860px) { .menu-btn { display: none; } }
+
+/* mobile disclosure panel */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: var(--header-h) 0 auto 0;
+  z-index: 55;
+  background: var(--ground);
+  border-bottom: 1px solid var(--line);
+  padding: var(--s-4) 0 var(--s-5);
+}
+.mobile-nav[data-open="true"] { display: block; }
+@media (min-width: 860px) { .mobile-nav[data-open="true"] { display: none; } }
+.mobile-nav__list { display: flex; flex-direction: column; }
+.mobile-nav__link {
+  padding: var(--s-3) 0;
+  text-decoration: none;
+  color: var(--ink-mid);
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 1.05rem;
+}
+
+/* ============================================================================
+   5. BUTTONS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 0.72em 1.25em;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .12s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--brass); color: var(--brass-ink); border-color: var(--brass); }
+.btn--primary:hover { background: var(--brass-soft); border-color: var(--brass-soft); }
+
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--ink-dim); background: var(--surface); }
+
+.btn--quiet { background: transparent; color: var(--brass-text); border-color: var(--brass-edge); padding-inline: 1.1em; }
+.btn--quiet:hover { background: var(--brass-wash); border-color: var(--brass); }
+
+.btn--sm { padding: 0.55em 0.95em; font-size: var(--fs-mono); }
+.btn--block { width: 100%; }
+
+.btn__arrow { width: 14px; height: 14px; flex: none; transition: transform .18s ease; }
+.btn:hover .btn__arrow { transform: translateX(2px); }
+
+/* ============================================================================
+   6. HERO
+   --------------------------------------------------------------------------
+   The dot matrix thins outward from the upper left — a coverage-falloff motif.
+   It is the one decorative element on the page and it costs nothing.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  padding-block: clamp(3.5rem, 2rem + 7vw, 7rem) var(--s-9);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 130%;
+  z-index: -1;
+  background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 22% 8%, #000 0%, transparent 72%);
+          mask-image: radial-gradient(ellipse 75% 65% at 22% 8%, #000 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-7);
+  align-items: start;
+}
+@media (min-width: 1000px) {
+  .hero__grid { grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr); gap: var(--s-8); }
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  font-weight: 660;
+  letter-spacing: -0.038em;
+  line-height: 1.03;
+  margin-bottom: var(--s-5);
+}
+.hero__title em {
+  font-style: normal;
+  color: var(--brass-display);   /* large text — see the palette note up top */
+}
+
+.hero__sub {
+  font-size: var(--fs-lede);
+  line-height: 1.55;
+  color: var(--ink-mid);
+  max-width: 54ch;
+  margin-bottom: var(--s-6);
+}
+
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+.hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: var(--s-5);
+}
+.hero__tag::before {
+  content: "";
+  width: 22px; height: 1px;
+  background: var(--brass);
+  flex: none;
+}
+
+/* — the datasheet block: the thesis, stated as a spec sheet — */
+.datasheet {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.datasheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  background: var(--ground-deep);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.datasheet__dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--signal);
+  flex: none;
+  box-shadow: 0 0 0 3px var(--signal-wash);
+}
+.datasheet__list { padding: var(--s-2) var(--s-4) var(--s-4); }
+.datasheet__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-bottom: 1px dashed var(--line);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+}
+.datasheet__row:last-child { border-bottom: 0; }
+.datasheet__k { color: var(--ink-dim); letter-spacing: 0.02em; }
+.datasheet__v { color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }
+.datasheet__foot {
+  padding: 0 var(--s-4) var(--s-4);
+  font-size: var(--fs-micro);
+  line-height: 1.6;
+  color: var(--ink-dim);
+  font-family: var(--mono);
+}
+
+/* ============================================================================
+   7. STATUS BADGES
+   --------------------------------------------------------------------------
+   Visual weight escalates with real maturity:
+     cool  → dashed outline, teal      (not built yet)
+     warm  → solid outline + live dot  (running now)
+     live  → filled brass              (shipped)
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.3em 0.7em;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge__dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex: none; }
+
+.badge--cool  { color: var(--signal-text); border-color: var(--signal-edge); border-style: dashed; background: var(--signal-wash); }
+.badge--warm  { color: var(--brass-text);  border-color: var(--brass-edge);  background: var(--brass-wash); }
+.badge--live  { color: var(--brass-ink);   border-color: var(--brass);       background: var(--brass); }
+.badge--quiet { color: var(--ink-dim);     border-color: var(--line);        background: transparent; }
+
+.badge--warm .badge__dot { box-shadow: 0 0 0 3px var(--brass-wash); }
+
+/* ============================================================================
+   8. VERTICALS
+   ========================================================================== */
+
+.verticals {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+@media (min-width: 760px) { .verticals { grid-template-columns: repeat(3, 1fr); } }
+
+.vcard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.vcard__icon { width: 22px; height: 22px; color: var(--brass); }
+.vcard--quiet .vcard__icon { color: var(--ink-dim); }
+.vcard__name { font-size: var(--fs-h3); letter-spacing: -0.018em; }
+.vcard__body { font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.58; }
+
+/* ============================================================================
+   9. PRODUCT CARDS
+   ========================================================================== */
+
+.products { display: flex; flex-direction: column; gap: var(--s-5); }
+
+.pcard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+@media (min-width: 880px) {
+  .pcard { grid-template-columns: minmax(0, 1fr) 250px; gap: var(--s-7); }
+}
+
+.pcard__main { display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
+
+.pcard__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+.pcard__name {
+  font-size: clamp(1.35rem, 1.15rem + 0.85vw, 1.75rem);
+  letter-spacing: -0.026em;
+}
+.pcard__kicker {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  color: var(--brass-text);
+  letter-spacing: 0.01em;
+}
+.pcard__body { color: var(--ink-mid); max-width: var(--measure); }
+.pcard__note {
+  font-size: var(--fs-sm);
+  color: var(--ink-dim);
+  padding-left: var(--s-3);
+  border-left: 2px solid var(--brass-edge);
+}
+
+.pcard__roadmap { display: flex; flex-direction: column; gap: var(--s-2); margin-top: var(--s-2); }
+.pcard__roadmap-label {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.pcard__roadmap-list { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.pcard__roadmap-item {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-dim);
+  border: 1px dashed var(--line);
+  border-radius: 100px;
+  padding: 0.3em 0.7em;
+}
+
+.pcard__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+/* Facts and the network meter sit together at the top; the CTA is pushed to
+   the bottom edge. `space-between` on the whole column left a dead gap. */
+.pcard__side > :last-child { margin-top: auto; }
+@media (min-width: 880px) {
+  .pcard__side { border-left: 1px solid var(--line); padding-left: var(--s-6); }
+}
+
+.facts { display: flex; flex-direction: column; gap: var(--s-2); }
+.facts__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  line-height: 1.5;
+  color: var(--ink-mid);
+}
+.facts__item::before {
+  content: "";
+  width: 4px; height: 4px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--brass);
+  flex: none;
+}
+
+/* ============================================================================
+   9b. CONNECTIVITY
+   --------------------------------------------------------------------------
+   "Offline-first" is a spectrum, not a binary, and stating which end a product
+   sits on is the honest version of the claim. The meter reads as "how much
+   network this needs" — fewer filled segments is better, which is why the
+   empty state is the good one.
+   ========================================================================== */
+
+.conn {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--line);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.conn__meter { display: flex; gap: 3px; flex: none; }
+.conn__seg {
+  width: 13px; height: 4px;
+  border-radius: 1px;
+  background: var(--line);
+}
+.conn__seg--on { background: var(--signal); }
+.conn__val { color: var(--ink-mid); }
+
+/* — the spectrum block in the Edge section — */
+.spectrum {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+@media (min-width: 820px) { .spectrum { grid-template-columns: repeat(3, 1fr); } }
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border-bottom: 1px solid var(--line);
+}
+.tier:last-child { border-bottom: 0; }
+@media (min-width: 820px) {
+  .tier { border-bottom: 0; border-right: 1px solid var(--line); }
+  .tier:last-child { border-right: 0; }
+}
+.tier--out { background: var(--ground-deep); }
+/* Neutralise the meter here: teal reads as "ours / active", and this tier is
+   explicitly the one we do not build on. */
+.tier--out .conn__seg--on { background: var(--ink-dim); }
+
+.tier__name {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.tier--out .tier__name { color: var(--ink-dim); }
+.tier__meaning { font-size: var(--fs-sm); line-height: 1.55; color: var(--ink-mid); }
+.tier__who { display: flex; flex-direction: column; gap: var(--s-2); margin-top: auto; padding-top: var(--s-2); }
+.tier__who-label {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.tier__product {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--brass-text);
+  letter-spacing: -0.008em;
+}
+.tier__none { font-size: var(--fs-sm); color: var(--ink-dim); font-style: italic; }
+
+/* ============================================================================
+   10. EDGE — design rules stated as constraints
+   ========================================================================== */
+
+.rules { display: flex; flex-direction: column; }
+
+.rule {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-1);
+  padding-block: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+.rule:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 800px) {
+  .rule { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: var(--s-6); align-items: baseline; }
+}
+
+.rule__text {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  display: flex;
+  gap: var(--s-3);
+}
+.rule__idx {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  color: var(--brass-text);
+  padding-top: 0.35em;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.rule__because { font-size: var(--fs-sm); color: var(--ink-dim); line-height: 1.58; }
+
+/* ============================================================================
+   11. FOUNDER
+   ========================================================================== */
+
+.founder { display: grid; grid-template-columns: 1fr; gap: var(--s-5); align-items: start; }
+@media (min-width: 700px) { .founder { grid-template-columns: 144px minmax(0, 1fr); gap: var(--s-6); } }
+
+.founder__mark {
+  width: 144px; height: 144px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.founder__initials {
+  font-family: var(--mono);
+  font-size: 1.65rem;
+  letter-spacing: 0.06em;
+  color: var(--brass-text);
+}
+/* The shipped photo is already a square head-and-shoulders crop, so cover has
+   nothing to trim. The bias above centre only matters if a taller portrait is
+   swapped in later — in those the face sits high and a dead-centre crop cuts
+   it off. Harmless on a square source; leave it. */
+.founder__photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.founder__name { font-size: var(--fs-h3); letter-spacing: -0.02em; }
+.founder__role {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: var(--s-1);
+  margin-bottom: var(--s-4);
+}
+
+/* ============================================================================
+   12. CONTACT & FOOTER
+   ========================================================================== */
+
+.contact__heading { font-size: var(--fs-h2); letter-spacing: -0.028em; }
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-2);
+}
+
+.mail {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--brass-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brass-edge);
+  padding-bottom: 2px;
+  word-break: break-all;
+}
+.mail:hover { border-bottom-color: var(--brass); }
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: var(--s-6) var(--s-7);
+  background: var(--ground-deep);
+}
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+@media (min-width: 760px) {
+  .footer__inner { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: var(--s-6); }
+}
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--s-4); }
+.footer__link {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  color: var(--ink-dim);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color .15s ease;
+}
+.footer__link:hover { color: var(--brass-text); }
+.footer__note {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  line-height: 1.65;
+  color: var(--ink-dim);
+  max-width: 46ch;
+}
+.footer__legal {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================================
+   13. DIALOG + FORM
+   --------------------------------------------------------------------------
+   One <dialog>, one form. The field set, heading and button label are all
+   rebuilt from config each time it opens, based on the product's status.
+   Native <dialog> gives us focus trapping, Esc-to-close and focus restore
+   for free — no library.
+   ========================================================================== */
+
+.dialog {
+  width: min(540px, calc(100vw - 2rem));
+  max-height: min(86vh, 780px);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 70px -20px rgba(0,0,0,.6);
+  overflow: hidden;
+}
+.dialog::backdrop { background: rgba(8, 6, 5, 0.68); backdrop-filter: blur(3px); }
+
+.dialog__inner { display: flex; flex-direction: column; max-height: inherit; }
+
+.dialog__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+.dialog__eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--brass-text);
+  margin-bottom: var(--s-2);
+}
+.dialog__title { font-size: 1.3rem; letter-spacing: -0.022em; }
+.dialog__intro { font-size: var(--fs-sm); color: var(--ink-dim); margin-top: var(--s-3); line-height: 1.55; }
+
+.dialog__body { padding: var(--s-5); overflow-y: auto; }
+
+.fields { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.field { display: flex; flex-direction: column; gap: var(--s-2); }
+.field__label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.006em;
+}
+.field__opt {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  color: var(--ink-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: var(--s-2);
+}
+.field__help { font-size: var(--fs-mono); color: var(--ink-dim); line-height: 1.5; }
+
+.input {
+  width: 100%;
+  padding: 0.68em 0.8em;
+  background: var(--ground);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  transition: border-color .15s ease, background .15s ease;
+}
+.input:hover { border-color: var(--ink-dim); }
+.input:focus { border-color: var(--brass); outline-offset: 1px; }
+textarea.input { min-height: 88px; resize: vertical; line-height: 1.55; }
+select.input { cursor: pointer; appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 17px) calc(50% + 1px), calc(100% - 12px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.2em;
+}
+
+.dialog__foot {
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.form__privacy { font-size: var(--fs-micro); font-family: var(--mono); color: var(--ink-dim); line-height: 1.6; }
+
+.form__msg {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+.form__msg[hidden] { display: none; }
+.form__msg--error { color: var(--ink); background: var(--signal-wash); border-color: var(--signal-edge); }
+.form__msg--ok    { color: var(--ink); background: var(--brass-wash);  border-color: var(--brass-edge); }
+
+/* honeypot — hidden from people, visible to bots */
+.hp { position: absolute; left: -5000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ============================================================================
+   14. MOTION
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .55s cubic-bezier(.2,.6,.2,1), transform .55s cubic-bezier(.2,.6,.2,1);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* No JS? Never leave content invisible. */
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* ============================================================================
+   15. PRINT — grant reviewers do print things
+   ========================================================================== */
+
+@media print {
+  .header, .mobile-nav, .hero::before, .dialog, .btn, .skip { display: none !important; }
+  body { background: #fff; color: #000; }
+  .section { padding-block: 1.5rem; break-inside: avoid; }
+  .pcard, .vcard { border-color: #999; box-shadow: none; break-inside: avoid; }
+}
