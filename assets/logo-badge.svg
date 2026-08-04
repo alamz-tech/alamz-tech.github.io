@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" role="img" aria-label="Alamz Tech">
+  <!-- Founder-supplied badge, adapted from the four per-background exports.
+       Two changes:
+         1. The baked-in background rect is gone, so this sits on any ground.
+         2. Brass is currentColor, so CSS drives it and the theme toggle
+            recolours it for free. That collapses four files into one.
+
+       KNOWN ISSUE: the lettering is live <text> in Archivo, which is not
+       installed on most machines and the site ships no webfonts — so it falls
+       back to the system sans and the metrics shift per platform. Re-export
+       from the design tool with text converted to outlines and replace this
+       file; nothing else needs to change. -->
+  <mask id="alamzPlate" maskUnits="userSpaceOnUse" x="18" y="24" width="84" height="32">
+    <rect x="18" y="24" width="84" height="32" fill="#fff"/>
+    <text x="60" y="47" text-anchor="middle"
+          font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+          font-size="18" letter-spacing="3" fill="#000">ALAMZ</text>
+  </mask>
+  <rect x="6" y="6" width="108" height="108" stroke="currentColor" stroke-width="6"/>
+  <rect x="18" y="24" width="84" height="32" fill="currentColor" mask="url(#alamzPlate)"/>
+  <text x="60" y="90" text-anchor="middle"
+        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="21" font-weight="700" letter-spacing="1.5" fill="currentColor">TECH</text>
+</svg>

@@ -28,11 +28,11 @@ window.ALAMZ = {
     name: 'Alamz Tech',
     // Shown in the sticky header. Keep it short.
     wordmark: 'Alamz Tech',
-    tagline: 'Offline-first AI & software for back-office operations, agriculture, and education.',
-    // The one-liner under the tagline in the hero.
+    tagline: 'AI products and integration for business, built to work in the real world.',
+    // The one-liner under the headline in the hero.
     heroSub:
-      'A venture studio building practical AI for the places technology reaches last — ' +
-      'designed for low bandwidth, low-cost hardware, and real African conditions.',
+      'We build AI products for business, and we integrate AI into businesses that already ' +
+      'exist — then deploy it and keep it running in production, not just working in a demo.',
     // Published on the page, so it will get scraped by spam bots eventually —
     // that is the cost of showing an address at all. Swap to hello@alamztech.com
     // once the domain's mail is set up. Set to '' and the site hides every
@@ -55,11 +55,32 @@ window.ALAMZ = {
      ====================================================================== */
   nav: [
     { label: 'Approach',  href: '#approach'  },
-    { label: 'Focus',     href: '#focus'     },
+    { label: 'What we do', href: '#focus'    },
     { label: 'Products',  href: '#products'  },
-    { label: 'Edge',      href: '#edge'      },
+    { label: 'Services',  href: '#services'  },
     { label: 'Founder',   href: '#founder'   },
   ],
+
+  /* ==========================================================================
+     HERO — the capability strip in the panel beside the headline.
+     --------------------------------------------------------------------------
+     This makes "works in the real world" concrete. It replaced the on-device
+     spec sheet that used to sit here: that sheet described one capability, not
+     the studio, so it moved onto the Offline LLM Engine card where it belongs.
+     Keep these four honest — they are capabilities we actually have.
+     ====================================================================== */
+  hero: {
+    capabilitiesLabel: 'How we build',
+    capabilities: [
+      { k: 'Deployment',  v: 'Shipped to production' },
+      { k: 'Grounding',   v: 'RAG on your own data' },
+      { k: 'On-device',   v: 'Offline where needed' },
+      { k: 'Operations',  v: 'Monitored and maintained' },
+    ],
+    capabilitiesFoot:
+      'Most AI work stalls between a working demo and something a business can rely on. ' +
+      'That gap is the part we do.',
+  },
 
   /* ==========================================================================
      SOCIAL — order here is the order in the footer.
@@ -193,10 +214,11 @@ window.ALAMZ = {
      ====================================================================== */
   approach: {
     eyebrow: 'The model',
-    heading: 'We build the products ourselves, prove them, then spin out the ones that work.',
+    heading: 'We build AI products in-house, and we integrate AI into businesses that already exist.',
     body: [
-      'Alamz Tech is a venture studio, not an agency and not a fund. We pick a real operational problem in one of three sectors, build a focused product against it in-house, and put it in front of real users under real conditions. What earns its keep gets resourced and spun up. What does not gets killed early and cheaply.',
-      'One engineering edge runs through all of it: AI that holds up where connectivity, hardware budgets and data plans are the binding constraint — which is most of the continent, most of the time.',
+      'Alamz Tech is a product studio. We build focused AI products against real operational problems, put them in front of real users, and resource the ones that earn their keep. Alongside that we take integration work: bringing AI into a business that already runs, on its own data and inside its own systems.',
+      'The two feed each other. Integration work pays now and shows us where the real problems are; products turn what we learn into something more than one company can use.',
+      'One engineering thread runs through both. Getting a model to answer well is the easy half — the hard half is deployment, grounding it in data that is actually yours, and keeping it running once it matters. That is where most AI work stalls, and it is the part we are built for.',
     ],
   },
 
@@ -214,13 +236,13 @@ window.ALAMZ = {
      ====================================================================== */
   connectivity: {
     eyebrow: 'Connectivity budget',
-    heading: 'Offline-first is a spectrum, and we say where every product sits on it.',
+    heading: 'How much network a thing needs is a design decision, so we state it.',
     body:
-      'Not everything can run with the network unplugged, and pretending otherwise would be a ' +
-      'sales pitch rather than an engineering position. What is true across the portfolio is that ' +
-      'connectivity is treated as a scarce, metered, unreliable resource that has to be budgeted — ' +
-      'never as something we can just assume. A product either runs with no network at all, or it ' +
-      'is built to survive one that keeps failing.',
+      'Running fully offline is a capability, not a house style — plenty of business AI needs to ' +
+      'reach a grounded cloud model, and pretending otherwise would be a sales pitch rather than an ' +
+      'engineering position. What is constant is that connectivity gets treated as a budget rather ' +
+      'than an assumption. Every product below declares where it sits, and client work gets the ' +
+      'same question asked at the start.',
     tiers: [
       {
         id: 'none',
@@ -252,37 +274,83 @@ window.ALAMZ = {
      read three identical confident cards as marketing; they read an honest
      maturity gradient as a team that knows where it actually is.
      ====================================================================== */
-  verticals: [
-    {
-      name: 'Back-office operations',
-      state: 'Product in development',
-      tone: 'cool',
-      body:
-        'Small businesses run on invoices, mobile-money reconciliation and tax paperwork done by hand, ' +
-        'often with no reliable internet and no budget for cloud software. We are building an assistant ' +
-        'that does this work entirely on the machine in front of you.',
-      icon: 'ledger',
-    },
-    {
-      name: 'Agriculture',
-      state: 'Focus area — no product yet',
-      tone: 'quiet',
-      body:
-        'Advisory and record-keeping tools reach farmers last, because they assume a data plan and a ' +
-        'smartphone. This is an active area of research for us. We are not shipping here yet, and we ' +
-        'would rather say so.',
-      icon: 'seed',
-    },
-    {
-      name: 'Education',
-      state: 'Most developed — pilot forming',
-      tone: 'warm',
-      body:
-        'Technical training that gets someone to a paying job, without expensive hardware, paid lab ' +
-        'accounts or a reliable connection. This is where our work is furthest along.',
-      icon: 'path',
-    },
-  ],
+  offerings: {
+    eyebrow: 'What we do',
+    heading: 'Two ways we work, and they are not the same thing.',
+    body:
+      'One is built once and used by many businesses. The other is done for one client, on their ' +
+      'data, inside their systems. We keep them clearly separate because they are bought ' +
+      'differently, priced differently, and succeed differently.',
+    items: [
+      {
+        name: 'Products',
+        state: 'Built once, used by many',
+        tone: 'warm',
+        body:
+          'AI products we build and own. We pick a problem a lot of businesses share, build against ' +
+          'it, and put it in front of real users. Two are underway — their honest status is on each ' +
+          'card below.',
+        icon: 'cube',
+        href: '#products',
+        linkLabel: 'See what we are building',
+      },
+      {
+        name: 'Services — AI integration',
+        state: 'Done for one client',
+        tone: 'cool',
+        body:
+          'We bring AI into a business that already runs: grounded in your own data, wired into your ' +
+          'existing systems, then deployed and kept running. The integration is the easy part to ' +
+          'promise and the hard part to operate — operating it is our edge.',
+        icon: 'plug',
+        href: '#services',
+        linkLabel: 'How the service works',
+      },
+    ],
+  },
+
+  /* ==========================================================================
+     SERVICES — AI integration
+     --------------------------------------------------------------------------
+     Deliberately a section of its own rather than another product card. The
+     products-vs-services line has to be unmistakable.
+
+     GUARDRAIL: this describes a capability we offer. Do not add client logos,
+     case studies or metrics until a real engagement has completed. When one
+     does, add it here as a named case study — not before.
+     ====================================================================== */
+  services: {
+    eyebrow: 'Services',
+    heading: 'We integrate AI into your business — and then we run it.',
+    body:
+      'Plenty of people will wire an AI model into your business. Far fewer will still be there when ' +
+      'it has to work on a Monday morning with real data, real load and real consequences. We come ' +
+      'from DevOps and platform engineering, so the deployment half is not an afterthought bolted on ' +
+      'at the end — it is the half we are strongest at.',
+
+    whatLabel: 'What the work is',
+    what: [
+      'Finding the parts of your operation where AI genuinely helps, and saying plainly where it does not',
+      'Grounding a model in your own documents and data, so answers come from your business rather than the open internet',
+      'Wiring it into the systems you already use, instead of adding another dashboard nobody opens',
+      'Deploying it properly: monitored, versioned, access-controlled, and recoverable when something breaks',
+      'Handover — your team can run it, or we keep operating it for you',
+    ],
+
+    whoLabel: 'Who it is for',
+    who: [
+      'Businesses that have tried an AI pilot and watched it quietly die before production',
+      'Teams with real data and real workflows, not a greenfield experiment',
+      'Operations where being wrong is expensive, so grounding and traceability matter',
+      'Anyone who needs it to keep working after the consultants leave',
+    ],
+
+    edge:
+      'The differentiator is not the integration — it is that we deploy and operate what we integrate. ' +
+      'Most AI work dies in the gap between a demo that impresses and a system a business can depend on.',
+
+    cta: 'Discuss a project',
+  },
 
   /* ==========================================================================
      SECTION 4 — PRODUCTS
@@ -299,7 +367,7 @@ window.ALAMZ = {
     {
       id: 'offline-llm',
       name: 'Offline LLM Engine',
-      kicker: 'The core several Alamz products are built on',
+      kicker: 'Our on-device capability, where the network cannot be assumed',
       /* — flip these three to go live; they are deliberately adjacent — */
       status: 'in-development',
       ctaUrl: '',
@@ -307,17 +375,33 @@ window.ALAMZ = {
       connectivity: 'none',          // tier id from `connectivity.tiers`
       vertical: 'Back-office operations',
       body:
-        'A reproducible pipeline that takes a multilingual open base model, fine-tunes it for ' +
-        'informal-sector back-office work — invoicing, mobile-money reconciliation, local tax and ' +
-        'compliance — and quantizes it to a single file that runs entirely offline on an ordinary ' +
-        '8 GB laptop with no GPU. One command rebuilds the exact model.',
+        'A reproducible pipeline that takes a multilingual open base model, fine-tunes it for a ' +
+        'specific domain, and quantizes it to a single file that runs entirely offline on an ' +
+        'ordinary 8 GB laptop with no GPU. One command rebuilds the exact model. This is the ' +
+        'capability we reach for when a deployment cannot depend on connectivity, cloud budget or ' +
+        'sending data off the premises.',
       note: 'Built for the Africa Deep Tech Challenge 2026 (Laptop LLM Challenge).',
       facts: [
-        '100% offline',
-        '8 GB RAM, no GPU',
-        'Q4_K_M GGUF via llama.cpp',
+        'Runs with the network unplugged',
+        'Fine-tune and quantize pipeline',
         'Reproducible: one command',
       ],
+
+      /* The design envelope. It used to sit in the hero, where it read as the
+         studio's universal build target — no longer true now that business AI
+         work may run grounded cloud models. Scoped to the product it actually
+         describes. Any product can carry one; omit the key to hide it. */
+      datasheet: {
+        label: 'Design envelope',
+        rows: [
+          { k: 'Connectivity', v: 'None required' },
+          { k: 'Memory',       v: '8 GB' },
+          { k: 'Accelerator',  v: 'No GPU' },
+          { k: 'Model',        v: 'Q4_K_M GGUF' },
+          { k: 'Runtime',      v: 'llama.cpp' },
+        ],
+        foot: 'The tightest envelope we build to, for our on-device work.',
+      },
     },
 
     {
@@ -387,26 +471,25 @@ window.ALAMZ = {
      the differentiator; it is stated once, here, and nowhere else.
      ====================================================================== */
   edge: {
-    eyebrow: 'Why offline-first',
-    heading: 'Most AI assumes cheap data, steady power, good hardware and a cloud budget. We design backwards from the opposite.',
+    eyebrow: 'How we build',
+    heading: 'A demo has to impress once. A system has to be right on a Tuesday afternoon with real data.',
     body:
-      'Every one of those assumptions fails somewhere on this continent, and they usually fail together. ' +
-      'Treating that as the normal case rather than the edge case changes what you build, not just how ' +
-      'you deploy it. It is a moat, not a compromise — software built this way also happens to be ' +
-      'cheaper to run, private by default, and considerably harder to copy.',
-    // Stated in the order they are applied: each only matters once the one
-    // above it holds. Rule 1 fails often — rules 2 and 3 are what you do then.
+      'Almost all the difficulty in business AI sits after the part people demo. Getting a model to ' +
+      'give a good answer in a meeting is not the hard problem; making it answer from your data, ' +
+      'survive contact with production, and still be running in six months is. These are the rules ' +
+      'we hold both our own products and our client work to.',
+    // Applied in this order: each only matters once the one above it holds.
     rules: [
-      { rule: 'Run on the device whenever the work will fit there',
-        because: 'No inference bill, no round trip, and the data never leaves the machine.' },
-      { rule: 'When it cannot, spend the smallest connection that will do',
-        because: 'Text over a channel someone already pays for, not video over one they do not.' },
-      { rule: 'Assume the connection drops mid-task',
-        because: 'Work is checkpointed and resumable. Losing signal costs a learner nothing.' },
-      { rule: 'Budget for the hardware people already own',
-        because: 'An 8 GB laptop with no GPU is the target, not the fallback.' },
-      { rule: 'Build on free and low-cost tiers end to end',
-        because: 'A learner who needs a credit card to start has already been excluded.' },
+      { rule: 'Ground it in the customer\'s own data',
+        because: 'A confident answer from the open internet is worse than no answer. Retrieval beats recall.' },
+      { rule: 'Ship it to production, not to a demo',
+        because: 'Deployed, monitored, versioned and recoverable. Anything less is a prototype wearing a suit.' },
+      { rule: 'Make it survive the conditions it will actually meet',
+        because: 'Thin bandwidth, unreliable power, modest hardware. Where the network cannot be assumed, it runs on-device.' },
+      { rule: 'Show where the answer came from',
+        because: 'When being wrong is expensive, traceability is not a feature — it is the requirement.' },
+      { rule: 'Leave it operable by someone else',
+        because: 'Documented and handed over. Work that only we can run is a liability we sold you.' },
     ],
   },
 
@@ -437,11 +520,12 @@ window.ALAMZ = {
      ====================================================================== */
   contact: {
     eyebrow: 'Work with us',
-    heading: 'Partnering, piloting, or reviewing an application?',
+    heading: 'Building with us, integrating AI, or reviewing an application?',
     body:
-      'We are actively looking for pilot partners — training centres, SMEs and agricultural ' +
-      'organisations willing to put an early product in front of real users. If you run a programme ' +
-      'or are reviewing one of our applications, get in touch and we will answer properly.',
+      'Three kinds of conversation, all welcome here. Businesses wanting AI integrated into what ' +
+      'they already run. Pilot partners willing to put an early product in front of real users. ' +
+      'And programmes or reviewers looking at one of our applications. Say which you are and we ' +
+      'will answer properly.',
 
     // Shown when `brand.email` is empty. Once you set a real address, the
     // mailto link appears alongside this button automatically.
@@ -458,6 +542,7 @@ window.ALAMZ = {
         { name: 'organisation', label: 'Organisation', type: 'text', required: false },
         { name: 'reason', label: 'What is this about?', type: 'select', required: true,
           options: [
+            'AI integration for my business',
             'Pilot partnership',
             'Grant, accelerator or programme',
             'Investment',

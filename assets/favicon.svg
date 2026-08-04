@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Placeholder mark: brass triangle on the studio's near-white ground.
-       TODO: swap for the real Alamz mark. Keep it square and legible at 16px. -->
-  <rect width="64" height="64" rx="12" fill="#FCFBF9"/>
-  <path d="M32 12 55 52H9L32 12Z" fill="#C6851C" opacity=".18"/>
-  <path d="M32 12 55 52H9L32 12Z" fill="none" stroke="#A9651A" stroke-width="3.4" stroke-linejoin="round"/>
-  <path d="M32 30 43 49H21L32 30Z" fill="#A9651A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Same mark as assets/logo.svg. Brass is hardcoded here rather than
+       currentColor: a favicon renders in browser chrome with no CSS context,
+       so it cannot inherit a colour. #C6851C is legible on both light and
+       dark tab bars. Keep this in sync with assets/logo.svg by hand. -->
+  <rect x="2" y="2" width="20" height="20" stroke="#C6851C" stroke-width="2"/>
+  <path d="M8.2 17.2 12 6.9l3.8 10.3M9.7 14.1h4.6"
+        stroke="#C6851C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

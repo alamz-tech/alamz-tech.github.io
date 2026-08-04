@@ -53,20 +53,30 @@ def text(s, x, y_top, font_name, size, color, kern=0.0):
     ns.drawAtPoint_withAttributes_(NSMakePoint(x, top(y_top) - font.ascender()), attrs)
     return ns.sizeWithAttributes_(attrs).width
 
-def triangle(cx, cy, r, fill=None, stroke=None, width=3.0):
-    p = NSBezierPath.bezierPath()
-    pts = [(cx, cy - r), (cx + r * math.cos(math.radians(30)), cy + r * math.sin(math.radians(30))),
-           (cx - r * math.cos(math.radians(30)), cy + r * math.sin(math.radians(30)))]
-    p.moveToPoint_(NSMakePoint(pts[0][0], top(pts[0][1])))
-    for px, py in pts[1:]:
-        p.lineToPoint_(NSMakePoint(px, top(py)))
-    p.closePath()
-    p.setLineWidth_(width)
-    p.setLineJoinStyle_(1)  # round
-    if fill:
-        fill.set(); p.fill()
-    if stroke:
-        stroke.set(); p.stroke()
+def mark(x, y, size, color, weight_ratio=0.085):
+    """The Alamz mark: square frame with a bold A. Mirrors assets/logo.svg.
+    (x, y) is the top-left corner; `size` is the outer square's side."""
+    w = size * weight_ratio
+    color.set()
+
+    frame = NSBezierPath.bezierPathWithRect_(
+        NSMakeRect(x + w / 2, top(y + size) + w / 2, size - w, size - w))
+    frame.setLineWidth_(w)
+    frame.stroke()
+
+    def pt(fx, fy):
+        return NSMakePoint(x + size * fx, top(y + size * fy))
+
+    a = NSBezierPath.bezierPath()
+    a.moveToPoint_(pt(0.258, 0.717))
+    a.lineToPoint_(pt(0.5, 0.287))
+    a.lineToPoint_(pt(0.742, 0.717))
+    a.moveToPoint_(pt(0.346, 0.588))
+    a.lineToPoint_(pt(0.654, 0.588))
+    a.setLineWidth_(w)
+    a.setLineCapStyle_(1)   # round
+    a.setLineJoinStyle_(1)
+    a.stroke()
 
 # --- ground ---------------------------------------------------------------
 GROUND.set()
@@ -84,34 +94,32 @@ for gx in range(60, W, step):
             NSBezierPath.bezierPathWithOvalInRect_(NSMakeRect(gx, top(gy), 2.6, 2.6)).fill()
 
 # --- brand mark, faint, right side ---------------------------------------
-# keep the whole mark inside the frame — a triangle clipped flush to the edge
-# reads as a rendering mistake, and LinkedIn sometimes crops the sides further
-triangle(980, 318, 210, fill=rgb('#C6851C', 0.055), stroke=rgb('#C6851C', 0.32), width=3.0)
-triangle(980, 381, 87, fill=rgb('#C6851C', 0.32))
+# kept well inside the frame: LinkedIn sometimes crops the sides further
+mark(852, 178, 286, rgb('#C6851C', 0.28))
 
 # --- wordmark -------------------------------------------------------------
-triangle(92, 82, 17, fill=rgb('#C6851C', 0.20), stroke=BRASS, width=2.6)
-triangle(92, 90, 7.5, fill=BRASS)
-text("Alamz Tech", 120, 66, DISPLAY, 30, INK, kern=-0.4)
-
-# eyebrow
-text("VENTURE STUDIO", 120, 104, MONO, 15, INK_DIM, kern=2.6)
+mark(76, 56, 42, BRASS, weight_ratio=0.11)
+text("Alamz Tech", 134, 60, DISPLAY, 30, INK, kern=-0.4)
+text("PRODUCT STUDIO", 134, 98, MONO, 15, INK_DIM, kern=2.6)
 
 # --- headline -------------------------------------------------------------
-lines = [("Offline-first AI", INK), ("for the places technology", INK), ("reaches last.", BRASS_D)]
-y = 196
+lines = [("AI products and integration", INK),
+         ("for business, built to work", INK),
+         ("in the real world.", BRASS_D)]
+y = 200
 for s, col in lines:
-    text(s, 76, y, DISPLAY, 68, col, kern=-2.2)
-    y += 80
+    text(s, 76, y, DISPLAY, 58, col, kern=-1.8)
+    y += 70
 
-# --- rule + spec strip ----------------------------------------------------
+# --- rule + capability strip ---------------------------------------------
 LINE.set()
 NSBezierPath.fillRect_(NSMakeRect(76, top(500), 660, 1))
 
-specs = "100% OFFLINE   ·   8 GB RAM   ·   NO GPU   ·   BUILT FOR AFRICA"
-text(specs, 76, 526, MONO, 17, INK_DIM, kern=1.5)
+text("GROUNDED   ·   DEPLOYED   ·   OPERATED   ·   OFFLINE WHERE NEEDED",
+     76, 526, MONO, 15, INK_DIM, kern=1.3)
 
-text("Back-office operations  ·  Agriculture  ·  Education", 76, 566, DISPLAY, 19, BRASS_D, kern=-0.2)
+text("AI products for business  ·  AI integration, run in production",
+     76, 566, DISPLAY, 19, BRASS_D, kern=-0.2)
 
 NSGraphicsContext.restoreGraphicsState()
 

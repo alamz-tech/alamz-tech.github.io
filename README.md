@@ -1,7 +1,10 @@
 # Alamz Tech — studio site
 
-A one-page static marketing site. No build step, no framework, no server, no
-database. Three files do the work:
+A one-page static marketing site for a product studio that **builds AI products
+for business and integrates AI into existing businesses**, with deployment and
+operations as the differentiator.
+
+No build step, no framework, no server, no database. Three files do the work:
 
 | File | What it is |
 |---|---|
@@ -39,6 +42,25 @@ replaced before you launch:
   entirely**, so there are no dead links while you gather them. LinkedIn and
   GitHub are set.
 - `brand.email` — deliberately empty for now; see *Contact* below
+
+### The logo
+
+Three files, and they are not interchangeable:
+
+| File | Where | Notes |
+|---|---|---|
+| `assets/logo.svg` | header, favicon source | Icon only — square frame + bold A. Uses `currentColor`. |
+| `assets/favicon.svg` | browser tab | Same shape, brass hardcoded (no CSS in tab chrome). Keep in sync by hand. |
+| `assets/logo-badge.svg` | large use only | The full founder badge with lettering. Illegible below ~48px. |
+
+The header mark is also inlined in `index.html` so it can inherit `currentColor`
+and cost no extra request — edit it alongside `assets/logo.svg`.
+
+**Outstanding:** `logo-badge.svg` still uses live `<text>` set in Archivo, which
+is not installed on most machines and the site ships no webfonts, so it falls
+back to the system sans and shifts per platform. Re-export it from the design
+tool with **text converted to outlines** and replace the file. Nothing else
+needs to change.
 
 ### The link preview image
 
@@ -319,9 +341,16 @@ Worth keeping to, since grant reviewers are the primary audience:
 - No metric appears unless it is true and checkable today. The numbers on the
   product cards come from the actual repos — update them when the repos change.
 - Nothing is labelled `live` until it is.
-- The agriculture card says outright that there is no product yet. That is a
-  credibility asset with reviewers, not a gap to paper over.
-- The connectivity spectrum in the *Edge* section exists so that "offline-first"
-  is stated precisely rather than as an absolute — one product runs with no
-  network at all, the other is built to survive a bad one. Keep that distinction
-  if you edit the copy; it is what makes the claim survive scrutiny.
+- **The services section describes a capability, not a track record.** There are
+  deliberately no client logos, case studies or metrics, because there are none
+  yet. Add a case study when a real engagement completes — not before.
+- The connectivity spectrum in the *Edge* section exists so that offline is
+  stated precisely rather than as an absolute — one product runs with no network
+  at all, the other is built to survive a bad one, and business AI often needs a
+  grounded cloud model. Keep that distinction if you edit the copy; it is what
+  stops the claim collapsing under a sharp question.
+- **Offline is one capability, not the studio's identity.** The positioning is
+  *AI products for business + AI integration with a deployment edge*. If you find
+  yourself writing copy that makes offline-first the headline again, that is a
+  regression — it was deliberately demoted.
+- Don't broaden into "we do any AI for anyone." The spine above is the boundary.

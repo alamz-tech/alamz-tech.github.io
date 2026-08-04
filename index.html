@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alamz Tech — Offline-first AI for back-office, agriculture and education</title>
+<title>Alamz Tech — AI products and integration for business</title>
 
 <!-- ---------------------------------------------------------------------
      LINK PREVIEWS (LinkedIn, WhatsApp, X, Slack)
@@ -28,20 +28,20 @@
      servers and will not resolve a relative path, which is the usual cause of
      a blank preview card. All four move together.
      --------------------------------------------------------------------- -->
-<meta name="description" content="Alamz Tech is a venture studio building offline-first AI and software for back-office operations, agriculture and education — designed for low bandwidth, low-cost hardware and real African conditions.">
+<meta name="description" content="Alamz Tech is a product studio building AI products for business and integrating AI into existing businesses — engineered to run reliably in production, including where infrastructure is thin.">
 <!-- Light is the brand ground by default; app.js updates this when the
      visitor uses the header's dark-mode toggle. -->
 <meta name="theme-color" content="#FCFBF9" id="theme-color">
 <link rel="canonical" href="https://alamz-tech.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alamz Tech">
-<meta property="og:title" content="Alamz Tech — Offline-first AI for back-office, agriculture and education">
-<meta property="og:description" content="A venture studio building practical AI for the places technology reaches last.">
+<meta property="og:title" content="Alamz Tech — AI products and integration for business">
+<meta property="og:description" content="We build AI products for business and integrate AI into existing businesses — then deploy and run it in production.">
 <meta property="og:url" content="https://alamz-tech.github.io/">
 <meta property="og:image" content="https://alamz-tech.github.io/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Alamz Tech — offline-first AI for the places technology reaches last.">
+<meta property="og:image:alt" content="Alamz Tech — AI products and integration for business, built to work in the real world.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alamz-tech.github.io/assets/og-image.png">
 
@@ -70,10 +70,12 @@
 <header class="header" id="header">
   <div class="shell header__inner">
     <a class="wordmark" href="#top">
+      <!-- Kept inline (not <img>) so currentColor works and there is no extra
+           request. Mirrors assets/logo.svg — edit both together. -->
       <svg class="wordmark__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2.5 22.5 21H1.5L12 2.5Z" fill="currentColor" opacity=".18"/>
-        <path d="M12 2.5 22.5 21H1.5L12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M12 9.5 17 19H7l5-9.5Z" fill="currentColor"/>
+        <rect x="2" y="2" width="20" height="20" stroke="currentColor" stroke-width="2"/>
+        <path d="M8.2 17.2 12 6.9l3.8 10.3M9.7 14.1h4.6"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span data-bind="brand.wordmark">Alamz Tech</span>
     </a>
@@ -114,10 +116,10 @@
   <section class="hero" id="top">
     <div class="shell hero__grid">
       <div>
-        <p class="hero__tag">Venture studio</p>
+        <p class="hero__tag">Product studio</p>
         <h1 class="hero__title">
-          Offline-first AI for the places technology
-          <em>reaches last</em>.
+          AI products and integration for business, built to work in the
+          <em>real world</em>.
         </h1>
         <p class="hero__sub" data-bind="brand.heroSub"></p>
         <div class="hero__actions">
@@ -132,24 +134,17 @@
         </div>
       </div>
 
-      <!-- The constraints below are real. They come from the Offline LLM
-           Engine's locked build spec. Update them if the spec changes. -->
-      <aside class="datasheet reveal" aria-label="The constraints we design to">
+      <!-- Makes "works in the real world" concrete rather than a slogan. The
+           on-device spec sheet that used to sit here now belongs to the Offline
+           LLM Engine card, where it is correctly scoped to one capability.
+           Rows come from config: hero.capabilities. -->
+      <aside class="datasheet reveal" aria-label="How we build">
         <div class="datasheet__head">
-          <span>Design envelope</span>
+          <span data-bind="hero.capabilitiesLabel"></span>
           <span class="datasheet__dot" aria-hidden="true"></span>
         </div>
-        <div class="datasheet__list">
-          <div class="datasheet__row"><span class="datasheet__k">Connectivity</span><span class="datasheet__v">None required</span></div>
-          <div class="datasheet__row"><span class="datasheet__k">Memory</span><span class="datasheet__v">8 GB</span></div>
-          <div class="datasheet__row"><span class="datasheet__k">Accelerator</span><span class="datasheet__v">No GPU</span></div>
-          <div class="datasheet__row"><span class="datasheet__k">Model</span><span class="datasheet__v">Q4_K_M GGUF</span></div>
-          <div class="datasheet__row"><span class="datasheet__k">Runtime</span><span class="datasheet__v">llama.cpp</span></div>
-        </div>
-        <p class="datasheet__foot">
-          The tightest budget we build to. Products that do need a network carry
-          a stated budget of their own.
-        </p>
+        <div class="datasheet__list" id="hero-capabilities"></div>
+        <p class="datasheet__foot" data-bind="hero.capabilitiesFoot"></p>
       </aside>
     </div>
   </section>
@@ -176,12 +171,13 @@
   <section class="section" id="focus">
     <div class="shell rail">
       <div class="rail__label">
-        <p class="eyebrow">Where we work</p>
-        <p class="rail__meta">Three sectors.<br>Honest about which one is furthest along.</p>
+        <p class="eyebrow" data-bind="offerings.eyebrow"></p>
+        <p class="rail__meta">Two ways we work.<br>One builds assets.<br>One pays now.</p>
       </div>
       <div class="rail__body">
-        <h2 class="contact__heading reveal">Three sectors, at three different stages.</h2>
-        <div class="verticals" id="verticals"></div>
+        <h2 class="contact__heading reveal" data-bind="offerings.heading"></h2>
+        <p class="lede reveal" data-bind="offerings.body"></p>
+        <div class="verticals verticals--two" id="offerings"></div>
       </div>
     </div>
   </section>
@@ -200,16 +196,51 @@
         <div class="products" id="products-list"></div>
         <noscript>
           <p class="lede">
-            <strong>Offline LLM Engine</strong> (in development) — a reproducible pipeline
-            running quantized language models fully offline on 8 GB laptops, tuned for
-            informal-sector back-office work. Built for the Africa Deep Tech Challenge 2026.
+            <strong>Offline LLM Engine</strong> (in development) — our on-device capability:
+            a reproducible pipeline running quantized language models fully offline on an
+            ordinary 8 GB laptop. Built for the Africa Deep Tech Challenge 2026.
             <br><br>
-            <strong>CloudPath</strong> (pilot) — an AI coach on Telegram that trains young
-            Africans into cloud and infrastructure roles using free, no-credit-card labs.
+            <strong>CloudPath</strong> (pilot) — an AI coach on Telegram that trains people
+            into cloud and infrastructure roles using free, no-credit-card labs.
             <br><br>
-            To apply or join a waitlist, email us — the address is in the footer.
+            To join a waitlist or apply to a pilot, email us — the address is in the footer.
           </p>
         </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4b. SERVICES — AI integration.
+       Deliberately its own section with its own ground tint, so the
+       products-vs-services line is unmistakable rather than blurred.
+       ==================================================================== -->
+  <section class="section section--tint" id="services">
+    <div class="shell rail">
+      <div class="rail__label">
+        <p class="eyebrow" data-bind="services.eyebrow"></p>
+        <p class="rail__meta">Done for one client.<br>Built to stay running.</p>
+      </div>
+      <div class="rail__body reveal">
+        <h2 class="contact__heading" data-bind="services.heading"></h2>
+        <p class="lede" data-bind="services.body"></p>
+
+        <div class="svc">
+          <div class="svc__col">
+            <h3 class="svc__title" data-bind="services.whatLabel"></h3>
+            <ul class="svc__list" id="services-what"></ul>
+          </div>
+          <div class="svc__col">
+            <h3 class="svc__title" data-bind="services.whoLabel"></h3>
+            <ul class="svc__list" id="services-who"></ul>
+          </div>
+        </div>
+
+        <p class="pcard__note" data-bind="services.edge"></p>
+
+        <div class="contact__actions">
+          <button class="btn btn--primary" type="button" id="services-cta"></button>
+        </div>
       </div>
     </div>
   </section>

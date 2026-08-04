@@ -58,7 +58,17 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
       'stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c0-4 4-4 4-8s-4-4-4-8"/>' +
       '<circle cx="5" cy="4" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="5" cy="20" r="1.6"/>' +
-      '<path d="M12 20h7M12 4h7"/></svg>'
+      '<path d="M12 20h7M12 4h7"/></svg>',
+    // products: one thing, built once, shipped repeatedly
+    cube:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 20.5 7v10L12 21.2 3.5 17V7Z"/>' +
+      '<path d="M3.5 7 12 11.4 20.5 7M12 11.4v9.8"/></svg>',
+    // services: joining a new thing into a system that already runs
+    plug:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v5M15 2.5v5"/>' +
+      '<path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0Z"/><path d="M12 16v5.5"/></svg>'
   };
 
   /* --------------------------------------------------------- text binding */
@@ -100,9 +110,13 @@
 
   /* ------------------------------------------------------------ verticals */
 
-  (function renderVerticals() {
-    var host = $('#verticals');
-    (C.verticals || []).forEach(function (v) {
+  /* ----------------------------------------------------------- offerings */
+
+  (function renderOfferings() {
+    var host = $('#offerings');
+    if (!host || !C.offerings) return;
+
+    (C.offerings.items || []).forEach(function (v) {
       var card = el('article', 'vcard reveal' + (v.tone === 'quiet' ? ' vcard--quiet' : ''));
 
       if (ICONS[v.icon]) {
@@ -121,8 +135,55 @@
       card.appendChild(badgeWrap);
 
       card.appendChild(el('p', 'vcard__body', v.body));
+
+      if (v.href && v.linkLabel) {
+        var a = el('a', 'btn btn--quiet btn--sm');
+        a.href = v.href;
+        a.style.alignSelf = 'flex-start';
+        a.style.marginTop = 'auto';
+        a.appendChild(document.createTextNode(v.linkLabel));
+        a.insertAdjacentHTML('beforeend', ARROW);
+        card.appendChild(a);
+      }
+
       host.appendChild(card);
     });
+  })();
+
+  /* ------------------------------------------------------ hero capability */
+
+  (function renderHeroCaps() {
+    var host = $('#hero-capabilities');
+    if (!host || !C.hero) return;
+    (C.hero.capabilities || []).forEach(function (row) {
+      var r = el('div', 'datasheet__row');
+      r.appendChild(el('span', 'datasheet__k', row.k));
+      r.appendChild(el('span', 'datasheet__v', row.v));
+      host.appendChild(r);
+    });
+  })();
+
+  /* ------------------------------------------------------------- services */
+
+  (function renderServices() {
+    if (!C.services) return;
+
+    function fill(sel, items) {
+      var host = $(sel);
+      if (!host) return;
+      (items || []).forEach(function (t) { host.appendChild(el('li', 'svc__item', t)); });
+    }
+    fill('#services-what', C.services.what);
+    fill('#services-who', C.services.who);
+
+    var cta = $('#services-cta');
+    if (cta) {
+      cta.textContent = C.services.cta || 'Get in touch';
+      cta.addEventListener('click', function () {
+        openForm({ name: 'AI integration enquiry', status: 'services' },
+                 { cta: C.services.cta, form: C.contact.form }, cta);
+      });
+    }
   })();
 
   /* --------------------------------------------------------- connectivity */
@@ -240,6 +301,28 @@
         var facts = el('ul', 'facts');
         p.facts.forEach(function (f) { facts.appendChild(el('li', 'facts__item', f)); });
         side.appendChild(facts);
+      }
+
+      /* Optional per-product spec sheet. Lives on the product it describes
+         rather than in the hero, where it would read as a studio-wide target. */
+      if (p.datasheet) {
+        var ds = el('div', 'datasheet datasheet--inline');
+        var head = el('div', 'datasheet__head');
+        head.appendChild(el('span', null, p.datasheet.label || 'Spec'));
+        head.appendChild(el('span', 'datasheet__dot'));
+        ds.appendChild(head);
+
+        var list = el('div', 'datasheet__list');
+        (p.datasheet.rows || []).forEach(function (row) {
+          var r = el('div', 'datasheet__row');
+          r.appendChild(el('span', 'datasheet__k', row.k));
+          r.appendChild(el('span', 'datasheet__v', row.v));
+          list.appendChild(r);
+        });
+        ds.appendChild(list);
+
+        if (p.datasheet.foot) ds.appendChild(el('p', 'datasheet__foot', p.datasheet.foot));
+        main.appendChild(ds);
       }
 
       var tier = findTier(p.connectivity);
