@@ -45,22 +45,28 @@ replaced before you launch:
 
 ### The logo
 
-Three files, and they are not interchangeable:
+The founder's badge is used everywhere. It appears in three places, all the
+same artwork:
 
 | File | Where | Notes |
 |---|---|---|
-| `assets/logo.svg` | header, favicon source | Icon only — square frame + bold A. Uses `currentColor`. |
-| `assets/favicon.svg` | browser tab | Same shape, brass hardcoded (no CSS in tab chrome). Keep in sync by hand. |
-| `assets/logo-badge.svg` | large use only | The full founder badge with lettering. Illegible below ~48px. |
+| `assets/logo.svg` | reference copy | Uses `currentColor`, no background rect, so one file works on any ground and follows the theme toggle. |
+| `index.html` | site header | Inlined so `currentColor` applies and there is no extra request. Keep in sync with `logo.svg`. |
+| `assets/favicon.svg` | browser tab | Brass hardcoded — tab chrome has no CSS context to inherit from. |
+| `tools/make-og.py` | link preview card | Redrawn from the same 120×120 geometry. |
 
-The header mark is also inlined in `index.html` so it can inherit `currentColor`
-and cost no extra request — edit it alongside `assets/logo.svg`.
+The badge already reads "ALAMZ TECH", so the header shows it **instead of** a
+text wordmark rather than beside one — otherwise the name appears twice. That is
+why the header is 66px and the mark 46px: the lettering has to be legible.
 
-**Outstanding:** `logo-badge.svg` still uses live `<text>` set in Archivo, which
-is not installed on most machines and the site ships no webfonts, so it falls
-back to the system sans and shifts per platform. Re-export it from the design
-tool with **text converted to outlines** and replace the file. Nothing else
-needs to change.
+The four per-background files originally supplied (`logo-on-*.svg`) collapse
+into the single `currentColor` version — no need to pick a file per surface.
+
+**Outstanding:** the badge uses live `<text>` set in **Archivo**, which is not
+installed on most machines and the site ships no webfonts, so it falls back to
+the system sans and the letterforms shift per platform. Re-export from the
+design tool with **text converted to outlines** and replace `assets/logo.svg`,
+the inline copy in `index.html`, and `assets/favicon.svg`. Nothing else changes.
 
 ### The link preview image
 

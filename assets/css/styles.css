@@ -93,7 +93,7 @@
   --radius: 3px;          /* near-square: this is instrumentation, not a SaaS card */
   --radius-lg: 5px;
   --shell: 1180px;
-  --header-h: 60px;
+  --header-h: 66px;   /* sized to fit the 46px badge with breathing room */
 }
 
 /* — DELIBERATE: light is the brand ground for everyone, including visitors
@@ -299,14 +299,16 @@ button { font: inherit; color: inherit; }
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: var(--s-3);
   text-decoration: none;
-  font-weight: 650;
-  letter-spacing: -0.015em;
-  font-size: 1.0625rem;
-  white-space: nowrap;
+  /* --brass, not --brass-text: this matches the founder's supplied artwork
+     exactly (#C6851C light / #E5A33C dark). Logos are exempt from WCAG
+     contrast rules, so the darkened text variant is not needed here. */
+  color: var(--brass);
 }
-.wordmark__mark { width: 19px; height: 19px; flex: none; color: var(--brass); }
+/* The badge carries the name itself, so it is sized to be read, not to sit as
+   a small icon beside text. 46px is the largest that clears the header. */
+.wordmark__mark { width: 46px; height: 46px; flex: none; }
+.wordmark__mark text { font-family: var(--sans); }
 
 .nav { display: none; }
 @media (min-width: 860px) {

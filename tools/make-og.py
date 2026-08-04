@@ -53,30 +53,55 @@ def text(s, x, y_top, font_name, size, color, kern=0.0):
     ns.drawAtPoint_withAttributes_(NSMakePoint(x, top(y_top) - font.ascender()), attrs)
     return ns.sizeWithAttributes_(attrs).width
 
-def mark(x, y, size, color, weight_ratio=0.085):
-    """The Alamz mark: square frame with a bold A. Mirrors assets/logo.svg.
-    (x, y) is the top-left corner; `size` is the outer square's side."""
-    w = size * weight_ratio
+def mark(x, y, size, color, knockout=None):
+    """The founder's Alamz Tech badge, redrawn at any size.
+
+    Geometry is taken directly from assets/logo.svg (a 120x120 viewBox):
+    a square brass frame, a filled plate with ALAMZ reversed out of it, and
+    TECH beneath. `knockout` is the colour showing through the reversed
+    lettering — i.e. whatever the badge is sitting on. (x, y) is top-left.
+    """
+    s = size / 120.0                       # viewBox unit -> pixels
+    if knockout is None:
+        knockout = GROUND
+
+    def X(u):
+        return x + u * s
+
+    def Y(u):
+        return top(y + u * s)
+
     color.set()
 
+    # frame: <rect x=6 y=6 w=108 h=108 stroke-width=6>
     frame = NSBezierPath.bezierPathWithRect_(
-        NSMakeRect(x + w / 2, top(y + size) + w / 2, size - w, size - w))
-    frame.setLineWidth_(w)
+        NSMakeRect(X(6), Y(114), 108 * s, 108 * s))
+    frame.setLineWidth_(6 * s)
     frame.stroke()
 
-    def pt(fx, fy):
-        return NSMakePoint(x + size * fx, top(y + size * fy))
+    # plate: <rect x=18 y=24 w=84 h=32> filled, with ALAMZ masked out
+    color.set()
+    NSBezierPath.fillRect_(NSMakeRect(X(18), Y(56), 84 * s, 32 * s))
 
-    a = NSBezierPath.bezierPath()
-    a.moveToPoint_(pt(0.258, 0.717))
-    a.lineToPoint_(pt(0.5, 0.287))
-    a.lineToPoint_(pt(0.742, 0.717))
-    a.moveToPoint_(pt(0.346, 0.588))
-    a.lineToPoint_(pt(0.654, 0.588))
-    a.setLineWidth_(w)
-    a.setLineCapStyle_(1)   # round
-    a.setLineJoinStyle_(1)
-    a.stroke()
+    # The SVG uses a mask; on a flat ground, painting the letters in the
+    # knockout colour is visually identical and far simpler here.
+    centred("ALAMZ", X(60), y + 47 * s, DISPLAY, 18 * s, knockout, kern=3 * s)
+    centred("TECH",  X(60), y + 90 * s, DISPLAY, 21 * s, color,    kern=1.5 * s)
+
+
+def centred(s, cx, y_baseline, font_name, size, color, kern=0.0):
+    """Draw text horizontally centred on cx, positioned by its baseline the way
+    SVG's <text y=...> does, so the geometry copied from logo.svg lines up."""
+    font = NSFont.fontWithName_size_(font_name, size)
+    attrs = {NSFontAttributeName: font, NSForegroundColorAttributeName: color}
+    if kern:
+        attrs[NSKernAttributeName] = kern
+    ns = NSString.stringWithString_(s)
+    w = ns.sizeWithAttributes_(attrs).width
+    # drawAtPoint anchors the line box's lower-left; the baseline sits
+    # |descender| above it, and font.descender() is negative.
+    ns.drawAtPoint_withAttributes_(
+        NSMakePoint(cx - w / 2, top(y_baseline) + font.descender()), attrs)
 
 # --- ground ---------------------------------------------------------------
 GROUND.set()
@@ -93,14 +118,14 @@ for gx in range(60, W, step):
             rgb('#B07820', a).set()
             NSBezierPath.bezierPathWithOvalInRect_(NSMakeRect(gx, top(gy), 2.6, 2.6)).fill()
 
-# --- brand mark, faint, right side ---------------------------------------
+# --- the badge, full size on the right ------------------------------------
 # kept well inside the frame: LinkedIn sometimes crops the sides further
-mark(852, 178, 286, rgb('#C6851C', 0.28))
+mark(858, 170, 280, BRASS)
 
 # --- wordmark -------------------------------------------------------------
-mark(76, 56, 42, BRASS, weight_ratio=0.11)
-text("Alamz Tech", 134, 60, DISPLAY, 30, INK, kern=-0.4)
-text("PRODUCT STUDIO", 134, 98, MONO, 15, INK_DIM, kern=2.6)
+# The badge on the right already says the name, so this is just the eyebrow.
+text("ALAMZ TECH", 76, 62, MONO, 17, INK, kern=3.4)
+text("PRODUCT STUDIO", 76, 92, MONO, 15, INK_DIM, kern=2.6)
 
 # --- headline -------------------------------------------------------------
 lines = [("AI products and integration", INK),

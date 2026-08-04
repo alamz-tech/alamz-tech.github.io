@@ -1,9 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-  <!-- Same mark as assets/logo.svg. Brass is hardcoded here rather than
-       currentColor: a favicon renders in browser chrome with no CSS context,
-       so it cannot inherit a colour. #C6851C is legible on both light and
-       dark tab bars. Keep this in sync with assets/logo.svg by hand. -->
-  <rect x="2" y="2" width="20" height="20" stroke="#C6851C" stroke-width="2"/>
-  <path d="M8.2 17.2 12 6.9l3.8 10.3M9.7 14.1h4.6"
-        stroke="#C6851C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- The founder's badge. Brass is hardcoded rather than currentColor: a
+       favicon renders in browser chrome with no CSS context, so it cannot
+       inherit a colour. #C6851C is legible on both light and dark tab bars.
+       Keep in sync with assets/logo.svg by hand. -->
+  <mask id="alamzPlate" maskUnits="userSpaceOnUse" x="18" y="24" width="84" height="32">
+    <rect x="18" y="24" width="84" height="32" fill="#fff"/>
+    <text x="60" y="47" text-anchor="middle"
+          font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+          font-size="18" letter-spacing="3" fill="#000">ALAMZ</text>
+  </mask>
+  <rect x="6" y="6" width="108" height="108" stroke="#C6851C" stroke-width="6"/>
+  <rect x="18" y="24" width="84" height="32" fill="#C6851C" mask="url(#alamzPlate)"/>
+  <text x="60" y="90" text-anchor="middle"
+        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="21" font-weight="700" letter-spacing="1.5" fill="#C6851C">TECH</text>
 </svg>
