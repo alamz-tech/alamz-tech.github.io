@@ -35,7 +35,8 @@ Everything is in **`assets/js/config.js`**, grouped by the section it appears
 in. Search the file for `TODO` — those are the placeholders that must be
 replaced before you launch:
 
-- `form.accessKey` — **the only thing blocking launch.** See *Connect the form* below.
+- `form.endpoint` + the two addresses at the top of `contact.php` — **the only
+  thing blocking a working form.** Needs Hostinger; see *Connect the form* below.
 - `index.html` — domain is already set to `https://alamztech.com` in all four
   preview tags. Nothing to do unless the domain changes.
 - `social[].url` — DEV is still empty. **A link with an empty `url` is hidden
@@ -158,59 +159,71 @@ For a new badge colour, add a `.badge--yourtone` rule in `styles.css` under
 
 ---
 
-## Connect the form — the last setup step
+## Connect the form
 
-Everything is wired. **One value is missing: a Web3Forms access key.**
+Every form on the site — waitlist, pilot application, general enquiry, services
+enquiry — posts to one endpoint. `contact.php` is that endpoint, and it emails
+submissions to you. No third party, no submission cap, mail from your own
+domain.
 
-Web3Forms is the default because it needs no account and no password — you give
-it an email address, it posts back a key — and the free tier is unlimited rather
-than capped.
+**It needs PHP, so it only works once the site is on Hostinger.** GitHub Pages
+serves static files only; a visitor there would download `contact.php` rather
+than run it.
 
-1. Go to <https://web3forms.com>.
-2. Enter the inbox you want submissions delivered to. A personal Gmail is fine;
-   it is never shown on the site and can be changed later.
-3. They email you an access key. Paste it into `config.js`:
+1. Open `contact.php` and set the two values at the top:
+   ```php
+   $TO   = 'hello@alamztech.com';     // where submissions land
+   $FROM = 'website@alamztech.com';   // must be on your own domain
+   ```
+2. Upload the site to Hostinger.
+3. In `config.js`, set the endpoint:
    ```js
-   form: { service: 'web3forms', endpoint: 'https://api.web3forms.com/submit',
-           accessKey: 'your-key-here', … }
+   form: { service: 'php', endpoint: '/contact.php', accessKey: '' }
    ```
 
-That is the whole setup. The `endpoint` is already correct.
+Until `endpoint` is filled in, the form says plainly that it is not connected
+rather than failing in a confusing way.
 
-**Is the key safe in public code?** Yes. It only authorises sending mail *to the
-address you registered* — someone copying it can only send you email, which they
-could do anyway. That is the design of these services. Do not confuse it with an
-API secret.
+**`$FROM` must be on your domain.** Mail claiming to come from a Gmail address
+but sent by Hostinger's server fails SPF and lands in spam. The sender's own
+address goes in `Reply-To`, so hitting reply in your mail client still reaches
+them.
 
-Until the key is set, the form says so plainly instead of pretending to send.
-It does not tell people to email you instead, because there is no address yet.
+### Why not SMTP straight from the page?
 
-### Using Formspree instead
+Because SMTP needs credentials, and anything in client-side JavaScript is
+public — they would be scraped and used to send spam as you until the mailbox
+got blocked. `contact.php` is the correct version of that idea: the same mail
+send, but on the server where nobody can read the credentials.
 
-Two values, nothing else:
+### What contact.php already handles
 
-```js
-form: { service: 'formspree', endpoint: 'https://formspree.io/f/abcdwxyz', accessKey: '', … }
-```
+- Rejects anything that is not a POST, and anything over 64 KB
+- Honeypot — a filled `_gotcha` gets a success response and is silently dropped,
+  because telling a bot it failed just makes it retry
+- One submission per IP per 20 seconds
+- Validates the name and email address
+- **Strips CR/LF from every header value.** Without this, a newline in the name
+  field lets an attacker append their own headers — a `Bcc:` to a spam list, for
+  instance, sent from your server. Do not remove that guard.
+- Sends every field the form submitted, whatever it was, so the field set can
+  change per product status without touching the PHP
+- Returns JSON; the page shows the endpoint's own message on failure, so a
+  validation error or rate-limit reads properly instead of a generic "failed"
 
-`app.js` handles the one real difference between them (Formspree reads
-`_subject`, Web3Forms reads `subject`). Note Formspree's free tier caps at 50
-submissions/month and requires an account — and on a new form it holds the first
-submission until you click a confirmation link it emails you, which is easy to
-mistake for a broken form.
+If deliverability is poor on Hostinger's `mail()`, switch to authenticated SMTP
+with PHPMailer against your own mailbox — same file, only the send line changes.
 
-### Other options, if you want to drop hosted forms entirely
+### Alternatives, if you stay on static-only hosting
 
-- **Google Forms** — free and unlimited, data lands in a Sheet you own. You can
-  POST to the form's `formResponse` URL from JS, but only in `no-cors` mode,
-  which means the page cannot tell whether the submission succeeded. You would
-  be showing a success message on faith. Not recommended here.
-- **Cloudflare Pages Functions + D1** — since you are deploying to Cloudflare
-  anyway, a ~20-line serverless function could write submissions to their free
-  D1 database, giving you full ownership of the data and no third party. This is
-  the right move *later*, once submissions are worth owning. It is a real
-  backend though, with its own failure modes, and it is not worth building
-  before the first signup exists.
+| Service | Cost | Setup |
+|---|---|---|
+| **Web3Forms** | Free, unlimited | No account. Give an email, they post back a key → `service: 'web3forms'`, `endpoint: 'https://api.web3forms.com/submit'`, `accessKey: '<key>'` |
+| **Formspree** | Free, 50/month | Needs an account → `service: 'formspree'`, `endpoint: 'https://formspree.io/f/xxxxxxxx'` |
+
+`app.js` handles all three. The only real differences are the subject field name
+(`_subject` for Formspree, `subject` for the others) and whether an access key is
+attached.
 
 ### What arrives in your inbox
 
@@ -317,12 +330,30 @@ working `.github.io` URL down. Add it at the same time as the DNS, not before.
    certificate is issued; that is normal, not an error.
 7. Re-run the URL through the LinkedIn Post Inspector to flush the old preview.
 
+### Hostinger (planned — needed for the form)
+
+GitHub Pages cannot run `contact.php`. Moving to Hostinger is what turns the
+form on.
+
+1. Set `$TO` and `$FROM` in `contact.php`, and `form.endpoint` to
+   `'/contact.php'` in `config.js`.
+2. Upload the whole folder to `public_html` (hPanel → File Manager, or FTP, or
+   connect the Git repo from hPanel → Git).
+3. Create the mailbox for `$TO` and `$FROM` in hPanel → Emails, then set
+   `brand.email` in `config.js` to the real address so the site shows it.
+4. Point the domain at Hostinger, enable SSL, and update the four absolute URLs
+   in `index.html` (see the head comment there).
+5. Send one test submission and confirm it arrives.
+
+Keep the `.nojekyll` and `?v=` cache-buster — both remain useful. `tools/` is
+build-time only and does not need uploading, though it is harmless if it is.
+
 ### Other hosts
 
 | Host | What to do |
 |---|---|
-| **Cloudflare Pages** | Connect the repo. Build command: *(blank)*. Output directory: `/`. Better edge coverage in West Africa than GitHub's CDN, but needs its nameservers. |
-| **Netlify** | Drag the folder onto <https://app.netlify.com/drop>, or connect the repo. Build command: *(blank)*. Publish directory: `.` |
+| **Cloudflare Pages** | Connect the repo. Build command: *(blank)*. Output directory: `/`. Better edge coverage in West Africa than GitHub's CDN, but no PHP — the form would need Web3Forms. |
+| **Netlify** | Drag the folder onto <https://app.netlify.com/drop>. No PHP either. |
 | **Vercel** | Free tier prohibits commercial use — skip it for a studio site. |
 
 ### Bump the cache buster when you change CSS or JS

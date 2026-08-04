@@ -103,32 +103,44 @@ window.ALAMZ = {
      instead of pretending to send.
 
      --------------------------------------------------------------------------
-     WEB3FORMS is the default: no account, no password, unlimited submissions
-     on the free tier. You give them an email address, they post back an access
-     key. That key is the only thing you need.
+     'php' — OUR OWN ENDPOINT, once the site is on Hostinger.
+     Submissions POST to contact.php, which emails them to you. No third party,
+     no submission cap, and mail arrives from your own domain.
 
-       1. Go to https://web3forms.com
-       2. Enter the inbox you want submissions delivered to (a personal Gmail is
-          fine — it is never shown on the site and can be changed later).
-       3. They email you an access key. Paste it into `accessKey` below.
-       4. Done. `endpoint` is already correct for Web3Forms.
+       1. Open contact.php and set $TO and $FROM at the top.
+       2. Upload the whole site to Hostinger.
+       3. Set endpoint below to '/contact.php'.
 
-     The key is not a secret in the dangerous sense — it only permits sending
-     mail to the address you registered, so it is safe in public client-side
-     code. That is the whole design of these services.
+     NOTE: PHP does not run on GitHub Pages — it serves static files only, so
+     the browser would download contact.php rather than execute it. Leave
+     `endpoint` empty until the site actually moves to Hostinger; the form then
+     says plainly that it is not connected instead of failing in a confusing way.
 
-     To use FORMSPREE instead (50 submissions/month, needs an account):
-       service:   'formspree'
-       endpoint:  'https://formspree.io/f/xxxxxxxx'   (from their dashboard)
-       accessKey: ''
-     Nothing else changes — the subject-line field name is the only real
-     difference and app.js already handles both.
+     Why not SMTP straight from the page? Because SMTP needs credentials, and
+     anything in client-side JavaScript is public. They would be scraped and
+     used to send spam as you. contact.php is the correct version of that idea:
+     the credentials live on the server, where nobody can read them.
+
+     --------------------------------------------------------------------------
+     Alternatives, if you ever want to stay on static-only hosting:
+
+       Web3Forms — no account, unlimited, free
+         service: 'web3forms', endpoint: 'https://api.web3forms.com/submit',
+         accessKey: '<key they email you>'
+
+       Formspree — 50/month, needs an account
+         service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx',
+         accessKey: ''
+
+     app.js handles all three; the only real difference is the subject field
+     name and whether an access key is attached.
      ====================================================================== */
   form: {
-    service: 'web3forms',
-    endpoint: 'https://api.web3forms.com/submit',
+    service: 'php',
+    // TODO ← set to '/contact.php' once the site is live on Hostinger.
+    endpoint: '',
 
-    accessKey: '',                // TODO ← paste your Web3Forms access key here
+    accessKey: '',                // only used by web3forms
 
     // Prefixes the notification email subject, e.g.
     // "Alamz Tech — Join the waitlist — Offline LLM Engine"

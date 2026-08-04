@@ -725,12 +725,12 @@
     data.append('product', context.product.name);
     data.append('product_status', context.product.status);
 
-    /* Formspree reads `_subject`; Web3Forms reads `subject`. Sending the right
-       one is the only real difference between the two providers. */
+    /* Formspree reads `_subject`; Web3Forms and our own contact.php read
+       `subject`. That field name is the only real difference between them. */
     var subject = C.form.subjectPrefix + ' ' +
                   (context.status.form.heading || context.status.cta) +
                   ' — ' + context.product.name;
-    data.append(C.form.service === 'web3forms' ? 'subject' : '_subject', subject);
+    data.append(C.form.service === 'formspree' ? '_subject' : 'subject', subject);
 
     if (C.form.accessKey) data.append('access_key', C.form.accessKey);
 
@@ -740,8 +740,17 @@
 
     fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
       .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json().catch(function () { return {}; });
+        return res.json().catch(function () { return {}; }).then(function (payload) {
+          if (res.ok) return payload;
+          /* The endpoint often knows exactly what went wrong — a validation
+             failure, or "slow down" from the rate limiter. Prefer its wording
+             over our generic fallback, but never show a raw server string that
+             is not a plain sentence. */
+          var msg = payload && typeof payload.message === 'string' ? payload.message.trim() : '';
+          var e = new Error('HTTP ' + res.status);
+          if (msg && msg.length < 200 && msg.indexOf('<') === -1) e.userMessage = msg;
+          throw e;
+        });
       })
       .then(function () {
         fieldsEl.textContent = '';
@@ -754,7 +763,9 @@
       })
       .catch(function (err) {
         console.error('[alamz] form submission failed:', err);
-        showMsg('That did not send. Check your connection and try again.' + orElseEmail(), 'error');
+        showMsg(err.userMessage ||
+                ('That did not send. Check your connection and try again.' + orElseEmail()),
+                'error');
         submitEl.disabled = false;
         submitEl.textContent = original;
       });
