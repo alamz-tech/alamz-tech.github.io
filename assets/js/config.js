@@ -28,11 +28,12 @@ window.ALAMZ = {
     name: 'Alamz Tech',
     // Shown in the sticky header. Keep it short.
     wordmark: 'Alamz Tech',
-    tagline: 'AI products and integration for business, built to work in the real world.',
+    tagline: 'AI products and integration for business, built for African realities.',
     // The one-liner under the headline in the hero.
     heroSub:
-      'We build AI products for business, and we integrate AI into businesses that already ' +
-      'exist — then deploy it and keep it running in production, not just working in a demo.',
+      'We build AI products for business, and we integrate AI into African businesses that ' +
+      'already run — engineered for the infrastructure, bandwidth and budgets they actually ' +
+      'have, then deployed and kept running in production rather than working once in a demo.',
     // Published on the page, so it will get scraped by spam bots eventually —
     // that is the cost of showing an address at all. Swap to hello@alamztech.com
     // once the domain's mail is set up. Set to '' and the site hides every
@@ -64,22 +65,23 @@ window.ALAMZ = {
   /* ==========================================================================
      HERO — the capability strip in the panel beside the headline.
      --------------------------------------------------------------------------
-     This makes "works in the real world" concrete. It replaced the on-device
-     spec sheet that used to sit here: that sheet described one capability, not
-     the studio, so it moved onto the Offline LLM Engine card where it belongs.
-     Keep these four honest — they are capabilities we actually have.
+     This makes "African realities" concrete rather than a slogan. It replaced
+     the on-device spec sheet that used to sit here: that sheet described one
+     capability, not the studio, so it moved onto the Offline LLM Engine card
+     where it belongs. Keep these honest — they are capabilities we have.
      ====================================================================== */
   hero: {
     capabilitiesLabel: 'How we build',
     capabilities: [
       { k: 'Deployment',  v: 'Shipped to production' },
       { k: 'Grounding',   v: 'RAG on your own data' },
+      { k: 'Bandwidth',   v: 'Costed, not assumed' },
       { k: 'On-device',   v: 'Offline where needed' },
       { k: 'Operations',  v: 'Monitored and maintained' },
     ],
     capabilitiesFoot:
       'Most AI work stalls between a working demo and something a business can rely on. ' +
-      'That gap is the part we do.',
+      'On this continent that gap is wider, and it is the part we do.',
   },
 
   /* ==========================================================================
@@ -214,11 +216,11 @@ window.ALAMZ = {
      ====================================================================== */
   approach: {
     eyebrow: 'The model',
-    heading: 'We build AI products in-house, and we integrate AI into businesses that already exist.',
+    heading: 'We build AI products in-house, and we integrate AI into African businesses that already exist.',
     body: [
       'Alamz Tech is a product studio. We build focused AI products against real operational problems, put them in front of real users, and resource the ones that earn their keep. Alongside that we take integration work: bringing AI into a business that already runs, on its own data and inside its own systems.',
       'The two feed each other. Integration work pays now and shows us where the real problems are; products turn what we learn into something more than one company can use.',
-      'One engineering thread runs through both. Getting a model to answer well is the easy half — the hard half is deployment, grounding it in data that is actually yours, and keeping it running once it matters. That is where most AI work stalls, and it is the part we are built for.',
+      'One engineering thread runs through both. Getting a model to answer well is the easy half — the hard half is deployment, grounding it in data that is actually yours, and keeping it running once it matters. Here that half is harder than it is elsewhere: bandwidth is metered, power and connectivity drop, cloud spend is charged in a currency that moves against you, and there is rarely a platform team standing by. Building for those conditions is the studio\'s edge, not a caveat on it.',
     ],
   },
 
@@ -268,11 +270,15 @@ window.ALAMZ = {
   },
 
   /* ==========================================================================
-     SECTION 3 — FOCUS AREAS
+     SECTION 3 — WHAT WE DO (the two offerings)
      --------------------------------------------------------------------------
-     `state` is deliberately honest and differs per vertical. Grant reviewers
-     read three identical confident cards as marketing; they read an honest
-     maturity gradient as a team that knows where it actually is.
+     Products and Services are kept visibly separate because they are bought,
+     priced and judged differently. `state` is the one-line distinction between
+     them — keep it blunt.
+
+     This replaced an earlier three-sector framing (back-office / agriculture /
+     education). Do not reintroduce sectors here: the market framing lives in
+     "African realities", which is about conditions, not verticals.
      ====================================================================== */
   offerings: {
     eyebrow: 'What we do',
@@ -324,9 +330,10 @@ window.ALAMZ = {
     heading: 'We integrate AI into your business — and then we run it.',
     body:
       'Plenty of people will wire an AI model into your business. Far fewer will still be there when ' +
-      'it has to work on a Monday morning with real data, real load and real consequences. We come ' +
-      'from DevOps and platform engineering, so the deployment half is not an afterthought bolted on ' +
-      'at the end — it is the half we are strongest at.',
+      'it has to work on a Monday morning with real data, real load and real consequences — on the ' +
+      'connection, hardware and budget you actually have rather than the ones the tutorial assumed. ' +
+      'We come from DevOps and platform engineering, so the deployment half is not an afterthought ' +
+      'bolted on at the end. It is the half we are strongest at.',
 
     whatLabel: 'What the work is',
     what: [
@@ -339,15 +346,17 @@ window.ALAMZ = {
 
     whoLabel: 'Who it is for',
     who: [
-      'Businesses that have tried an AI pilot and watched it quietly die before production',
+      'African businesses that have tried an AI pilot and watched it quietly die before production',
       'Teams with real data and real workflows, not a greenfield experiment',
       'Operations where being wrong is expensive, so grounding and traceability matter',
+      'Anyone running on metered bandwidth, unreliable power or a hard cloud budget',
       'Anyone who needs it to keep working after the consultants leave',
     ],
 
     edge:
-      'The differentiator is not the integration — it is that we deploy and operate what we integrate. ' +
-      'Most AI work dies in the gap between a demo that impresses and a system a business can depend on.',
+      'The differentiator is not the integration — it is that we deploy and operate what we integrate, ' +
+      'under conditions most AI vendors have never had to design for. Most AI work dies in the gap ' +
+      'between a demo that impresses and a system a business can depend on. That gap is widest here.',
 
     cta: 'Discuss a project',
   },
@@ -373,7 +382,6 @@ window.ALAMZ = {
       ctaUrl: '',
       ctaLabel: '',
       connectivity: 'none',          // tier id from `connectivity.tiers`
-      vertical: 'Back-office operations',
       body:
         'A reproducible pipeline that takes a multilingual open base model, fine-tunes it for a ' +
         'specific domain, and quantizes it to a single file that runs entirely offline on an ' +
@@ -413,7 +421,6 @@ window.ALAMZ = {
       ctaUrl: '',
       ctaLabel: '',
       connectivity: 'low',           // tier id from `connectivity.tiers`
-      vertical: 'Education',
       body:
         'An AI coach on Telegram that takes someone from zero to certification-ready in cloud and ' +
         'infrastructure roles. Hands-on labs run in free tiers that need no credit card and no ' +
@@ -453,7 +460,6 @@ window.ALAMZ = {
       ctaUrl: '',                          // required only when status is 'live'
       ctaLabel: '',                        // optional label override
       connectivity: 'low',                 // 'none' | 'low' | 'always'
-      vertical: 'Agriculture',             // must match a name in `verticals`
       body: 'Two or three honest sentences about what it does and for whom.',
       note: '',
       facts: ['True fact', 'True fact', 'True fact'],
@@ -476,8 +482,10 @@ window.ALAMZ = {
     body:
       'Almost all the difficulty in business AI sits after the part people demo. Getting a model to ' +
       'give a good answer in a meeting is not the hard problem; making it answer from your data, ' +
-      'survive contact with production, and still be running in six months is. These are the rules ' +
-      'we hold both our own products and our client work to.',
+      'survive contact with production, and still be running in six months is. Most AI tooling is ' +
+      'designed on the assumption of cheap bandwidth, steady power and an open cloud budget — ' +
+      'assumptions that fail here, and usually fail together. These are the rules we hold both our ' +
+      'own products and our client work to.',
     // Applied in this order: each only matters once the one above it holds.
     rules: [
       { rule: 'Ground it in the customer\'s own data',
@@ -485,7 +493,7 @@ window.ALAMZ = {
       { rule: 'Ship it to production, not to a demo',
         because: 'Deployed, monitored, versioned and recoverable. Anything less is a prototype wearing a suit.' },
       { rule: 'Make it survive the conditions it will actually meet',
-        because: 'Thin bandwidth, unreliable power, modest hardware. Where the network cannot be assumed, it runs on-device.' },
+        because: 'Metered bandwidth, unreliable power, modest hardware, cloud spend in a currency that moves. Where the network cannot be assumed, it runs on-device.' },
       { rule: 'Show where the answer came from',
         because: 'When being wrong is expensive, traceability is not a feature — it is the requirement.' },
       { rule: 'Leave it operable by someone else',

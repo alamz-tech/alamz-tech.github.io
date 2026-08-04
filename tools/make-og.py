@@ -106,8 +106,8 @@ text("PRODUCT STUDIO", 76, 92, MONO, 15, INK_DIM, kern=2.6)
 
 # --- headline -------------------------------------------------------------
 lines = [("AI products and integration", INK),
-         ("for business, built to work", INK),
-         ("in the real world.", BRASS_D)]
+         ("for business, built for", INK),
+         ("African realities.", BRASS_D)]
 y = 200
 for s, col in lines:
     text(s, 76, y, DISPLAY, 58, col, kern=-1.8)
@@ -117,8 +117,8 @@ for s, col in lines:
 LINE.set()
 NSBezierPath.fillRect_(NSMakeRect(76, top(500), 660, 1))
 
-text("GROUNDED   ·   DEPLOYED   ·   OPERATED   ·   OFFLINE WHERE NEEDED",
-     76, 526, MONO, 15, INK_DIM, kern=1.3)
+text("GROUNDED   ·   DEPLOYED   ·   OPERATED   ·   LOW-BANDWIDTH   ·   OFFLINE WHERE NEEDED",
+     76, 526, MONO, 13, INK_DIM, kern=1.0)
 
 text("AI products for business  ·  AI integration, run in production",
      76, 566, DISPLAY, 19, BRASS_D, kern=-0.2)
