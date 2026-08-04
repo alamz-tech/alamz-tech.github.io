@@ -62,11 +62,25 @@ why the header is 66px and the mark 46px: the lettering has to be legible.
 The four per-background files originally supplied (`logo-on-*.svg`) collapse
 into the single `currentColor` version — no need to pick a file per surface.
 
-**Outstanding:** the badge uses live `<text>` set in **Archivo**, which is not
-installed on most machines and the site ships no webfonts, so it falls back to
-the system sans and the letterforms shift per platform. Re-export from the
-design tool with **text converted to outlines** and replace `assets/logo.svg`,
-the inline copy in `index.html`, and `assets/favicon.svg`. Nothing else changes.
+**The lettering is outlined, not live text.** It was originally `<text>` set in
+Archivo — a font nobody has installed, on a site that ships no webfonts, so it
+fell back to the system sans and shifted per platform. The glyphs are now real
+Archivo outlines baked into path data, so the logo renders identically
+everywhere and still costs zero extra bytes.
+
+The `ALAMZ` knockout uses `fill-rule="evenodd"` rather than a `<mask>`: the
+plate rect and letter outlines are one path, so the letters fall out as holes
+and the counters inside A and Z fill back in. That avoids a mask `id`, which
+would collide if the SVG were inlined more than once.
+
+To change the artwork, edit the source SVG then re-run:
+
+```bash
+python3 tools/outline-logo.py
+```
+
+It needs `Archivo[wdth,wght].ttf` (OFL, from github.com/google/fonts) at the
+path set at the top of the script. macOS only — it uses CoreText.
 
 ### The link preview image
 

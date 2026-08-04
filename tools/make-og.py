@@ -5,8 +5,10 @@ Colours and type mirror the site's light theme so the link preview and the
 landing page read as one thing.
 """
 import math
+import pathlib
+from Foundation import NSData
 from AppKit import (
-    NSBitmapImageRep, NSGraphicsContext, NSColor, NSFont, NSString,
+    NSBitmapImageRep, NSGraphicsContext, NSColor, NSFont, NSString, NSImage,
     NSDeviceRGBColorSpace, NSBitmapImageFileTypePNG, NSBezierPath,
     NSFontAttributeName, NSForegroundColorAttributeName, NSKernAttributeName,
     NSMakeRect, NSMakePoint,
@@ -53,55 +55,30 @@ def text(s, x, y_top, font_name, size, color, kern=0.0):
     ns.drawAtPoint_withAttributes_(NSMakePoint(x, top(y_top) - font.ascender()), attrs)
     return ns.sizeWithAttributes_(attrs).width
 
-def mark(x, y, size, color, knockout=None):
-    """The founder's Alamz Tech badge, redrawn at any size.
+def mark(x, y, size, color):
+    """Draw the Alamz Tech badge by rendering assets/logo.svg itself.
 
-    Geometry is taken directly from assets/logo.svg (a 120x120 viewBox):
-    a square brass frame, a filled plate with ALAMZ reversed out of it, and
-    TECH beneath. `knockout` is the colour showing through the reversed
-    lettering — i.e. whatever the badge is sitting on. (x, y) is top-left.
+    Loading the real file rather than redrawing the geometry here means the
+    card can never drift from the site's logo — there is one source. The SVG
+    uses currentColor, which NSImage cannot resolve, so the colour is
+    substituted textually before handing it over.
     """
-    s = size / 120.0                       # viewBox unit -> pixels
-    if knockout is None:
-        knockout = GROUND
+    svg_src = (pathlib.Path(__file__).resolve().parent.parent
+               / "assets" / "logo.svg").read_text()
 
-    def X(u):
-        return x + u * s
+    r, g, b, _ = color.getRed_green_blue_alpha_(None, None, None, None)
+    hexed = "#%02X%02X%02X" % (round(r * 255), round(g * 255), round(b * 255))
+    svg_src = svg_src.replace("currentColor", hexed)
 
-    def Y(u):
-        return top(y + u * s)
+    data = NSData.dataWithBytes_length_(
+        svg_src.encode("utf-8"), len(svg_src.encode("utf-8")))
+    img = NSImage.alloc().initWithData_(data)
+    if img is None:
+        raise SystemExit("could not load assets/logo.svg — is it valid SVG?")
 
-    color.set()
-
-    # frame: <rect x=6 y=6 w=108 h=108 stroke-width=6>
-    frame = NSBezierPath.bezierPathWithRect_(
-        NSMakeRect(X(6), Y(114), 108 * s, 108 * s))
-    frame.setLineWidth_(6 * s)
-    frame.stroke()
-
-    # plate: <rect x=18 y=24 w=84 h=32> filled, with ALAMZ masked out
-    color.set()
-    NSBezierPath.fillRect_(NSMakeRect(X(18), Y(56), 84 * s, 32 * s))
-
-    # The SVG uses a mask; on a flat ground, painting the letters in the
-    # knockout colour is visually identical and far simpler here.
-    centred("ALAMZ", X(60), y + 47 * s, DISPLAY, 18 * s, knockout, kern=3 * s)
-    centred("TECH",  X(60), y + 90 * s, DISPLAY, 21 * s, color,    kern=1.5 * s)
-
-
-def centred(s, cx, y_baseline, font_name, size, color, kern=0.0):
-    """Draw text horizontally centred on cx, positioned by its baseline the way
-    SVG's <text y=...> does, so the geometry copied from logo.svg lines up."""
-    font = NSFont.fontWithName_size_(font_name, size)
-    attrs = {NSFontAttributeName: font, NSForegroundColorAttributeName: color}
-    if kern:
-        attrs[NSKernAttributeName] = kern
-    ns = NSString.stringWithString_(s)
-    w = ns.sizeWithAttributes_(attrs).width
-    # drawAtPoint anchors the line box's lower-left; the baseline sits
-    # |descender| above it, and font.descender() is negative.
-    ns.drawAtPoint_withAttributes_(
-        NSMakePoint(cx - w / 2, top(y_baseline) + font.descender()), attrs)
+    img.drawInRect_fromRect_operation_fraction_(
+        NSMakeRect(x, top(y + size), size, size),
+        NSMakeRect(0, 0, 0, 0), 2, color.alphaComponent())
 
 # --- ground ---------------------------------------------------------------
 GROUND.set()
