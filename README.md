@@ -325,6 +325,27 @@ working `.github.io` URL down. Add it at the same time as the DNS, not before.
 | **Netlify** | Drag the folder onto <https://app.netlify.com/drop>, or connect the repo. Build command: *(blank)*. Publish directory: `.` |
 | **Vercel** | Free tier prohibits commercial use — skip it for a studio site. |
 
+### Bump the cache buster when you change CSS or JS
+
+GitHub Pages serves assets with `Cache-Control: max-age=600`. HTML is
+revalidated, assets are not — so for ten minutes after a deploy a returning
+visitor can get the **new HTML with the old CSS and JS**, which renders as a
+half-broken page.
+
+The asset URLs in `index.html` carry a `?v=` token to defeat this. **Increment
+it whenever `styles.css`, `config.js` or `app.js` changes** — all four
+references together:
+
+```
+assets/favicon.svg?v=2
+assets/css/styles.css?v=2
+assets/js/config.js?v=2
+assets/js/app.js?v=2
+```
+
+Content-only edits to `index.html` do not need a bump; the HTML is always
+revalidated.
+
 ### After the first deploy
 
 1. Check `https://alamz-tech.github.io/assets/og-image.png` loads in a browser.

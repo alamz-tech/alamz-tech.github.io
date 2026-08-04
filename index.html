@@ -45,8 +45,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alamz-tech.github.io/assets/og-image.png">
 
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/styles.css">
+<!-- ?v= is a cache buster. GitHub Pages serves assets with max-age=600, so
+     without it a returning visitor can get last deploy's CSS against this
+     deploy's HTML for up to ten minutes — a half-broken page.
+     BUMP THIS NUMBER on any deploy that changes CSS or JS. -->
+<link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/styles.css?v=2">
 </head>
 <body>
 
@@ -360,7 +364,8 @@
   </form>
 </dialog>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/app.js"></script>
+<!-- Keep ?v= in step with the stylesheet above — see the note in <head>. -->
+<script src="assets/js/config.js?v=2"></script>
+<script src="assets/js/app.js?v=2"></script>
 </body>
 </html>
