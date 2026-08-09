@@ -527,7 +527,7 @@ window.ALAMZ = {
     // styles.css so the crop does not cut the face off.
     photo: 'assets/founder.jpg',
     body: [
-      'Computer engineer with a background in DevOps and platform engineering, and in technical ' +
+      'Computer engineer with a background in DevOps, platform engineering, and in technical ' +
       'project management — including remote delivery for US companies. The work has been mostly ' +
       'the unglamorous kind: making systems reliable, reproducible and cheap to operate.',
       'Alamz Tech applies that to a market where those constraints are much sharper. Every product ' +
