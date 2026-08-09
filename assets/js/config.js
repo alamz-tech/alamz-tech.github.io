@@ -43,12 +43,12 @@ window.ALAMZ = {
   },
 
   /* --------------------------------------------------------------------------
-     NAMING — settled: the skills product is CloudPath.
-     Vendor-neutral (it is expanding past AWS), matches the repo name, and
-     reads as both "path through the cloud" and "path to a cloud career".
+     NAMING — the skills product is EarnWithDevOps, live at ewd.alamztech.com.
+     It was CloudPath through development; the name changed to lead with the
+     outcome (getting hired) rather than the subject matter.
 
-     If it is ever renamed again, it is still a one-line change: set
-     products[1].name. Nothing else in the site references it by name.
+     If it is ever renamed again it is still a one-line change: set
+     products[1].name. Nothing else on the site references it by name.
      ---------------------------------------------------------------------- */
 
   /* ==========================================================================
@@ -306,8 +306,8 @@ window.ALAMZ = {
         tone: 'warm',
         body:
           'AI products we build and own. We pick a problem a lot of businesses share, build against ' +
-          'it, and put it in front of real users. Two are underway — their honest status is on each ' +
-          'card below.',
+          'it, and put it in front of real users. Two so far: one live and taking sign-ups, one in ' +
+          'development. The honest status is on each card below.',
         icon: 'cube',
         href: '#products',
         linkLabel: 'See what we are building',
@@ -425,38 +425,39 @@ window.ALAMZ = {
     },
 
     {
-      id: 'cloudpath',
-      name: 'CloudPath',
+      id: 'earnwithdevops',
+      name: 'EarnWithDevOps',
       kicker: 'Training for the jobs AI creates, not the ones it removes',
       /* — flip these three to go live; they are deliberately adjacent — */
-      status: 'pilot',
-      ctaUrl: '',
-      ctaLabel: '',
+      status: 'live',
+      ctaUrl: 'https://ewd.alamztech.com',
+      ctaLabel: 'Start learning free',
       connectivity: 'low',           // tier id from `connectivity.tiers`
       body:
-        'An AI coach on Telegram that takes someone from zero to certification-ready in cloud and ' +
-        'infrastructure roles. Hands-on labs run in free tiers that need no credit card and no ' +
-        'expensive hardware, so cost is never the reason someone drops out. Grading is deterministic — ' +
-        'a script or a repo check either passes or it does not — and the security practice is built ' +
-        'into the curriculum rather than bolted on at the end.',
-      // This is the honest answer to "but a Telegram bot needs the internet".
+        'A chat-based coach that takes someone from beginner to certified in cloud and DevOps — ' +
+        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
+        'GitHub Actions. Hands-on labs run in a real cloud environment on free tiers that need no ' +
+        'credit card, so cost is never the reason someone drops out. Grading is deterministic: a ' +
+        'script or a repo check either passes or it does not. Spaced repetition brings questions ' +
+        'back at the right moment, so the material is still there on exam day. Finish a path and it ' +
+        'opens a career layer — mentorship, interview prep and referrals from engineers who have ' +
+        'hired for these roles.',
+      // The honest answer to "but a chat coach needs the internet".
       note:
-        'This one needs a network — so it is built for a bad one. Telegram was chosen because it is ' +
-        'the cheapest channel in data terms that learners already have: text-first, usable on 2G, and ' +
-        'interruption-tolerant. Lose signal mid-lesson and your progress is checkpointed, not lost. ' +
-        'No video streaming, no app to download, no data plan we have not budgeted for.',
+        'This one needs a network — so it is built for a bad one. It runs over Telegram as well as ' +
+        'the web, because Telegram is the cheapest channel in data terms that learners already have: ' +
+        'text-first, usable on 2G, and interruption-tolerant. Lose signal mid-lesson and your progress ' +
+        'is checkpointed, not lost. No video streaming, no app to download, no data plan we have not ' +
+        'budgeted for.',
       facts: [
-        'Cloud fundamentals track complete',
-        '30 lessons, 105 quiz items',
-        'Free labs, no credit card',
-        'Text-only — no video, no app install',
+        'Five certification tracks',
+        'Real labs, no credit card',
+        'Deterministic grading',
+        'Telegram or web — text-first',
       ],
-      // Shown as a small roadmap line under the body. Empty array hides it.
-      roadmap: [
-        'Second cloud provider track (drafting)',
-        'Kubernetes certification readiness',
-        'Terraform certification readiness',
-      ],
+      // Empty: the tracks that were on the roadmap have shipped. Add entries
+      // here only for work that is genuinely still ahead.
+      roadmap: [],
     },
 
     /* ------------------------------------------------------------------------
