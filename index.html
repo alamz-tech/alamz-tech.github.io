@@ -11,39 +11,33 @@
      change the tagline in config.js, update the description tags below to
      match — it is the only place content is duplicated.
 
-     These point at https://alamz-tech.github.io — the GitHub Pages URL, which
-     is the live address until a custom domain is registered.
-
-     WHEN YOU BUY alamztech.com, do these three things together:
-       1. Run, from the repo root:
-          sed -i '' -E 's#(href|content)="https://alamz-tech\.github\.io#\1="https://alamztech.com#g' index.html
-       2. Add a file named CNAME at the repo root containing one line:
-          alamztech.com
-       3. Set the custom domain in Settings → Pages and add the DNS records
-          listed in README.md.
-     Doing 1 without 2 (or the reverse) leaves the canonical pointing at a host
-     that is not serving the site.
+     These point at https://alamztech.com — the live domain. The CNAME file at
+     the repo root and these four URLs have to name the same host: if they
+     disagree, the canonical points somewhere that only redirects, and LinkedIn
+     may not follow a redirect when fetching og:image, which shows as a blank
+     preview card. If the domain ever changes, move the CNAME and all four
+     together.
 
      og:image and og:url MUST stay absolute. Crawlers fetch them from their own
-     servers and will not resolve a relative path, which is the usual cause of
-     a blank preview card. All four move together.
+     servers and will not resolve a relative path — the usual cause of a blank
+     preview card.
      --------------------------------------------------------------------- -->
 <meta name="description" content="Alamz Tech is a product studio building AI products for business and integrating AI into existing African businesses — engineered for unreliable infrastructure, thin bandwidth and tight budgets, then run in production.">
 <!-- Light is the brand ground by default; app.js updates this when the
      visitor uses the header's dark-mode toggle. -->
 <meta name="theme-color" content="#FCFBF9" id="theme-color">
-<link rel="canonical" href="https://alamz-tech.github.io/">
+<link rel="canonical" href="https://alamztech.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alamz Tech">
 <meta property="og:title" content="Alamz Tech — AI products and integration, built for African realities">
 <meta property="og:description" content="We build AI products for business and integrate AI into existing African businesses — engineered for the infrastructure, bandwidth and budgets they actually have, then run in production.">
-<meta property="og:url" content="https://alamz-tech.github.io/">
-<meta property="og:image" content="https://alamz-tech.github.io/assets/og-image.png">
+<meta property="og:url" content="https://alamztech.com/">
+<meta property="og:image" content="https://alamztech.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Alamz Tech — AI products and integration for business, built for African realities.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://alamz-tech.github.io/assets/og-image.png">
+<meta name="twitter:image" content="https://alamztech.com/assets/og-image.png">
 
 <!-- ?v= is a cache buster. GitHub Pages serves assets with max-age=600, so
      without it a returning visitor can get last deploy's CSS against this
