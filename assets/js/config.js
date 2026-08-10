@@ -104,38 +104,44 @@ window.ALAMZ = {
 
      --------------------------------------------------------------------------
      The site runs on GitHub Pages, which serves static files and cannot run
-     any server code. So the POST has to go to a service that accepts it and
-     emails it on. WEB3FORMS does exactly that, and it can deliver straight to
-     the Hostinger mailbox.
+     any server code. Sending email always needs a server, so the POST goes to
+     STATIC FORMS, which accepts it and delivers to the Hostinger mailbox.
 
-       1. Go to https://web3forms.com
-       2. Enter hussein@alamztech.com as the destination — that is where
-          submissions will arrive, in the mailbox you already have.
-       3. They email you an access key. Paste it into `accessKey` below.
+     The access key below is meant to be public — that is how these services
+     work. It only permits sending mail to the address registered with it, so
+     someone who copies it can send you email, which they could do anyway. It
+     is not an API secret and does not need hiding.
 
-     That is the whole setup. `endpoint` is already correct.
+     The practical risk is spam rather than exposure: a public key on a public
+     page can be submitted to by bots. The hidden honeypot field catches most
+     of it, and Static Forms filters on their side. If it ever gets noisy,
+     rotate the key in their dashboard and paste the new one here.
 
-     The key is not a secret in the dangerous sense: it only permits sending
-     mail to the address you registered, so it is safe in public client-side
-     code. That is how these services are designed.
+     Mail routing is held by Static Forms, not by this site:
+       delivered to  hussein@alamztech.com
+       sent from     forms@alamztech.com   (local route on the domain)
+     Neither address appears in this code. To change either one, edit it in the
+     Static Forms dashboard — nothing here needs redeploying.
 
-     Why not SMTP straight from the page? SMTP needs credentials, and anything
-     in client-side JavaScript is public — they would be scraped and used to
-     send spam as you. Sending mail always needs a server; Web3Forms is simply
-     someone else's, doing only this one job.
+     The visitor's own address is attached as reply-to, so replying in your mail
+     client goes to them rather than to forms@.
 
      --------------------------------------------------------------------------
-     Alternative — FORMSPREE (50 submissions/month, needs an account):
-       service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx',
-       accessKey: ''
-     app.js handles both; the only real differences are the subject field name
-     and whether an access key is attached.
+     Switching provider is two lines; app.js knows all three (see SERVICES
+     there for the field-name differences):
+
+       Web3Forms — no account, unlimited
+         service: 'web3forms', endpoint: 'https://api.web3forms.com/submit'
+
+       Formspree — 50/month, needs an account
+         service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx',
+         accessKey: ''
      ====================================================================== */
   form: {
-    service: 'web3forms',
-    endpoint: 'https://api.web3forms.com/submit',
+    service: 'staticforms',
+    endpoint: 'https://api.staticforms.xyz/submit',
 
-    accessKey: '',                // TODO ← paste your Web3Forms access key here
+    accessKey: 'sf_70076b1acf64cd19e5e7fc23',
 
     // Prefixes the notification email subject, e.g.
     // "Alamz Tech — Join the waitlist — Offline LLM Engine"

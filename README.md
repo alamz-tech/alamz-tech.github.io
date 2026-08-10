@@ -35,8 +35,8 @@ Everything is in **`assets/js/config.js`**, grouped by the section it appears
 in. Search the file for `TODO` — those are the placeholders that must be
 replaced before you launch:
 
-- `form.accessKey` — **the only thing blocking a working form.**
-  See *Connect the form* below.
+- `form` — connected to Static Forms, delivering to hussein@alamztech.com.
+  Nothing to do; see *The form* below.
 - `index.html` — domain is already set to `https://alamztech.com` in all four
   preview tags. Nothing to do unless the domain changes.
 - `social[].url` — DEV is still empty. **A link with an empty `url` is hidden
@@ -159,32 +159,47 @@ For a new badge colour, add a `.badge--yourtone` rule in `styles.css` under
 
 ---
 
-## Connect the form
+## The form
 
 Every form on the site — waitlist, pilot application, general enquiry, services
-enquiry — posts to one endpoint. **One value is missing: a Web3Forms access key.**
+enquiry — posts to one endpoint. **It is connected and needs nothing further.**
+
+| | |
+|---|---|
+| Service | Static Forms (`api.staticforms.xyz`) |
+| Delivered to | hussein@alamztech.com |
+| Sent from | forms@alamztech.com |
+| Reply-to | the visitor, so replying reaches them |
 
 The site runs on GitHub Pages, which serves static files and cannot run server
-code. Sending email always needs a server, so the POST goes to a service that
-accepts it and forwards it — **delivered straight to the Hostinger mailbox.**
+code. Sending email always needs a server, so the POST goes to Static Forms,
+which accepts it and delivers to the Hostinger mailbox.
 
-1. Go to <https://web3forms.com>.
-2. Enter **hussein@alamztech.com** as the destination.
-3. They email you an access key. Paste it into `config.js`:
-   ```js
-   form: { service: 'web3forms', endpoint: 'https://api.web3forms.com/submit',
-           accessKey: 'your-key-here', … }
-   ```
+**Mail routing lives in the Static Forms dashboard, not in this repo.** Neither
+address appears in the code — change either one there, no redeploy needed.
 
-No account, no password, unlimited on the free tier. The `endpoint` is already
-correct.
+### About the access key in `config.js`
 
-**Is the key safe in public code?** Yes. It only authorises sending mail *to the
-address you registered* — someone copying it can only send you email, which they
-could do anyway. Don't confuse it with an API secret.
+It is meant to be public; that is how these services work. It only permits
+sending mail to the address registered with it, so someone who copies it can
+send you email — which they could do anyway. It is not an API secret.
 
-Until the key is set, the form says plainly that it is not connected rather than
-pretending to send.
+The real risk is spam, not exposure: a public key on a public page can be
+submitted to by bots. The hidden honeypot catches most of it and Static Forms
+filters on their side. If it gets noisy, rotate the key in their dashboard and
+paste the new one in.
+
+### Switching provider
+
+Two lines in `config.js`. `app.js` knows three, and the differences are declared
+in one table (`SERVICES` near the top) rather than scattered through the submit
+handler — adding a fourth is a row, not a new branch:
+
+| Service | key field | subject field | notes |
+|---|---|---|---|
+| `staticforms` | `accessKey` | `subject` | sends `replyTo: '@'`; errors come back under `error` |
+| `web3forms` | `access_key` | `subject` | no account, unlimited |
+| `formspree` | — | `_subject` | 50/month, needs an account |
 
 ### What arrives in your inbox
 

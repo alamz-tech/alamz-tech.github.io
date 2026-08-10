@@ -40,6 +40,22 @@
 
   function $(sel) { return document.querySelector(sel); }
 
+  /* The only real differences between the supported form services: what they
+     call the access-key field, what they call the subject field, and any extra
+     field they need. Adding another provider is a row here, not a new branch
+     in the submit handler. */
+  var SERVICES = {
+    staticforms: {
+      keyField: 'accessKey',
+      subjectField: 'subject',
+      // '@' tells Static Forms to use the submitted email as the reply-to,
+      // so replying in your mail client reaches the sender rather than them.
+      extra: { replyTo: '@' }
+    },
+    web3forms: { keyField: 'access_key', subjectField: 'subject' },
+    formspree: { keyField: null,         subjectField: '_subject' }
+  };
+
   var ARROW =
     '<svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" ' +
     'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -697,10 +713,10 @@
        POST is accepted and then silently dropped, which looks like a working
        form that eats every submission. Treat a missing key as unconfigured. */
     var endpoint = (C.form.endpoint || '').trim();
-    var needsKey = C.form.service === 'web3forms';
-    if (!endpoint || (needsKey && !(C.form.accessKey || '').trim())) {
+    var svc = SERVICES[C.form.service] || SERVICES.staticforms;
+    if (!endpoint || (svc.keyField && !(C.form.accessKey || '').trim())) {
       console.warn('[alamz] form not configured — set form.' +
-                   (needsKey ? 'accessKey' : 'endpoint') + ' in config.js.');
+                   (svc.keyField ? 'accessKey' : 'endpoint') + ' in config.js.');
       showMsg(C.form.unconfiguredNotice + orElseEmail(), 'error');
       return;
     }
@@ -725,14 +741,13 @@
     data.append('product', context.product.name);
     data.append('product_status', context.product.status);
 
-    /* Formspree reads `_subject`; Web3Forms reads `subject`. That field name
-       is the only real difference between the two. */
     var subject = C.form.subjectPrefix + ' ' +
                   (context.status.form.heading || context.status.cta) +
                   ' — ' + context.product.name;
-    data.append(C.form.service === 'formspree' ? '_subject' : 'subject', subject);
+    data.append(svc.subjectField, subject);
 
-    if (C.form.accessKey) data.append('access_key', C.form.accessKey);
+    if (svc.keyField) data.append(svc.keyField, C.form.accessKey);
+    Object.keys(svc.extra || {}).forEach(function (k) { data.append(k, svc.extra[k]); });
 
     var original = submitEl.textContent;
     submitEl.disabled = true;
@@ -754,11 +769,13 @@
             bad.userMessage = 'The form is not set up correctly on the server yet.' + orElseEmail();
             throw bad;
           }
-          /* The endpoint often knows exactly what went wrong — a validation
-             failure, or "slow down" from the rate limiter. Prefer its wording
-             over our generic fallback, but never show a raw server string that
-             is not a plain sentence. */
-          var msg = payload && typeof payload.message === 'string' ? payload.message.trim() : '';
+          /* The endpoint often knows exactly what went wrong. Prefer its
+             wording over our generic fallback, but never show a raw server
+             string that is not a plain sentence.
+             Static Forms puts it in `error`; Web3Forms and Formspree use
+             `message` — so check both rather than silently falling back. */
+          var raw2 = payload && (payload.message || payload.error);
+          var msg = typeof raw2 === 'string' ? raw2.trim() : '';
           var e = new Error('HTTP ' + res.status);
           if (msg && msg.length < 200 && msg.indexOf('<') === -1) e.userMessage = msg;
           throw e;
