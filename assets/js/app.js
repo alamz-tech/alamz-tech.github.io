@@ -740,8 +740,21 @@
 
     fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
       .then(function (res) {
-        return res.json().catch(function () { return {}; }).then(function (payload) {
-          if (res.ok) return payload;
+        return res.text().then(function (raw) {
+          var payload = null;
+          try { payload = JSON.parse(raw); } catch (e) { /* not JSON */ }
+
+          /* A 200 that is not JSON is not a success. The case that matters:
+             contact.php sitting on a host with no PHP is served as its own
+             source code with status 200 — treating that as "sent" would show
+             a thank-you while the message went nowhere. All three supported
+             services answer with JSON when they are working. */
+          if (res.ok && payload && payload.success !== false) return payload;
+          if (res.ok && !payload) {
+            var bad = new Error('non-JSON response from form endpoint');
+            bad.userMessage = 'The form is not set up correctly on the server yet.' + orElseEmail();
+            throw bad;
+          }
           /* The endpoint often knows exactly what went wrong — a validation
              failure, or "slow down" from the rate limiter. Prefer its wording
              over our generic fallback, but never show a raw server string that

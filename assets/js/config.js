@@ -137,8 +137,11 @@ window.ALAMZ = {
      ====================================================================== */
   form: {
     service: 'php',
-    // TODO ← set to '/contact.php' once the site is live on Hostinger.
-    endpoint: '',
+    /* Works the moment the domain's DNS points at Hostinger. While the site is
+       still served by GitHub Pages this POST will fail honestly — Pages returns
+       contact.php as plain text, and app.js treats a non-JSON reply as a
+       failure rather than a silent success. */
+    endpoint: '/contact.php',
 
     accessKey: '',                // only used by web3forms
 

@@ -18,8 +18,13 @@
      form: { service: 'php', endpoint: '/contact.php', accessKey: '' }
    ========================================================================== */
 
+/* $FROM is the envelope sender, so it should be the generic system mailbox
+   rather than a person: replies go to the visitor via Reply-To, and if the
+   studio ever has more than one person, info@ can become shared without
+   rewriting anything. $TO is simply where you read. Both must be real
+   mailboxes on the domain, or Hostinger's mail server will refuse to relay. */
 $TO   = 'hussein@alamztech.com';      // where submissions land
-$FROM = 'hussein@alamztech.com';      // must be a real mailbox on your domain
+$FROM = 'info@alamztech.com';         // the sender the mail claims to be from
 $SITE = 'Alamz Tech';
 
 /* -------------------------------------------------------------------------
