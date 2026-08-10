@@ -18,8 +18,8 @@
      form: { service: 'php', endpoint: '/contact.php', accessKey: '' }
    ========================================================================== */
 
-$TO   = 'hello@alamztech.com';        // TODO: your real inbox
-$FROM = 'website@alamztech.com';      // TODO: must be on your domain
+$TO   = 'hussein@alamztech.com';      // where submissions land
+$FROM = 'hussein@alamztech.com';      // must be a real mailbox on your domain
 $SITE = 'Alamz Tech';
 
 /* -------------------------------------------------------------------------

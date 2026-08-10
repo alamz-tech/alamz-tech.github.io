@@ -35,10 +35,10 @@ window.ALAMZ = {
       'already run — engineered for the infrastructure, bandwidth and budgets they actually ' +
       'have, then deployed and kept running in production rather than working once in a demo.',
     // Published on the page, so it will get scraped by spam bots eventually —
-    // that is the cost of showing an address at all. Swap to hello@alamztech.com
-    // once the domain's mail is set up. Set to '' and the site hides every
-    // mailto and leans on the message form instead; nothing breaks either way.
-    email: 'alamutuhussein@gmail.com',
+    // that is the cost of showing an address at all. Set to '' and the site
+    // hides every mailto and leans on the message form instead; nothing breaks
+    // either way.
+    email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
 
@@ -434,26 +434,26 @@ window.ALAMZ = {
       ctaLabel: 'Start learning free',
       connectivity: 'low',           // tier id from `connectivity.tiers`
       body:
-        'A chat-based coach that takes someone from beginner to certified in cloud and DevOps — ' +
+        'A coach on Telegram that takes someone from beginner to certified in cloud and DevOps — ' +
         'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
-        'GitHub Actions. Hands-on labs run in a real cloud environment on free tiers that need no ' +
-        'credit card, so cost is never the reason someone drops out. Grading is deterministic: a ' +
-        'script or a repo check either passes or it does not. Spaced repetition brings questions ' +
-        'back at the right moment, so the material is still there on exam day. Finish a path and it ' +
-        'opens a career layer — mentorship, interview prep and referrals from engineers who have ' +
-        'hired for these roles.',
-      // The honest answer to "but a chat coach needs the internet".
+        'GitHub Actions. Lessons arrive as chat, in the app learners already have. Hands-on labs run ' +
+        'in a real cloud environment on free tiers that need no credit card, so cost is never the ' +
+        'reason someone drops out. Grading is deterministic: a script or a repo check either passes ' +
+        'or it does not. Spaced repetition brings questions back at the right moment, so the material ' +
+        'is still there on exam day. Finish a path and it opens a career layer — mentorship, interview ' +
+        'prep and referrals from engineers who have hired for these roles.',
+      // The honest answer to "but a Telegram coach needs the internet".
       note:
-        'This one needs a network — so it is built for a bad one. It runs over Telegram as well as ' +
-        'the web, because Telegram is the cheapest channel in data terms that learners already have: ' +
-        'text-first, usable on 2G, and interruption-tolerant. Lose signal mid-lesson and your progress ' +
-        'is checkpointed, not lost. No video streaming, no app to download, no data plan we have not ' +
-        'budgeted for.',
+        'This one needs a network — so it is built for a bad one. Every lesson is delivered on ' +
+        'Telegram, chosen because it is the cheapest channel in data terms that learners already ' +
+        'have: text-first, usable on 2G, and interruption-tolerant. Lose signal mid-lesson and your ' +
+        'progress is checkpointed, not lost. No video streaming, no app to download, no data plan we ' +
+        'have not budgeted for.',
       facts: [
         'Five certification tracks',
         'Real labs, no credit card',
         'Deterministic grading',
-        'Telegram or web — text-first',
+        'Delivered on Telegram — text-first',
       ],
       // Empty: the tracks that were on the roadmap have shipped. Add entries
       // here only for work that is genuinely still ahead.
