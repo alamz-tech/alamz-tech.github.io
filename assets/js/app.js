@@ -725,8 +725,8 @@
     data.append('product', context.product.name);
     data.append('product_status', context.product.status);
 
-    /* Formspree reads `_subject`; Web3Forms and our own contact.php read
-       `subject`. That field name is the only real difference between them. */
+    /* Formspree reads `_subject`; Web3Forms reads `subject`. That field name
+       is the only real difference between the two. */
     var subject = C.form.subjectPrefix + ' ' +
                   (context.status.form.heading || context.status.cta) +
                   ' — ' + context.product.name;
@@ -744,11 +744,10 @@
           var payload = null;
           try { payload = JSON.parse(raw); } catch (e) { /* not JSON */ }
 
-          /* A 200 that is not JSON is not a success. The case that matters:
-             contact.php sitting on a host with no PHP is served as its own
-             source code with status 200 — treating that as "sent" would show
-             a thank-you while the message went nowhere. All three supported
-             services answer with JSON when they are working. */
+          /* A 200 that is not JSON is not a success. Both supported services
+             answer with JSON when they are working, so anything else means the
+             endpoint is misconfigured — and showing a thank-you for a message
+             that went nowhere is the worst possible failure here. */
           if (res.ok && payload && payload.success !== false) return payload;
           if (res.ok && !payload) {
             var bad = new Error('non-JSON response from form endpoint');

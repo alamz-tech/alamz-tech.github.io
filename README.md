@@ -35,14 +35,14 @@ Everything is in **`assets/js/config.js`**, grouped by the section it appears
 in. Search the file for `TODO` — those are the placeholders that must be
 replaced before you launch:
 
-- `form.endpoint` + the two addresses at the top of `contact.php` — **the only
-  thing blocking a working form.** Needs Hostinger; see *Connect the form* below.
+- `form.accessKey` — **the only thing blocking a working form.**
+  See *Connect the form* below.
 - `index.html` — domain is already set to `https://alamztech.com` in all four
   preview tags. Nothing to do unless the domain changes.
 - `social[].url` — DEV is still empty. **A link with an empty `url` is hidden
   entirely**, so there are no dead links while you gather them. LinkedIn and
   GitHub are set.
-- `brand.email` — deliberately empty for now; see *Contact* below
+- `brand.email` — set to `hussein@alamztech.com`. Nothing to do.
 
 ### The logo
 
@@ -162,90 +162,63 @@ For a new badge colour, add a `.badge--yourtone` rule in `styles.css` under
 ## Connect the form
 
 Every form on the site — waitlist, pilot application, general enquiry, services
-enquiry — posts to one endpoint. `contact.php` is that endpoint, and it emails
-submissions to you. No third party, no submission cap, mail from your own
-domain.
+enquiry — posts to one endpoint. **One value is missing: a Web3Forms access key.**
 
-**It needs PHP, so it only works once the site is on Hostinger.** GitHub Pages
-serves static files only; a visitor there would download `contact.php` rather
-than run it.
+The site runs on GitHub Pages, which serves static files and cannot run server
+code. Sending email always needs a server, so the POST goes to a service that
+accepts it and forwards it — **delivered straight to the Hostinger mailbox.**
 
-1. Open `contact.php` and set the two values at the top:
-   ```php
-   $TO   = 'hello@alamztech.com';     // where submissions land
-   $FROM = 'website@alamztech.com';   // must be on your own domain
-   ```
-2. Upload the site to Hostinger.
-3. In `config.js`, set the endpoint:
+1. Go to <https://web3forms.com>.
+2. Enter **hussein@alamztech.com** as the destination.
+3. They email you an access key. Paste it into `config.js`:
    ```js
-   form: { service: 'php', endpoint: '/contact.php', accessKey: '' }
+   form: { service: 'web3forms', endpoint: 'https://api.web3forms.com/submit',
+           accessKey: 'your-key-here', … }
    ```
 
-Until `endpoint` is filled in, the form says plainly that it is not connected
-rather than failing in a confusing way.
+No account, no password, unlimited on the free tier. The `endpoint` is already
+correct.
 
-**`$FROM` must be on your domain.** Mail claiming to come from a Gmail address
-but sent by Hostinger's server fails SPF and lands in spam. The sender's own
-address goes in `Reply-To`, so hitting reply in your mail client still reaches
-them.
+**Is the key safe in public code?** Yes. It only authorises sending mail *to the
+address you registered* — someone copying it can only send you email, which they
+could do anyway. Don't confuse it with an API secret.
 
-### Why not SMTP straight from the page?
-
-Because SMTP needs credentials, and anything in client-side JavaScript is
-public — they would be scraped and used to send spam as you until the mailbox
-got blocked. `contact.php` is the correct version of that idea: the same mail
-send, but on the server where nobody can read the credentials.
-
-### What contact.php already handles
-
-- Rejects anything that is not a POST, and anything over 64 KB
-- Honeypot — a filled `_gotcha` gets a success response and is silently dropped,
-  because telling a bot it failed just makes it retry
-- One submission per IP per 20 seconds
-- Validates the name and email address
-- **Strips CR/LF from every header value.** Without this, a newline in the name
-  field lets an attacker append their own headers — a `Bcc:` to a spam list, for
-  instance, sent from your server. Do not remove that guard.
-- Sends every field the form submitted, whatever it was, so the field set can
-  change per product status without touching the PHP
-- Returns JSON; the page shows the endpoint's own message on failure, so a
-  validation error or rate-limit reads properly instead of a generic "failed"
-
-If deliverability is poor on Hostinger's `mail()`, switch to authenticated SMTP
-with PHPMailer against your own mailbox — same file, only the send line changes.
-
-### Alternatives, if you stay on static-only hosting
-
-| Service | Cost | Setup |
-|---|---|---|
-| **Web3Forms** | Free, unlimited | No account. Give an email, they post back a key → `service: 'web3forms'`, `endpoint: 'https://api.web3forms.com/submit'`, `accessKey: '<key>'` |
-| **Formspree** | Free, 50/month | Needs an account → `service: 'formspree'`, `endpoint: 'https://formspree.io/f/xxxxxxxx'` |
-
-`app.js` handles all three. The only real differences are the subject field name
-(`_subject` for Formspree, `subject` for the others) and whether an access key is
-attached.
+Until the key is set, the form says plainly that it is not connected rather than
+pretending to send.
 
 ### What arrives in your inbox
 
 Every submission carries a subject line and two hidden fields identifying where
-it came from, so the three kinds are trivial to filter:
+it came from, so the four kinds are easy to filter:
 
 ```
 Alamz Tech — Join the waitlist — Offline LLM Engine     product_status: in-development
-Alamz Tech — Apply to the pilot cohort — [SkillProduct] product_status: pilot
+Alamz Tech — Apply to the pilot cohort — <product>      product_status: pilot
 Alamz Tech — Get in touch — General enquiry             product_status: contact
+Alamz Tech — Discuss a project — AI integration enquiry product_status: services
 ```
 
-The `email` field is picked up by Formspree as the reply-to, so replying in your
-mail client goes straight back to the sender. A hidden honeypot catches most bot
-spam without a CAPTCHA.
+The `email` field becomes the reply-to, so replying in your mail client goes
+straight back to the sender. A hidden honeypot catches most bot spam without a
+CAPTCHA, and `app.js` rejects any non-JSON reply — a misconfigured endpoint
+reports a failure instead of showing a thank-you for a message that went nowhere.
 
-**Switching to Web3Forms** (unlimited submissions, no account) — same payload,
-config-only change:
+**Alternative — Formspree** (50/month, needs an account):
 
 ```js
-form: { service: 'web3forms', endpoint: 'https://api.web3forms.com/submit', accessKey: 'your-key', … }
+form: { service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx', accessKey: '' }
 ```
+
+### Why not send SMTP straight to the mailbox?
+
+SMTP needs credentials, and anything in client-side JavaScript is public — they
+would be scraped and used to send spam as you until the mailbox was blocked.
+A `mailto:` form does not work either: it hands off to the visitor's mail client,
+which silently does nothing when none is configured, and abandons the rest in a
+compose window they still have to send themselves.
+
+Running your own PHP endpoint *is* a valid answer, but only on a host that runs
+PHP. Hostinger here provides the mailbox, not the hosting.
 
 ## Contact — while you have no email address
 
@@ -329,24 +302,6 @@ working `.github.io` URL down. Add it at the same time as the DNS, not before.
 6. Once DNS propagates, tick **Enforce HTTPS**. It stays greyed out until the
    certificate is issued; that is normal, not an error.
 7. Re-run the URL through the LinkedIn Post Inspector to flush the old preview.
-
-### Hostinger (planned — needed for the form)
-
-GitHub Pages cannot run `contact.php`. Moving to Hostinger is what turns the
-form on.
-
-1. Set `$TO` and `$FROM` in `contact.php`, and `form.endpoint` to
-   `'/contact.php'` in `config.js`.
-2. Upload the whole folder to `public_html` (hPanel → File Manager, or FTP, or
-   connect the Git repo from hPanel → Git).
-3. Create the mailbox for `$TO` and `$FROM` in hPanel → Emails, then set
-   `brand.email` in `config.js` to the real address so the site shows it.
-4. Point the domain at Hostinger, enable SSL, and update the four absolute URLs
-   in `index.html` (see the head comment there).
-5. Send one test submission and confirm it arrives.
-
-Keep the `.nojekyll` and `?v=` cache-buster — both remain useful. `tools/` is
-build-time only and does not need uploading, though it is harmless if it is.
 
 ### Other hosts
 

@@ -103,47 +103,39 @@ window.ALAMZ = {
      instead of pretending to send.
 
      --------------------------------------------------------------------------
-     'php' — OUR OWN ENDPOINT, once the site is on Hostinger.
-     Submissions POST to contact.php, which emails them to you. No third party,
-     no submission cap, and mail arrives from your own domain.
+     The site runs on GitHub Pages, which serves static files and cannot run
+     any server code. So the POST has to go to a service that accepts it and
+     emails it on. WEB3FORMS does exactly that, and it can deliver straight to
+     the Hostinger mailbox.
 
-       1. Open contact.php and set $TO and $FROM at the top.
-       2. Upload the whole site to Hostinger.
-       3. Set endpoint below to '/contact.php'.
+       1. Go to https://web3forms.com
+       2. Enter hussein@alamztech.com as the destination — that is where
+          submissions will arrive, in the mailbox you already have.
+       3. They email you an access key. Paste it into `accessKey` below.
 
-     NOTE: PHP does not run on GitHub Pages — it serves static files only, so
-     the browser would download contact.php rather than execute it. Leave
-     `endpoint` empty until the site actually moves to Hostinger; the form then
-     says plainly that it is not connected instead of failing in a confusing way.
+     That is the whole setup. `endpoint` is already correct.
 
-     Why not SMTP straight from the page? Because SMTP needs credentials, and
-     anything in client-side JavaScript is public. They would be scraped and
-     used to send spam as you. contact.php is the correct version of that idea:
-     the credentials live on the server, where nobody can read them.
+     The key is not a secret in the dangerous sense: it only permits sending
+     mail to the address you registered, so it is safe in public client-side
+     code. That is how these services are designed.
+
+     Why not SMTP straight from the page? SMTP needs credentials, and anything
+     in client-side JavaScript is public — they would be scraped and used to
+     send spam as you. Sending mail always needs a server; Web3Forms is simply
+     someone else's, doing only this one job.
 
      --------------------------------------------------------------------------
-     Alternatives, if you ever want to stay on static-only hosting:
-
-       Web3Forms — no account, unlimited, free
-         service: 'web3forms', endpoint: 'https://api.web3forms.com/submit',
-         accessKey: '<key they email you>'
-
-       Formspree — 50/month, needs an account
-         service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx',
-         accessKey: ''
-
-     app.js handles all three; the only real difference is the subject field
-     name and whether an access key is attached.
+     Alternative — FORMSPREE (50 submissions/month, needs an account):
+       service: 'formspree', endpoint: 'https://formspree.io/f/xxxxxxxx',
+       accessKey: ''
+     app.js handles both; the only real differences are the subject field name
+     and whether an access key is attached.
      ====================================================================== */
   form: {
-    service: 'php',
-    /* Works the moment the domain's DNS points at Hostinger. While the site is
-       still served by GitHub Pages this POST will fail honestly — Pages returns
-       contact.php as plain text, and app.js treats a non-JSON reply as a
-       failure rather than a silent success. */
-    endpoint: '/contact.php',
+    service: 'web3forms',
+    endpoint: 'https://api.web3forms.com/submit',
 
-    accessKey: '',                // only used by web3forms
+    accessKey: '',                // TODO ← paste your Web3Forms access key here
 
     // Prefixes the notification email subject, e.g.
     // "Alamz Tech — Join the waitlist — Offline LLM Engine"
