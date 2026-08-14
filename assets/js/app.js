@@ -297,6 +297,16 @@
       if (p.body)   main.appendChild(el('p', 'pcard__body', p.body));
       if (p.note)   main.appendChild(el('p', 'pcard__note', p.note));
 
+      /* Optional. For full-sentence capability statements, which do not fit the
+         side column's terse mono spec chips — four of those wrap to four lines
+         each and read as a wall. Reuses the services list styling. */
+      if (p.capabilities && p.capabilities.length) {
+        var caps = el('ul', 'svc__list');
+        caps.style.marginTop = 'var(--s-2)';
+        p.capabilities.forEach(function (c) { caps.appendChild(el('li', 'svc__item', c)); });
+        main.appendChild(caps);
+      }
+
       if (p.roadmap && p.roadmap.length) {
         var rm = el('div', 'pcard__roadmap');
         rm.appendChild(el('p', 'pcard__roadmap-label', 'On the roadmap'));

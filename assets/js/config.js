@@ -307,7 +307,7 @@ window.ALAMZ = {
         tone: 'warm',
         body:
           'AI products we build and own. We pick a problem a lot of businesses share, build against ' +
-          'it, and put it in front of real users. Two so far: one live and taking sign-ups, one in ' +
+          'it, and put it in front of real users. Three so far: one live and taking sign-ups, two in ' +
           'development. The honest status is on each card below.',
         icon: 'cube',
         href: '#products',
@@ -401,11 +401,20 @@ window.ALAMZ = {
         'ordinary 8 GB laptop with no GPU. One command rebuilds the exact model. This is the ' +
         'capability we reach for when a deployment cannot depend on connectivity, cloud budget or ' +
         'sending data off the premises.',
-      note: 'Built for the Africa Deep Tech Challenge 2026 (Laptop LLM Challenge).',
+      /* The ADTC attribution belongs to SME Copilot, not here — this engine is
+         the studio's own work, and SME Copilot is what was entered. */
+      note:
+        'Built and owned in-house as the shared foundation under our on-device work. SME Copilot ' +
+        'runs on it, and so will the products after it.',
       facts: [
         'Runs with the network unplugged',
         'Fine-tune and quantize pipeline',
         'Reproducible: one command',
+      ],
+      /* Stated as intent, not as fact — it is not open source yet. Move this
+         into `facts` once the licence is actually published, and not before. */
+      roadmap: [
+        'Open source on release',
       ],
 
       /* The design envelope. It used to sit in the hero, where it read as the
@@ -423,6 +432,52 @@ window.ALAMZ = {
         ],
         foot: 'The tightest envelope we build to, for our on-device work.',
       },
+    },
+
+    {
+      id: 'sme-copilot',
+      name: 'SME Copilot',
+      kicker: 'Financial intelligence for businesses the cloud never reached',
+      /* — flip these three to go live; they are deliberately adjacent — */
+      status: 'in-development',
+      ctaUrl: '',
+      ctaLabel: '',
+      connectivity: 'none',          // tier id from `connectivity.tiers`
+      body:
+        'An offline back-office assistant for Nigerian small businesses. It reads your own books — ' +
+        'a spreadsheet or a bank export — and answers what happened this month, what looks unusual, ' +
+        'whether next month\'s cash covers the suppliers, and what to do about it. It also answers ' +
+        'under the Nigeria Tax Acts 2025, a law written after every mainstream model\'s training ' +
+        'cutoff. Built on our Offline LLM Engine, for the Africa Deep Tech Challenge 2026.',
+      note:
+        'The architecture is the point: a deterministic accounting engine computes every figure and ' +
+        'the language model only explains them. Where a small model can be trusted — understanding a ' +
+        'messy question, writing a clear answer — it is used. Where it cannot — carrying a remainder ' +
+        'across three invoices — it is not. Nothing a business acts on is generated.',
+      /* Full sentences, so these render in the main column rather than the side
+         column's terse mono chips — four of those wrap to four lines each and
+         read as a wall. `facts` is deliberately omitted here: the datasheet
+         below already carries the specs. */
+      capabilities: [
+        'Reads your spreadsheets — reconciliation, P&L, receivables, inventory, cash forecast',
+        'Nigeria Tax Acts 2025, verified against the official Gazette and cited',
+        'Speaks English, Hausa and Igbo — figures identical in all three',
+        'Every number computed, never guessed',
+      ],
+      datasheet: {
+        label: 'Design envelope',
+        rows: [
+          { k: 'Connectivity', v: 'None required' },
+          { k: 'Memory',       v: '~2.0 GB peak' },
+          { k: 'Model',        v: '1.93 GB Q4_K_M GGUF' },
+          { k: 'Runtime',      v: 'llama.cpp' },
+          { k: 'Data',         v: 'Never leaves the machine' },
+        ],
+        /* Measured, unlike the Engine's card above, which states the hardware
+           target we build against. Keep that distinction if you edit either. */
+        foot: 'Measured on the shipped build, not a target.',
+      },
+      roadmap: [],
     },
 
     {
