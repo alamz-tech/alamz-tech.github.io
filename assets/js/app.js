@@ -297,15 +297,11 @@
       if (p.body)   main.appendChild(el('p', 'pcard__body', p.body));
       if (p.note)   main.appendChild(el('p', 'pcard__note', p.note));
 
-      /* Optional. For full-sentence capability statements, which do not fit the
-         side column's terse mono spec chips — four of those wrap to four lines
-         each and read as a wall. Reuses the services list styling. */
-      if (p.capabilities && p.capabilities.length) {
-        var caps = el('ul', 'svc__list');
-        caps.style.marginTop = 'var(--s-2)';
-        p.capabilities.forEach(function (c) { caps.appendChild(el('li', 'svc__item', c)); });
-        main.appendChild(caps);
-      }
+      /* No `capabilities` renderer here on purpose. Full-sentence capability
+         lists were tried and dropped: four of them add ~180px to a card, which
+         made one product tower over the others in a full-width stack. Prose
+         goes in `body`, short verifiable lines go in `facts`. See the COPY
+         BUDGET note in config.js. */
 
       if (p.roadmap && p.roadmap.length) {
         var rm = el('div', 'pcard__roadmap');

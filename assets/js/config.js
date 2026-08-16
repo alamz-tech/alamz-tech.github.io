@@ -383,8 +383,54 @@ window.ALAMZ = {
      ctaLabel: optional. Overrides the status default label.
      facts:   short, TRUE, verifiable lines. Shown as a spec strip on the card.
               Keep these current — they are the most credible thing on the page.
+
+     COPY BUDGET — keep cards the same size as each other.
+     The cards stack full-width, so one that runs long makes the others look
+     like afterthoughts and pushes the rest of the page down. Stay inside these
+     and every card lands around the same height:
+
+       kicker   one line,  <=  70 characters
+       body     <= 420 characters — roughly four sentences
+       note     <= 170 characters — one idea, the thing a sceptic would ask
+       facts    3 or 4 items, <= 38 characters each (they are mono chips)
+       roadmap  0-3 items, only genuinely-still-ahead work
+       datasheet <= 5 rows
+
+     Prose belongs in `body`. Resist adding a fifth fact or a second paragraph
+     of `note`: both cost far more height than they earn. If something will not
+     fit, it is usually a sign it belongs on the product's own site, not here.
      ====================================================================== */
   products: [
+
+    {
+      id: 'earnwithdevops',
+      name: 'EarnWithDevOps',
+      kicker: 'Training for the jobs AI creates, not the ones it removes',
+      /* — flip these three to go live; they are deliberately adjacent — */
+      status: 'live',
+      ctaUrl: 'https://ewd.alamztech.com',
+      ctaLabel: 'Start learning free',
+      connectivity: 'low',           // tier id from `connectivity.tiers`
+      body:
+        'A coach on Telegram that takes someone from beginner to certified in cloud and DevOps — ' +
+        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
+        'GitHub Actions. Lessons arrive as chat, labs run in a real cloud environment on free tiers ' +
+        'that need no credit card, and grading is deterministic. Finish a path and it opens a career ' +
+        'layer: mentorship, interview prep and referrals.',
+      // The honest answer to "but a Telegram coach needs the internet".
+      note:
+        'It needs a network — so it is built for a bad one. Telegram is the cheapest channel learners ' +
+        'already have: text-first, usable on 2G, and interruption-tolerant.',
+      facts: [
+        'Five certification tracks',
+        'Real labs, no credit card',
+        'Deterministic grading',
+        'Delivered on Telegram — text-first',
+      ],
+      // Empty: the tracks that were on the roadmap have shipped. Add entries
+      // here only for work that is genuinely still ahead.
+      roadmap: [],
+    },
 
     {
       id: 'offline-llm',
@@ -446,22 +492,16 @@ window.ALAMZ = {
       body:
         'An offline back-office assistant for Nigerian small businesses. It reads your own books — ' +
         'a spreadsheet or a bank export — and answers what happened this month, what looks unusual, ' +
-        'whether next month\'s cash covers the suppliers, and what to do about it. It also answers ' +
-        'under the Nigeria Tax Acts 2025, a law written after every mainstream model\'s training ' +
-        'cutoff. Built on our Offline LLM Engine, for the Africa Deep Tech Challenge 2026.',
+        'and whether next month\'s cash covers the suppliers. It also answers under the Nigeria Tax ' +
+        'Acts 2025, a law written after every mainstream model\'s training cutoff. Built on our ' +
+        'Offline LLM Engine for the Africa Deep Tech Challenge 2026.',
       note:
-        'The architecture is the point: a deterministic accounting engine computes every figure and ' +
-        'the language model only explains them. Where a small model can be trusted — understanding a ' +
-        'messy question, writing a clear answer — it is used. Where it cannot — carrying a remainder ' +
-        'across three invoices — it is not. Nothing a business acts on is generated.',
-      /* Full sentences, so these render in the main column rather than the side
-         column's terse mono chips — four of those wrap to four lines each and
-         read as a wall. `facts` is deliberately omitted here: the datasheet
-         below already carries the specs. */
-      capabilities: [
-        'Reads your spreadsheets — reconciliation, P&L, receivables, inventory, cash forecast',
-        'Nigeria Tax Acts 2025, verified against the official Gazette and cited',
-        'Speaks English, Hausa and Igbo — figures identical in all three',
+        'A deterministic accounting engine computes every figure; the model only explains them. ' +
+        'Nothing a business acts on is generated.',
+      facts: [
+        'Reads spreadsheets and bank exports',
+        'Nigeria Tax Acts 2025, cited',
+        'English, Hausa and Igbo',
         'Every number computed, never guessed',
       ],
       datasheet: {
@@ -477,42 +517,6 @@ window.ALAMZ = {
            target we build against. Keep that distinction if you edit either. */
         foot: 'Measured on the shipped build, not a target.',
       },
-      roadmap: [],
-    },
-
-    {
-      id: 'earnwithdevops',
-      name: 'EarnWithDevOps',
-      kicker: 'Training for the jobs AI creates, not the ones it removes',
-      /* — flip these three to go live; they are deliberately adjacent — */
-      status: 'live',
-      ctaUrl: 'https://ewd.alamztech.com',
-      ctaLabel: 'Start learning free',
-      connectivity: 'low',           // tier id from `connectivity.tiers`
-      body:
-        'A coach on Telegram that takes someone from beginner to certified in cloud and DevOps — ' +
-        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
-        'GitHub Actions. Lessons arrive as chat, in the app learners already have. Hands-on labs run ' +
-        'in a real cloud environment on free tiers that need no credit card, so cost is never the ' +
-        'reason someone drops out. Grading is deterministic: a script or a repo check either passes ' +
-        'or it does not. Spaced repetition brings questions back at the right moment, so the material ' +
-        'is still there on exam day. Finish a path and it opens a career layer — mentorship, interview ' +
-        'prep and referrals from engineers who have hired for these roles.',
-      // The honest answer to "but a Telegram coach needs the internet".
-      note:
-        'This one needs a network — so it is built for a bad one. Every lesson is delivered on ' +
-        'Telegram, chosen because it is the cheapest channel in data terms that learners already ' +
-        'have: text-first, usable on 2G, and interruption-tolerant. Lose signal mid-lesson and your ' +
-        'progress is checkpointed, not lost. No video streaming, no app to download, no data plan we ' +
-        'have not budgeted for.',
-      facts: [
-        'Five certification tracks',
-        'Real labs, no credit card',
-        'Deterministic grading',
-        'Delivered on Telegram — text-first',
-      ],
-      // Empty: the tracks that were on the roadmap have shipped. Add entries
-      // here only for work that is genuinely still ahead.
       roadmap: [],
     },
 
