@@ -384,21 +384,29 @@ window.ALAMZ = {
      facts:   short, TRUE, verifiable lines. Shown as a spec strip on the card.
               Keep these current — they are the most credible thing on the page.
 
-     COPY BUDGET — keep cards the same size as each other.
-     The cards stack full-width, so one that runs long makes the others look
-     like afterthoughts and pushes the rest of the page down. Stay inside these
-     and every card lands around the same height:
+     COPY BUDGET — a CEILING, not a target.
+     The Offline LLM Engine card is the reference size. Cards stack full-width,
+     so one that runs past it makes the others look like afterthoughts and
+     pushes the rest of the page down.
+
+     A card already shorter than the Engine's is fine — leave it alone. Do not
+     trim copy that is not causing a problem, and do not pad a card out to
+     match: inventing spec rows to balance a layout reads as padding, and the
+     height difference between a hosted product and one with a hardware
+     envelope is honest.
+
+     Trim only when a card exceeds the Engine's. Roughly, that means:
 
        kicker   one line,  <=  70 characters
-       body     <= 420 characters — roughly four sentences
-       note     <= 170 characters — one idea, the thing a sceptic would ask
+       body     <= 700 characters
+       note     <= 380 characters
        facts    3 or 4 items, <= 38 characters each (they are mono chips)
        roadmap  0-3 items, only genuinely-still-ahead work
        datasheet <= 5 rows
 
-     Prose belongs in `body`. Resist adding a fifth fact or a second paragraph
-     of `note`: both cost far more height than they earn. If something will not
-     fit, it is usually a sign it belongs on the product's own site, not here.
+     Prose belongs in `body`; short verifiable lines in `facts`. Full-sentence
+     lists in the main column are what pushed SME Copilot 180px over — see the
+     note in app.js where that renderer used to be.
      ====================================================================== */
   products: [
 
@@ -414,13 +422,19 @@ window.ALAMZ = {
       body:
         'A coach on Telegram that takes someone from beginner to certified in cloud and DevOps — ' +
         'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
-        'GitHub Actions. Lessons arrive as chat, labs run in a real cloud environment on free tiers ' +
-        'that need no credit card, and grading is deterministic. Finish a path and it opens a career ' +
-        'layer: mentorship, interview prep and referrals.',
+        'GitHub Actions. Lessons arrive as chat, in the app learners already have. Hands-on labs run ' +
+        'in a real cloud environment on free tiers that need no credit card, so cost is never the ' +
+        'reason someone drops out. Grading is deterministic: a script or a repo check either passes ' +
+        'or it does not. Spaced repetition brings questions back at the right moment, so the material ' +
+        'is still there on exam day. Finish a path and it opens a career layer — mentorship, interview ' +
+        'prep and referrals from engineers who have hired for these roles.',
       // The honest answer to "but a Telegram coach needs the internet".
       note:
-        'It needs a network — so it is built for a bad one. Telegram is the cheapest channel learners ' +
-        'already have: text-first, usable on 2G, and interruption-tolerant.',
+        'This one needs a network — so it is built for a bad one. Every lesson is delivered on ' +
+        'Telegram, chosen because it is the cheapest channel in data terms that learners already ' +
+        'have: text-first, usable on 2G, and interruption-tolerant. Lose signal mid-lesson and your ' +
+        'progress is checkpointed, not lost. No video streaming, no app to download, no data plan we ' +
+        'have not budgeted for.',
       facts: [
         'Five certification tracks',
         'Real labs, no credit card',
