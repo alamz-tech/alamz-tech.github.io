@@ -772,37 +772,169 @@ button { font: inherit; color: inherit; }
 .tier__none { font-size: var(--fs-sm); color: var(--ink-dim); font-style: italic; }
 
 /* ============================================================================
-   9c. SERVICES
+   9c. SERVICES & CREDENTIALS
    --------------------------------------------------------------------------
-   Given its own ground tint so the products/services boundary is visible at a
-   glance rather than something the reader has to infer from the copy.
+   Two service lines (Cloud Solutions and AI Solutions) rendered as data-driven
+   cards with "Price on request" badges and verified certifications strip.
    ========================================================================== */
 
 .section--tint { background: var(--ground-deep); }
 /* The tint replaces the divider — two adjacent borders would double up. */
 .section--tint + .section { border-top: 0; }
 
-.svc {
+/* — Certifications strip — */
+.certs-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  margin-bottom: var(--s-6);
+}
+@media (min-width: 820px) {
+  .certs-strip {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.certs-strip__label {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-text);
+  white-space: nowrap;
+}
+
+.certs-strip__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.cert-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--ground);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-mid);
+  line-height: 1.4;
+}
+
+.cert-chip__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brass);
+  flex: none;
+}
+
+/* — Service Lines container — */
+.services-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-8);
+}
+
+.sline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.sline__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.sline__title {
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+
+.sline__sub {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--brass-text);
+}
+
+.sline__desc {
+  font-size: var(--fs-sm);
+  color: var(--ink-dim);
+  line-height: 1.55;
+  max-width: var(--measure);
+}
+
+/* — Service Cards Grid — */
+.scard-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--s-5);
+}
+@media (min-width: 680px) {
+  .scard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.scard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
   padding: var(--s-5);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: border-color .2s ease;
 }
-@media (min-width: 820px) { .svc { grid-template-columns: 1.15fr 0.85fr; gap: var(--s-7); } }
-
-.svc__col { display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
-.svc__col + .svc__col { border-top: 1px solid var(--line); padding-top: var(--s-5); }
-@media (min-width: 820px) {
-  .svc__col + .svc__col {
-    border-top: 0; padding-top: 0;
-    border-left: 1px solid var(--line); padding-left: var(--s-7);
-  }
+.scard:hover {
+  border-color: var(--brass-edge);
 }
 
-.svc__title {
+.scard__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.scard__name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.scard__kicker {
+  font-size: var(--fs-sm);
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+.scard__deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--line);
+}
+
+.scard__deliverables-label {
   font-family: var(--mono);
   font-size: var(--fs-micro);
   font-weight: 500;
@@ -811,21 +943,51 @@ button { font: inherit; color: inherit; }
   color: var(--brass-text);
 }
 
-.svc__list { display: flex; flex-direction: column; gap: var(--s-3); }
-.svc__item {
+.scard__list {
   display: flex;
-  gap: var(--s-3);
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.scard__item {
+  display: flex;
+  gap: var(--s-2);
   font-size: var(--fs-sm);
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--ink-mid);
 }
-.svc__item::before {
-  content: "";
-  width: 5px; height: 5px;
-  margin-top: 0.6em;
-  border-radius: 50%;
-  background: var(--brass);
+.scard__item::before {
+  content: "•";
+  color: var(--brass-text);
   flex: none;
+  font-family: var(--mono);
+  font-weight: bold;
+}
+
+.scard__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+.scard__timeline {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-dim);
+}
+
+.scard__timeline-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.scard__timeline-val {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 /* ============================================================================

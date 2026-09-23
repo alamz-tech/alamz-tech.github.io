@@ -3,54 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alamz Tech — AI products and integration, built for African realities</title>
+<title>Alamz Tech — Cloud Architecture, FinOps & AI Solutions</title>
 
 <!-- ---------------------------------------------------------------------
      LINK PREVIEWS (LinkedIn, WhatsApp, X, Slack)
-     These are static because crawlers read them before any JS runs. If you
-     change the tagline in config.js, update the description tags below to
-     match — it is the only place content is duplicated.
-
-     These point at https://alamztech.com — the live domain. The CNAME file at
-     the repo root and these four URLs have to name the same host: if they
-     disagree, the canonical points somewhere that only redirects, and LinkedIn
-     may not follow a redirect when fetching og:image, which shows as a blank
-     preview card. If the domain ever changes, move the CNAME and all four
-     together.
-
-     og:image and og:url MUST stay absolute. Crawlers fetch them from their own
-     servers and will not resolve a relative path — the usual cause of a blank
-     preview card.
+     These point at https://alamztech.com — the live domain.
      --------------------------------------------------------------------- -->
-<meta name="description" content="Alamz Tech is a product studio building AI products for business and integrating AI into existing African businesses — engineered for unreliable infrastructure, thin bandwidth and tight budgets, then run in production.">
-<!-- Light is the brand ground by default; app.js updates this when the
-     visitor uses the header's dark-mode toggle. -->
+<meta name="description" content="Alamz Tech is a technology studio delivering localized cloud products, enterprise multi-cloud solutions across AWS, GCP, and Azure, and production AI engineering.">
 <meta name="theme-color" content="#FCFBF9" id="theme-color">
 <link rel="canonical" href="https://alamztech.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Alamz Tech">
-<meta property="og:title" content="Alamz Tech — AI products and integration, built for African realities">
-<meta property="og:description" content="We build AI products for business and integrate AI into existing African businesses — engineered for the infrastructure, bandwidth and budgets they actually have, then run in production.">
+<meta property="og:title" content="Alamz Tech — Cloud Architecture, FinOps & AI Solutions">
+<meta property="og:description" content="We build localized cloud infrastructure products and provide hands-on cloud and AI engineering services across AWS, GCP, and Azure.">
 <meta property="og:url" content="https://alamztech.com/">
 <meta property="og:image" content="https://alamztech.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Alamz Tech — AI products and integration for business, built for African realities.">
+<meta property="og:image:alt" content="Alamz Tech — Cloud Architecture, FinOps & AI Solutions.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://alamztech.com/assets/og-image.png">
 
-<!-- ?v= is a cache buster. GitHub Pages serves assets with max-age=600, so
-     without it a returning visitor can get last deploy's CSS against this
-     deploy's HTML for up to ten minutes — a half-broken page.
-     BUMP THIS NUMBER on any deploy that changes CSS or JS. -->
-<link rel="icon" href="assets/favicon.svg?v=14" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/styles.css?v=14">
+<!-- Cache buster query token. Bump on any deploy changing CSS/JS. -->
+<link rel="icon" href="assets/favicon.svg?v=15" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/styles.css?v=15">
 </head>
 <body>
 
 <script>
-  /* Set the theme before first paint so there is no flash of the wrong ground.
-     Kept inline and tiny on purpose — it must run before the stylesheet applies. */
+  /* Set the theme before first paint so there is no flash of the wrong ground. */
   (function () {
     document.documentElement.classList.remove('no-js');
     try {
@@ -67,10 +48,6 @@
      ====================================================================== -->
 <header class="header" id="header">
   <div class="shell header__inner">
-    <!-- The badge already reads "ALAMZ TECH", so it replaces the text wordmark
-         rather than sitting beside it — otherwise the name appears twice.
-         Inlined rather than <img> so currentColor works and the theme toggle
-         recolours it. Mirrors assets/logo.svg — edit both together. -->
     <a class="wordmark" href="#top">
       <svg class="wordmark__mark" viewBox="0 0 120 120" fill="none" aria-hidden="true">
         <rect x="6" y="6" width="108" height="108" stroke="currentColor" stroke-width="6"/>
@@ -111,35 +88,30 @@
 <main id="main">
 
   <!-- ====================================================================
-       1. HERO — the thesis, stated as a spec sheet
+       1. HERO — thesis & dual CTAs
        ==================================================================== -->
   <section class="hero" id="top">
     <div class="shell hero__grid">
       <div>
-        <p class="hero__tag">Product studio</p>
+        <p class="hero__tag">Product studio & engineering</p>
         <h1 class="hero__title">
-          AI products and integration for business, built for
-          <em>African realities</em>.
+          Cloud architecture, FinOps, and AI engineering, built to
+          <em>scale in production</em>.
         </h1>
         <p class="hero__sub" data-bind="brand.heroSub"></p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#products">
-            See what we're building
+            See our products
             <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor"
                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4"/>
             </svg>
           </a>
-          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+          <a class="btn btn--ghost" href="#services">Explore services</a>
         </div>
       </div>
 
-      <!-- Makes "African realities" concrete rather than a slogan — unreliable
-           infrastructure, thin bandwidth, tight budgets. The on-device spec
-           sheet that used to sit here now belongs to the Offline LLM Engine
-           card, where it is correctly scoped to one capability.
-           Rows come from config: hero.capabilities. -->
-      <aside class="datasheet reveal" aria-label="How we build">
+      <aside class="datasheet reveal" aria-label="Core capabilities">
         <div class="datasheet__head">
           <span data-bind="hero.capabilitiesLabel"></span>
           <span class="datasheet__dot" aria-hidden="true"></span>
@@ -157,7 +129,7 @@
     <div class="shell rail">
       <div class="rail__label">
         <p class="eyebrow" data-bind="approach.eyebrow"></p>
-        <p class="rail__meta">Build in-house.<br>Prove it.<br>Spin out what works.</p>
+        <p class="rail__meta">Build in-house.<br>Prove it.<br>Deliver with rigor.</p>
       </div>
       <div class="rail__body reveal">
         <h2 class="contact__heading" data-bind="approach.heading"></h2>
@@ -167,13 +139,13 @@
   </section>
 
   <!-- ====================================================================
-       3. FOCUS AREAS
+       3. FOCUS AREAS (What we do)
        ==================================================================== -->
   <section class="section" id="focus">
     <div class="shell rail">
       <div class="rail__label">
         <p class="eyebrow" data-bind="offerings.eyebrow"></p>
-        <p class="rail__meta">Two ways we work.<br>One builds assets.<br>One pays now.</p>
+        <p class="rail__meta">Two core engines.<br>One builds software.<br>One solves problems today.</p>
       </div>
       <div class="rail__body">
         <h2 class="contact__heading reveal" data-bind="offerings.heading"></h2>
@@ -184,102 +156,62 @@
   </section>
 
   <!-- ====================================================================
-       4. PRODUCTS
+       4. PRODUCTS (Top-level section — FIRST)
        ==================================================================== -->
   <section class="section" id="products">
     <div class="shell rail">
       <div class="rail__label">
-        <p class="eyebrow">Portfolio</p>
-        <p class="rail__meta">Status labels are accurate.<br>Nothing here is called live until it is.</p>
+        <p class="eyebrow">Products</p>
+        <p class="rail__meta">Built once.<br>Used by many.<br>Honest status.</p>
       </div>
       <div class="rail__body">
         <h2 class="contact__heading reveal">What is live, and what we are building.</h2>
         <div class="products" id="products-list"></div>
-        <noscript>
-          <p class="lede">
-            <strong>Offline LLM Engine</strong> (in development) — our on-device capability:
-            a reproducible pipeline running quantized language models fully offline on an
-            ordinary 8 GB laptop. Built in-house, to be released open source.
-            <br><br>
-            <strong>SME Copilot</strong> (in development) — an offline back-office assistant for
-            Nigerian small businesses. A deterministic accounting engine computes every figure;
-            the model only explains them. Built on the Offline LLM Engine, for the Africa Deep
-            Tech Challenge 2026.
-            <br><br>
-            <strong>EarnWithDevOps</strong> (live) — a chat-based coach that takes people from
-            beginner to certified in cloud and DevOps, with real labs and no credit card.
-            Live at <a href="https://ewd.alamztech.com">ewd.alamztech.com</a>.
-            <br><br>
-            To join a waitlist, email us — the address is in the footer.
-          </p>
-        </noscript>
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       4b. SERVICES — AI integration.
-       Deliberately its own section with its own ground tint, so the
-       products-vs-services line is unmistakable rather than blurred.
+       5. SERVICES (Top-level section — SECOND)
        ==================================================================== -->
   <section class="section section--tint" id="services">
     <div class="shell rail">
       <div class="rail__label">
         <p class="eyebrow" data-bind="services.eyebrow"></p>
-        <p class="rail__meta">Done for one client.<br>Built to stay running.</p>
+        <p class="rail__meta">AWS · GCP · Azure.<br>Architected.<br>Operated in prod.</p>
       </div>
       <div class="rail__body reveal">
         <h2 class="contact__heading" data-bind="services.heading"></h2>
         <p class="lede" data-bind="services.body"></p>
 
-        <div class="svc">
-          <div class="svc__col">
-            <h3 class="svc__title" data-bind="services.whatLabel"></h3>
-            <ul class="svc__list" id="services-what"></ul>
-          </div>
-          <div class="svc__col">
-            <h3 class="svc__title" data-bind="services.whoLabel"></h3>
-            <ul class="svc__list" id="services-who"></ul>
-          </div>
-        </div>
+        <!-- Certifications strip -->
+        <div class="certs" id="services-certs"></div>
 
-        <p class="pcard__note" data-bind="services.edge"></p>
-
-        <div class="contact__actions">
-          <button class="btn btn--primary" type="button" id="services-cta"></button>
-        </div>
+        <!-- Service lines & offering cards -->
+        <div class="services-lines" id="services-lines"></div>
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       5. THE EDGE
+       6. THE EDGE (Engineering Principles)
        ==================================================================== -->
   <section class="section" id="edge">
     <div class="shell rail">
       <div class="rail__label">
         <p class="eyebrow" data-bind="edge.eyebrow"></p>
-        <p class="rail__meta">The rules every Alamz product is held to.</p>
+        <p class="rail__meta">The rules every Alamz product & service is held to.</p>
       </div>
       <div class="rail__body">
         <h2 class="contact__heading reveal" data-bind="edge.heading"></h2>
         <p class="lede reveal" data-bind="edge.body"></p>
         <div class="rules" id="rules"></div>
-
-        <!-- The connectivity spectrum. This exists to answer the obvious
-             objection — that a Telegram-based product plainly needs a network —
-             before a reviewer has to raise it. -->
-        <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;margin-top:1rem">
-          <h3 class="pcard__name" data-bind="connectivity.heading"></h3>
-          <p class="lede" data-bind="connectivity.body"></p>
-          <div class="spectrum" id="spectrum"></div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       6. FOUNDER
+       7. FOUNDER
        ==================================================================== -->
   <section class="section" id="founder">
     <div class="shell rail">
@@ -300,7 +232,7 @@
   </section>
 
   <!-- ====================================================================
-       7. CONTACT
+       8. CONTACT
        ==================================================================== -->
   <section class="section" id="contact">
     <div class="shell rail">
@@ -310,8 +242,6 @@
       <div class="rail__body reveal">
         <h2 class="contact__heading" data-bind="contact.heading"></h2>
         <p class="lede" data-bind="contact.body"></p>
-        <!-- Filled by app.js: a mailto if brand.email is set, otherwise a
-             button opening the message form. Never both, never neither. -->
         <div class="contact__actions" id="contact-actions"></div>
       </div>
     </div>
@@ -333,7 +263,7 @@
 </footer>
 
 <!-- ======================================================================
-     THE FORM — one dialog, one form, fields rebuilt per product status
+     THE FORM — one dialog, fields rebuilt per product/service status
      ====================================================================== -->
 <dialog class="dialog" id="dialog" aria-labelledby="dialog-title">
   <form class="dialog__inner" id="form" novalidate>
@@ -365,8 +295,8 @@
   </form>
 </dialog>
 
-<!-- Keep ?v= in step with the stylesheet above — see the note in <head>. -->
-<script src="assets/js/config.js?v=14"></script>
-<script src="assets/js/app.js?v=14"></script>
+<!-- Cache-busted script references -->
+<script src="assets/js/config.js?v=15"></script>
+<script src="assets/js/app.js?v=15"></script>
 </body>
 </html>

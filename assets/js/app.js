@@ -182,22 +182,90 @@
   (function renderServices() {
     if (!C.services) return;
 
-    function fill(sel, items) {
-      var host = $(sel);
-      if (!host) return;
-      (items || []).forEach(function (t) { host.appendChild(el('li', 'svc__item', t)); });
-    }
-    fill('#services-what', C.services.what);
-    fill('#services-who', C.services.who);
-
-    var cta = $('#services-cta');
-    if (cta) {
-      cta.textContent = C.services.cta || 'Get in touch';
-      cta.addEventListener('click', function () {
-        openForm({ name: 'AI integration enquiry', status: 'services' },
-                 { cta: C.services.cta, form: C.contact.form }, cta);
+    /* Certifications bar */
+    var certsHost = $('#services-certs');
+    if (certsHost && C.services.certifications && C.services.certifications.length) {
+      certsHost.textContent = '';
+      var certsWrap = el('div', 'certs-strip');
+      certsWrap.appendChild(el('span', 'certs-strip__label', 'Verified Credentials'));
+      var chipsList = el('div', 'certs-strip__chips');
+      C.services.certifications.forEach(function (cert) {
+        var chip = el('span', 'cert-chip');
+        chip.appendChild(el('span', 'cert-chip__dot'));
+        chip.appendChild(el('span', null, cert));
+        chipsList.appendChild(chip);
       });
+      certsWrap.appendChild(chipsList);
+      certsHost.appendChild(certsWrap);
     }
+
+    /* Service lines & package cards */
+    var linesHost = $('#services-lines');
+    if (!linesHost || !C.services.lines) return;
+    linesHost.textContent = '';
+
+    C.services.lines.forEach(function (line) {
+      var lineSec = el('div', 'sline reveal');
+
+      var lineHead = el('div', 'sline__head');
+      lineHead.appendChild(el('h3', 'sline__title', line.name));
+      if (line.subtitle) lineHead.appendChild(el('p', 'sline__sub', line.subtitle));
+      if (line.description) lineHead.appendChild(el('p', 'sline__desc', line.description));
+      lineSec.appendChild(lineHead);
+
+      var grid = el('div', 'scard-grid');
+      (line.offerings || []).forEach(function (pkg) {
+        var card = el('article', 'scard');
+
+        var top = el('div', 'scard__top');
+        top.appendChild(el('h4', 'scard__name', pkg.name));
+
+        var statusCfg = C.statuses[pkg.status] || {
+          label: pkg.price || 'Price on request',
+          tone: 'warm',
+          cta: 'Request quote'
+        };
+        var badge = el('span', 'badge badge--' + (statusCfg.tone || 'warm'));
+        badge.appendChild(el('span', 'badge__dot'));
+        badge.appendChild(el('span', null, pkg.price || statusCfg.label));
+        top.appendChild(badge);
+        card.appendChild(top);
+
+        if (pkg.kicker) card.appendChild(el('p', 'scard__kicker', pkg.kicker));
+
+        if (pkg.deliverables && pkg.deliverables.length) {
+          var delivWrap = el('div', 'scard__deliverables');
+          delivWrap.appendChild(el('p', 'scard__deliverables-label', 'What you get'));
+          var ul = el('ul', 'scard__list');
+          pkg.deliverables.forEach(function (d) {
+            ul.appendChild(el('li', 'scard__item', d));
+          });
+          delivWrap.appendChild(ul);
+          card.appendChild(delivWrap);
+        }
+
+        var foot = el('div', 'scard__foot');
+        if (pkg.timeline) {
+          var time = el('div', 'scard__timeline');
+          time.appendChild(el('span', 'scard__timeline-label', 'Timeline:'));
+          time.appendChild(el('span', 'scard__timeline-val', pkg.timeline));
+          foot.appendChild(time);
+        }
+
+        var btn = el('button', 'btn btn--primary btn--block', pkg.cta || statusCfg.cta || 'Request quote');
+        btn.type = 'button';
+        btn.addEventListener('click', function () {
+          openForm({ name: pkg.name, status: pkg.status || 'price-on-request', serviceLine: line.name }, statusCfg, btn);
+        });
+        foot.appendChild(btn);
+
+        card.appendChild(foot);
+        grid.appendChild(card);
+      });
+
+      lineSec.appendChild(grid);
+      linesHost.appendChild(lineSec);
+    });
   })();
 
   /* --------------------------------------------------------- connectivity */
@@ -225,46 +293,7 @@
     return wrap;
   }
 
-  (function renderSpectrum() {
-    var host = $('#spectrum');
-    if (!host || !C.connectivity) return;
 
-    (C.connectivity.tiers || []).forEach(function (t) {
-      var tier = el('div', 'tier' + (t.outOfScope ? ' tier--out' : ''));
-
-      var head = el('div');
-      head.style.display = 'flex';
-      head.style.alignItems = 'center';
-      head.style.justifyContent = 'space-between';
-      head.style.gap = '0.75rem';
-      head.appendChild(el('span', 'tier__name', t.label));
-
-      var meter = el('span', 'conn__meter');
-      meter.setAttribute('aria-hidden', 'true');
-      for (var i = 0; i < 3; i++) {
-        meter.appendChild(el('span', 'conn__seg' + (i < t.segments ? ' conn__seg--on' : '')));
-      }
-      head.appendChild(meter);
-      tier.appendChild(head);
-
-      tier.appendChild(el('p', 'tier__meaning', t.meaning));
-
-      var who = el('div', 'tier__who');
-      var here = (C.products || []).filter(function (p) { return p.connectivity === t.id; });
-
-      if (t.outOfScope) {
-        who.appendChild(el('p', 'tier__none', t.outOfScopeNote || 'Not where we build.'));
-      } else if (here.length) {
-        who.appendChild(el('p', 'tier__who-label', here.length > 1 ? 'Products' : 'Product'));
-        here.forEach(function (p) { who.appendChild(el('p', 'tier__product', p.name)); });
-      } else {
-        who.appendChild(el('p', 'tier__none', 'Nothing here yet.'));
-      }
-
-      tier.appendChild(who);
-      host.appendChild(tier);
-    });
-  })();
 
   /* ------------------------------------------------------------- products */
 
@@ -660,8 +689,8 @@
     openerEl = opener || null;
 
     var cfg = status.form || {};
-    $('#dialog-eyebrow').textContent = product.name;
-    $('#dialog-title').textContent = cfg.heading || status.cta;
+    $('#dialog-eyebrow').textContent = product.serviceLine || product.name;
+    $('#dialog-title').textContent = product.serviceLine ? product.name : (cfg.heading || status.cta);
     $('#dialog-intro').textContent = cfg.intro || '';
     submitEl.textContent = cfg.submit || 'Send';
 
