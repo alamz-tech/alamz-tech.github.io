@@ -269,6 +269,16 @@ button { font: inherit; color: inherit; }
   color: var(--ink-mid);
 }
 
+#approach .prose {
+  max-width: none;
+  gap: var(--s-5);
+}
+
+#approach .prose p {
+  font-size: var(--fs-lede);
+  line-height: 1.55;
+}
+
 /* ============================================================================
    4. HEADER
    ========================================================================== */
@@ -1067,7 +1077,11 @@ button { font: inherit; color: inherit; }
    12. CONTACT & FOOTER
    ========================================================================== */
 
-.contact__heading { font-size: var(--fs-h2); letter-spacing: -0.028em; }
+.contact__heading {
+  font-size: var(--fs-h2);
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
 
 .contact__actions {
   display: flex;
