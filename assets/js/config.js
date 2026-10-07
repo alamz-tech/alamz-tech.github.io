@@ -1,8 +1,8 @@
 /* ============================================================================
    ALAMZ TECH — SITE CONFIG
    ----------------------------------------------------------------------------
-   This is the primary file to edit to update site content.
-   Everything visible on the page is rendered from this object.
+   Positioning: Cloud Architecture, FinOps & AI Engineering for
+   Growth-Stage African Startups and Scale-ups.
    ========================================================================== */
 
 window.ALAMZ = {
@@ -13,10 +13,10 @@ window.ALAMZ = {
   brand: {
     name: 'Alamz Tech',
     wordmark: 'Alamz Tech',
-    tagline: 'Cloud architecture, FinOps, and AI engineering for business.',
+    tagline: 'Cloud architecture, FinOps, and AI engineering for African scale-ups.',
     heroSub:
-      'We build localized cloud products and engineer hands-on cloud and AI solutions across AWS, ' +
-      'GCP, and Azure — architected, secured, and kept running in production rather than working once in a demo.',
+      'You earn in local currency while your cloud bill compounds in USD. We help growth-stage African startups ' +
+      'and scale-ups eliminate cloud waste, harden infrastructure against downtime, and ship production-grade AI across AWS, GCP, and Azure.',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
@@ -35,18 +35,18 @@ window.ALAMZ = {
      HERO — capability strip in the panel beside the headline.
      ====================================================================== */
   hero: {
-    capabilitiesLabel: 'Core capabilities',
+    capabilitiesLabel: 'Scale-up capabilities',
     capabilities: [
+      { k: 'FinOps',      v: 'Cut USD spend & FX bleed' },
       { k: 'Cloud',       v: 'AWS · GCP · Azure' },
-      { k: 'Migration',   v: 'Terraform & CI/CD' },
-      { k: 'Security',    v: 'WAF, IAM & CDN' },
-      { k: 'FinOps',      v: 'Cost optimization' },
-      { k: 'AI Systems',  v: 'Grounded in your data' },
-      { k: 'Operations',  v: 'Monitored & maintained' },
+      { k: 'Reliability', v: 'Zero-downtime CI/CD' },
+      { k: 'Security',    v: 'WAF, IAM & Compliance' },
+      { k: 'AI Systems',  v: 'Production RAG & Token control' },
+      { k: 'Operations',  v: 'Monitored & SLA-backed' },
     ],
     capabilitiesFoot:
-      'Most engineering initiatives struggle between architectural planning and day-two reliability. ' +
-      'We bridge that gap with production-proven cloud and AI engineering.',
+      'Scaling from seed to Series A exposes technical debt and cloud cost inflation. ' +
+      'We bring senior platform engineering and FinOps discipline directly into your stack.',
   },
 
   /* ==========================================================================
@@ -82,14 +82,15 @@ window.ALAMZ = {
       cta: 'Join the waitlist',
       form: {
         heading: 'Join the waitlist',
-        intro: 'We will email you when this is ready for early access. Early signups get priority pilot onboarding.',
+        intro: 'We will email you when CMP opens for private pilots. Priority onboarding for regulated fintechs and scale-ups.',
         submit: 'Join the waitlist',
-        success: 'You are on the list. We will be in touch before anyone else hears about it.',
+        success: 'You are on the list. We will reach out directly with private alpha access details.',
         fields: [
           { name: 'name',     label: 'Name',            type: 'text',     required: true  },
-          { name: 'email',    label: 'Email',           type: 'email',    required: true  },
-          { name: 'interest', label: 'Primary use case', type: 'textarea', required: false,
-            help: 'Optional. One or two lines helps us prioritize the right features.' },
+          { name: 'email',    label: 'Work email',      type: 'email',    required: true  },
+          { name: 'company',  label: 'Company / Scale-up', type: 'text',   required: true  },
+          { name: 'interest', label: 'Primary infrastructure challenge', type: 'textarea', required: false,
+            help: 'E.g., FX exposure on USD cloud bills, central bank data residency mandates, or bare-metal latency.' },
         ],
       },
     },
@@ -101,7 +102,7 @@ window.ALAMZ = {
       cta: 'Apply to beta-test',
       form: {
         heading: 'Apply to the pilot cohort',
-        intro: 'The pilot is a small, selected group. We read every application and reply either way.',
+        intro: 'The pilot cohort is a small, selected group of scaling companies. We review every application personally.',
         submit: 'Send application',
         success: 'Application received. We review in batches and will reply either way — watch your inbox.',
         fields: [
@@ -128,20 +129,22 @@ window.ALAMZ = {
       action: 'form',
       cta: 'Request quote',
       form: {
-        heading: 'Request a service quote',
-        intro: 'Tell us about your infrastructure or project requirements. We review every enquiry and reply within two business days.',
+        heading: 'Request a service engagement quote',
+        intro: 'Tell us about your infrastructure scale, monthly cloud spend, or AI initiative. We reply within two business days.',
         submit: 'Send enquiry',
-        success: 'Enquiry received. We will review your project scope and reply within two business days.',
+        success: 'Enquiry received. We will review your architecture scope and reply within two business days.',
         fields: [
           { name: 'name', label: 'Name', type: 'text', required: true },
           { name: 'email', label: 'Work email', type: 'email', required: true },
-          { name: 'company', label: 'Company / Project', type: 'text', required: true },
-          { name: 'cloud', label: 'Primary cloud provider', type: 'select', required: false,
-            options: ['AWS', 'Google Cloud (GCP)', 'Microsoft Azure', 'Multi-cloud / Hybrid', 'Not sure yet'] },
+          { name: 'company', label: 'Company / Scale-up name', type: 'text', required: true },
+          { name: 'cloud', label: 'Primary cloud provider', type: 'select', required: true,
+            options: ['AWS', 'Google Cloud (GCP)', 'Microsoft Azure', 'Multi-cloud / Hybrid', 'On-premises / Other'] },
+          { name: 'monthlySpend', label: 'Approximate monthly cloud spend', type: 'select', required: false,
+            options: ['Under $3,000/mo', '$3,000 – $10,000/mo', '$10,000 – $30,000/mo', '$30,000+/mo'] },
           { name: 'timeline', label: 'Target timeline', type: 'select', required: false,
             options: ['Immediate (under 2 weeks)', '1–2 months', '3+ months', 'Exploratory'] },
-          { name: 'message', label: 'Project scope & requirements', type: 'textarea', required: true,
-            help: 'Brief overview of your current stack, goals, or pain points.' },
+          { name: 'message', label: 'Primary pain point or engagement scope', type: 'textarea', required: true,
+            help: 'E.g., runaway USD cloud spend, scaling outages, migration roadmap, or deploying an AI feature to production.' },
         ],
       },
     },
@@ -149,15 +152,15 @@ window.ALAMZ = {
   },
 
   /* ==========================================================================
-     APPROACH
+     APPROACH (The Messy Middle)
      ====================================================================== */
   approach: {
-    eyebrow: 'The model',
-    heading: 'We build localized cloud products, and we engineer cloud and AI systems for businesses that already run.',
+    eyebrow: 'The scale-up reality',
+    heading: 'Post-seed traction should not die on fragile infrastructure or runaway USD cloud spend.',
     body: [
-      'Alamz Tech is a technology studio with two core engines: we build specialized infrastructure products that address local market constraints, and we provide senior cloud and AI engineering services to companies scaling their systems.',
-      'The two reinforce each other. Client services keep us hands-on with real production loads, complex compliance hurdles, and multi-cloud architectures; our products turn what we learn into scalable, sovereign software.',
-      'One engineering thread unites both: production readiness. Getting a demo to work is easy; building infrastructure that stays up under load, complies with data residency rules, resists security threats, and operates within a strict budget is where real engineering happens.',
+      'Moving past the MVP phase into rapid growth is where technical debt catches up with African scale-ups. User traffic and transaction volumes spike, but revenue earned in local currency (naira, shillings, rands) collides head-on with cloud bills charged in depreciating US dollars. Unoptimized compute clusters, idle instances, and architecture shortcuts quickly turn into severe margin killers.',
+      'At this stage, you do not need generic global cloud advice or bloated enterprise consultant decks. You need senior, hands-on platform engineering: cutting 30–50% of wasted cloud spend, replacing brittle manual deploys with automated Terraform pipelines, and hardening your perimeter against customer-facing outages.',
+      'Alamz Tech operates as the embedded cloud and AI engineering partner for growth-stage African businesses. We take on the heavy architectural lifts — Well-Architected FinOps reviews, zero-downtime migrations, security hardening, and production AI integration — so your core engineering team can stay laser-focused on customer acquisition and shipping product.',
     ],
   },
 
@@ -166,26 +169,26 @@ window.ALAMZ = {
      ====================================================================== */
   offerings: {
     eyebrow: 'What we do',
-    heading: 'Two ways we work, built on the same engineering rigor.',
+    heading: 'Two ways we solve infrastructure constraints for growth companies.',
     body:
-      'One builds owned infrastructure software for the market. The other delivers focused cloud architecture and AI engineering directly inside your stack.',
+      'We build sovereign infrastructure software that removes systemic market barriers, and we deliver senior cloud and AI engineering directly inside your production stack.',
     items: [
       {
         name: 'Products',
-        state: 'Built once, used by many',
+        state: 'Sovereign platforms & learning',
         tone: 'warm',
         body:
-          'Infrastructure and learning platforms we build and own. EarnWithDevOps takes engineers from beginner to certified; CMP delivers a localized sovereign IaaS control plane.',
+          'Software built to solve African infrastructure realities. CMP provides localized bare-metal IaaS in Nigerian data centers to eliminate FX volatility and satisfy data residency laws; EarnWithDevOps trains and certifies engineering talent.',
         icon: 'cube',
         href: '#products',
         linkLabel: 'Explore products',
       },
       {
         name: 'Services',
-        state: 'Cloud & AI Solutions',
+        state: 'Cloud, FinOps & AI Solutions',
         tone: 'cool',
         body:
-          'Hands-on cloud architecture, migration, security, and FinOps across AWS, GCP, and Azure, plus production AI integration grounded in your proprietary data.',
+          'Targeted engineering engagements for scale-ups running on AWS, GCP, and Azure. We audit and slash cloud spend, execute zero-downtime migrations, eliminate outages, and ship reliable production AI.',
         icon: 'plug',
         href: '#services',
         linkLabel: 'Explore services',
@@ -201,22 +204,18 @@ window.ALAMZ = {
     {
       id: 'earnwithdevops',
       name: 'EarnWithDevOps',
-      kicker: 'Training for the jobs AI creates, not the ones it removes',
+      kicker: 'Bridging the cloud and DevOps talent gap across African tech hubs',
       status: 'live',
       ctaUrl: 'https://ewd.alamztech.com',
       ctaLabel: 'Start learning free',
       body:
-        'A coach on Telegram that takes someone from beginner to certified in cloud and DevOps — ' +
-        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate and ' +
-        'GitHub Actions. Lessons arrive as chat, in the app learners already have. Hands-on labs run ' +
-        'in a real cloud environment on free tiers that need no credit card, so cost is never the ' +
-        'reason someone drops out. Grading is deterministic: a script or a repo check either passes ' +
-        'or it does not. Spaced repetition brings questions back at the right moment, so the material ' +
-        'is still there on exam day. Finish a path and it opens a career layer — mentorship, interview ' +
-        'prep and referrals from engineers who have hired for these roles.',
+        'A chat-based coach on Telegram that takes engineers from beginner to certified in cloud and DevOps — ' +
+        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate, and ' +
+        'GitHub Actions. Hands-on labs run in real cloud environments on free tiers without requiring a credit card. ' +
+        'Automated deterministic grading and spaced repetition ensure candidates master production skills and exam objectives. ' +
+        'Graduates gain access to mentorship, mock technical interviews, and hiring referrals for scale-ups seeking vetted talent.',
       note:
-        'Delivered text-first on Telegram so it works reliably on low-bandwidth and mobile connections ' +
-        'without requiring credit cards or expensive hardware.',
+        'Engineered text-first to run reliably across low-bandwidth connections, helping companies source and upskill local platform talent.',
       facts: [
         'Five certification tracks',
         'Real cloud labs, no credit card',
@@ -229,27 +228,26 @@ window.ALAMZ = {
     {
       id: 'cmp',
       name: 'CMP — Cloud Management Platform',
-      kicker: 'Localized IaaS control plane for Nigerian banks, fintechs, and enterprises',
+      kicker: 'Localized IaaS control plane for African scale-ups, fintechs, and enterprises',
       status: 'in-development',
       ctaUrl: '',
       ctaLabel: 'Join the waitlist',
       body:
         'A localized IaaS control plane ("AWS of Nigeria") — a FastAPI + React control layer over an ' +
-        'open-source hypervisor data plane (e.g. Proxmox) running on bare-metal in Nigerian data centers, ' +
-        'solving currency risk and data-sovereignty for banks, fintechs, and enterprises.',
+        'open-source hypervisor data plane (e.g. Proxmox) running on bare-metal in Nigerian data centers. ' +
+        'Engineered specifically to solve the double squeeze of currency risk and data-sovereignty mandates ' +
+        'for banks, scaling fintechs, and high-volume tech companies.',
       note:
-        'Addresses two major enterprise bottlenecks: eliminating USD billing volatility through predictable ' +
-        'local currency billing, and meeting strict central bank data residency mandates by keeping every ' +
-        'byte within local data centers.',
+        'Provides predictable local-currency billing to eliminate FX depreciation shocks, while keeping all data in-country to satisfy Central Bank and NDPC compliance requirements with single-digit millisecond domestic latency.',
       facts: [
         'FastAPI + React control plane',
         'Open-source hypervisor data plane',
         'Bare-metal in Nigerian data centers',
-        'Data sovereignty & local billing',
+        'Full data sovereignty & NGN billing',
       ],
       roadmap: [
         'Private alpha Q4 2026',
-        'Fintech & enterprise compliance pilot',
+        'Fintech & scale-up compliance pilot',
       ],
     },
 
@@ -259,12 +257,12 @@ window.ALAMZ = {
      SERVICES (Top-level section)
      ====================================================================== */
   services: {
-    eyebrow: 'Services',
-    heading: 'Cloud infrastructure and AI engineering, architected and operated in production.',
+    eyebrow: 'Engineering Services',
+    heading: 'Production cloud architecture, FinOps, and AI systems — built for scale-ups.',
     body:
-      'We provide senior engineering across two distinct service lines: Cloud Solutions and AI Solutions. ' +
-      'We come from DevOps, platform engineering, and distributed systems — so security, cost discipline, ' +
-      'and operational reliability are baked in from day one.',
+      'We work with African startups and scale-ups managing active production workloads on AWS, GCP, and Azure. ' +
+      'If you are experiencing currency-driven cloud bill spikes, scaling outages under customer load, ' +
+      'or struggling to take an AI pilot into dependable production, our engineers implement the solution directly in your codebase.',
 
     certifications: [
       'Google Cloud Professional Cloud Architect',
@@ -277,10 +275,10 @@ window.ALAMZ = {
       {
         id: 'cloud-solutions',
         name: 'Cloud Solutions',
-        subtitle: 'Multi-cloud architecture, migration, security, and FinOps across AWS, GCP, and Azure',
+        subtitle: 'Multi-cloud architecture, zero-downtime migration, security hardening, and FinOps',
         description:
-          'Backed by certifications in Google Cloud Professional Cloud Architect, Google Cloud Associate Cloud Engineer, ' +
-          'and Microsoft Azure, drawing on extensive production Terraform and CI/CD migration experience.',
+          'Backed by Google Cloud Professional Cloud Architect, Associate Cloud Engineer, and Microsoft Azure certifications, ' +
+          'with deep production experience managing Terraform, Kubernetes, and high-availability infrastructure in fast-growing startups.',
         offerings: [
           {
             id: 'cloud-health',
@@ -291,55 +289,55 @@ window.ALAMZ = {
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Comprehensive audit against AWS Well-Architected, GCP Architecture Framework, and Azure WAF pillars',
-              'Ranked assessment of reliability risks, single points of failure, and downtime vulnerabilities',
-              'Concrete FinOps savings findings with immediate and long-term cost reduction targets',
-              'Actionable technical remediation roadmap with prioritized steps',
+              'Well-Architected audit across AWS, GCP, and Azure reliability and operational pillars',
+              'Ranked breakdown of downtime risks, single points of failure, and scalability bottlenecks',
+              'Immediate identification of idle, orphaned, or over-provisioned resources causing FX margin bleed',
+              'Actionable, prioritized technical remediation roadmap your team can execute immediately',
             ],
           },
           {
             id: 'cloud-migration',
-            name: 'Cloud Migration',
-            kicker: 'End-to-end migration (legacy-to-cloud or cloud-to-cloud), drawing on hands-on Terraform/CI-CD migration experience.',
+            name: 'Cloud Migration & Modernization',
+            kicker: 'End-to-end migration (legacy-to-cloud or cloud-to-cloud), drawing on hands-on Terraform/CI-CD experience.',
             timeline: '2 to 6 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Infrastructure as Code (Terraform) for completely reproducible environments',
-              'Automated CI/CD deployment pipelines (GitHub Actions, GitLab CI)',
-              'Phased cutover strategy with rollback contingencies and minimal or zero downtime',
-              'Post-migration validation, performance benchmarking, and runbook handover',
+              'Infrastructure as Code (Terraform) establishing modular, reproducible environments across staging and prod',
+              'Automated deployment pipelines (GitHub Actions, GitLab CI) with automated smoke tests',
+              'Phased database and workload cutover strategy with automated rollback contingencies and zero downtime',
+              'Post-migration telemetry, benchmark validation, and comprehensive operations runbook handover',
             ],
           },
           {
             id: 'cloud-security',
-            name: 'Cloud Security Hardening',
+            name: 'Cloud Security Hardening & Compliance',
             kicker: 'Security-first setup: WAF/Shield-equivalent protections, CDN, access controls, across all three providers.',
             timeline: '1 to 3 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Perimeter defense: Cloud WAF, DDoS mitigation, and CDN edge security rules',
-              'Least-privilege IAM policies, automated secret rotation, and role separation',
-              'Isolated network topologies, VPC peering, and secure private connectivity',
-              'Continuous audit logging, SIEM integration, and incident alerting',
+              'Edge perimeter defense: Cloud WAF, DDoS mitigation, and CDN edge security rules',
+              'Least-privilege IAM policies, automated secret rotation, and strict role separation',
+              'Isolated VPC network topologies, private service endpoints, and secure database peering',
+              'Centralized audit logging, compliance baselines for fintech audits, and real-time incident alerting',
             ],
           },
           {
             id: 'cloud-cost',
-            name: 'Cloud Cost Optimization / Tooling',
+            name: 'Cloud Cost Optimization / Tooling (FinOps)',
             kicker: 'Help businesses navigate the AWS/GCP/Azure marketplace and cut cloud spend (FinOps angle).',
             timeline: '1 to 2 weeks or ongoing',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Granular cloud bill audit identifying idle compute, orphaned storage, and over-provisioned tiers',
-              'Commitment analysis: Reserved Instances, Savings Plans, and Committed Use Discounts (CUD)',
-              'Marketplace procurement guidance to capture partner discounts and cloud credits',
-              'Automated spend anomaly detection, budget guardrails, and unit-economic metrics',
+              'Deep forensic audit of monthly AWS/GCP/Azure bills to uncover hidden egress, unattached volumes, and oversized compute',
+              'Commitment portfolio optimization: Reserved Instances, Savings Plans, and Committed Use Discounts (CUD)',
+              'Marketplace procurement guidance to leverage partner tiers, cloud credits, and volume commitments',
+              'Automated budget anomaly alerts, team cost attribution, and unit-economic cost tracking per customer',
             ],
           },
         ],
@@ -348,24 +346,24 @@ window.ALAMZ = {
       {
         id: 'ai-solutions',
         name: 'AI Solutions',
-        subtitle: 'Production AI systems integrated into existing business stacks and grounded in proprietary data',
+        subtitle: 'Production AI features integrated into your stack, grounded in your data, with strict cost controls',
         description:
-          'We bring AI into businesses that already run — grounded in your own documents and databases, ' +
-          'deployed inside your systems, and maintained in production.',
+          'We bridge the gap between impressive AI demos and reliable revenue-driving software. ' +
+          'Grounded in your proprietary data, wired into existing workflows, and engineered for predictable token costs.',
         offerings: [
           {
             id: 'ai-feasibility',
             name: 'AI Feasibility Sprint',
-            kicker: 'For teams who know AI should be in their product or workflow but need proof of concept first.',
+            kicker: 'Stop burning runway on speculative AI ideas. Prove feasibility on your real data before writing full code.',
             timeline: '1 to 2 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Use case evaluation and data readiness audit',
-              'Working interactive prototype using your actual sample data',
-              'Token cost projections, latency analysis, and architecture model',
-              'Definitive build vs. do-not-build engineering recommendation',
+              'Use case technical audit and proprietary data readiness assessment',
+              'Working interactive prototype running on your actual business data samples',
+              'Granular unit-cost model: token projections, latency benchmarks, and hosting architecture',
+              'Unbiased build vs. do-not-build engineering recommendation backed by empirical test data',
             ],
           },
           {
@@ -377,25 +375,25 @@ window.ALAMZ = {
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Enterprise RAG pipeline grounded in your internal documents and databases',
-              'Secure API integration directly into your product backend and frontend',
-              'Hallucination guardrails, fallback logic, and evaluation test suite',
-              'Monitoring, access control, and complete handover documentation',
+              'Production-grade RAG pipeline grounded in your internal documents, database records, or API endpoints',
+              'Secure, low-latency API integration directly into your product frontend and microservices',
+              'Hallucination guardrails, automated fallbacks, and comprehensive evaluation test suites',
+              'Production observability, access controls, prompt versioning, and complete team handover',
             ],
           },
           {
             id: 'ai-in-production',
-            name: 'AI in Production',
+            name: 'AI in Production (Managed Retainer)',
             kicker: 'Ongoing evaluations, token cost controls, model version upgrades, and reliability management.',
             timeline: 'Monthly retainer',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Continuous output quality evaluations and drift monitoring',
-              'Token spend optimization, prompt caching, and latency tuning',
-              'Model version upgrades and provider migrations without downtime',
-              'Incident response, prompt patching, and uptime support',
+              'Continuous output evaluation, drift detection, and real-time response quality monitoring',
+              'Aggressive token spend optimization, semantic prompt caching, and latency reduction',
+              'Zero-downtime model version upgrades and multi-provider redundancy (fallback routing)',
+              'Prompt security patching, incident triage, and SLA-backed uptime maintenance',
             ],
           },
         ],
@@ -408,31 +406,31 @@ window.ALAMZ = {
      ====================================================================== */
   edge: {
     eyebrow: 'Engineering principles',
-    heading: 'A demo has to impress once. A system has to be right on a Tuesday afternoon with real data.',
+    heading: 'A demo has to impress once. A scale-up system has to be right on a Tuesday afternoon with real volume.',
     body:
-      'Almost all the difficulty in cloud and AI systems sits after the initial deployment. Getting a model or service ' +
-      'to respond in testing is not the hard problem; making it scale under load, survive infrastructure faults, ' +
-      'and stay strictly inside budget is. These are the rules we hold our work to.',
+      'Almost all the difficulty in business cloud and AI sits after the prototype. Surviving user traffic spikes, ' +
+      'insulating margins against currency depreciation, complying with local data regulations, ' +
+      'and operating inside a strict runway are the actual engineering challenges. These are the rules we hold our work to.',
     rules: [
       {
         rule: 'Ground it in the customer\'s own data',
-        because: 'A confident answer from the open internet is worse than no answer. Retrieval and domain grounding beat generic recall.',
+        because: 'A confident hallucination from the open internet is fatal in fintech or healthcare. Retrieval and strict domain grounding beat generic model recall every time.',
       },
       {
         rule: 'Ship it to production, not to a demo',
-        because: 'Deployed, monitored, versioned, and recoverable via Infrastructure as Code. Anything less is a prototype wearing a suit.',
+        because: 'Deployed, monitored, versioned, and recoverable via Infrastructure as Code. Anything less is a prototype that will fail under production load.',
       },
       {
-        rule: 'Make it survive the conditions it will actually meet',
-        because: 'Metered bandwidth, currency volatility, and strict data-sovereignty mandates must be architectural foundations, not afterthoughts.',
+        rule: 'Architect for African operating realities',
+        because: 'Currency depreciation, metered bandwidth, and regulatory data sovereignty must be foundational architectural constraints, never afterthoughts.',
       },
       {
         rule: 'Control costs at the architectural level',
-        because: 'Unmonitored cloud and token spend is a balance-sheet liability. Budgets and FinOps guardrails are active technical requirements.',
+        because: 'Unmonitored USD cloud and token bills are balance-sheet emergencies for companies earning in local currency. FinOps guardrails are active technical requirements.',
       },
       {
-        rule: 'Leave it operable by someone else',
-        because: 'Comprehensive documentation, CI/CD automation, and proper handover. Work that only the vendor can run is an operational vulnerability.',
+        rule: 'Leave it operable by your internal team',
+        because: 'Modular Terraform, automated CI/CD, and transparent documentation. Architecture that only external consultants can maintain is an operational liability.',
       },
     ],
   },
@@ -447,9 +445,9 @@ window.ALAMZ = {
     initials: 'HA',
     photo: 'assets/founder.jpg',
     body: [
-      'DevOps and cloud engineer with five years of production experience in platform engineering, multi-cloud architecture, and technical project leadership — including remote infrastructure delivery for US and international teams.',
+      'DevOps and cloud engineer with five years of hands-on production experience in platform engineering, multi-cloud architecture, and technical delivery — including remote infrastructure leadership for international and US-facing teams.',
       'Holds certifications in Google Cloud Professional Cloud Architect, Google Cloud Associate Cloud Engineer, Microsoft Azure, and Google Cloud Generative AI Leader, and serves as an Andela mentor for KCNA and CKAD certification readiness.',
-      'Alamz Tech applies that discipline to cloud infrastructure and AI solutions. Every product and client engagement is engineered hands-on with Terraform, automated CI/CD, and robust operational tooling.',
+      'Alamz Tech applies that rigor specifically to growth-stage African startups and scale-ups. Every client engagement is delivered hands-on with Terraform, automated CI/CD, and proven FinOps methodologies.',
     ],
   },
 
@@ -458,28 +456,31 @@ window.ALAMZ = {
      ====================================================================== */
   contact: {
     eyebrow: 'Work with us',
-    heading: 'Planning a cloud migration, security review, or AI integration?',
+    heading: 'Ready to cut your USD cloud spend or stabilize your production infrastructure?',
     body:
-      'Whether you are looking to audit your cloud spend, execute a zero-downtime migration, harden your multi-cloud security, or explore our localized IaaS platform, we are ready to discuss your architecture.',
+      'Whether you are a founder, CTO, or VP of Engineering navigating currency volatility on AWS/GCP, scaling outages, data residency compliance, or planning a production AI feature, let us look at your architecture.',
     cta: 'Send us a message',
     form: {
       heading: 'Get in touch',
-      intro: 'Goes directly to the founder. We reply to every genuine business enquiry within two business days.',
+      intro: 'Goes directly to the founder. We review every enquiry and reply within two business days.',
       submit: 'Send message',
       success: 'Message received. You will get a reply from the founder, usually within one to two business days.',
       fields: [
         { name: 'name',  label: 'Name',  type: 'text',  required: true },
         { name: 'email', label: 'Work email', type: 'email', required: true,
           help: 'So we can reply. Never shared.' },
-        { name: 'organisation', label: 'Organisation / Company', type: 'text', required: false },
+        { name: 'organisation', label: 'Company / Scale-up name', type: 'text', required: true },
         { name: 'reason', label: 'What is this about?', type: 'select', required: true,
           options: [
-            'Cloud Solutions (AWS / GCP / Azure)',
-            'AI Solutions & Integration',
-            'CMP Waitlist / Enterprise Pilot',
-            'General enquiry',
+            'Cloud Cost & FinOps Audit (Cut USD spend)',
+            'Cloud Infrastructure & Reliability (AWS / GCP / Azure)',
+            'Cloud Security Hardening & Compliance',
+            'Production AI Integration',
+            'CMP Localized IaaS Waitlist',
+            'Something else',
           ] },
-        { name: 'message', label: 'Message', type: 'textarea', required: true },
+        { name: 'message', label: 'Message', type: 'textarea', required: true,
+          help: 'A few details about your stack, monthly cloud spend, or current technical bottlenecks.' },
       ],
     },
   },
@@ -488,7 +489,7 @@ window.ALAMZ = {
      FOOTER
      ====================================================================== */
   footer: {
-    note: 'This site ships zero webfonts, zero tracking scripts, and minimal asset weight. Designed for performance and transparency.',
+    note: 'This site ships zero webfonts, zero tracking scripts, and minimal asset weight. Designed for performance, transparency, and speed.',
   },
 
   /* ==========================================================================
