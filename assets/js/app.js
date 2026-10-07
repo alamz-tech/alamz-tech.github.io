@@ -765,7 +765,7 @@
     if ((data.get('_gotcha') || '').trim()) {
       fieldsEl.textContent = '';
       $('#dialog-intro').textContent = '';
-      showMsg(context.status.form.success || 'Thank you — we have got it.', 'ok');
+      showMsg(context.status.form.success || 'Thank you: we have received your message.', 'ok');
       submitEl.textContent = 'Close';
       submitEl.type = 'button';
       submitEl.addEventListener('click', closeDialog, { once: true });
@@ -778,7 +778,7 @@
 
     var subject = C.form.subjectPrefix + ' ' +
                   (context.status.form.heading || context.status.cta) +
-                  ' — ' + context.product.name;
+                  ': ' + context.product.name;
     data.append(svc.subjectField, subject);
 
     if (svc.keyField) data.append(svc.keyField, C.form.accessKey);
@@ -819,7 +819,7 @@
       .then(function () {
         fieldsEl.textContent = '';
         $('#dialog-intro').textContent = '';
-        showMsg(context.status.form.success || 'Thank you — we have got it.', 'ok');
+        showMsg(context.status.form.success || 'Thank you: we have received your message.', 'ok');
         submitEl.textContent = 'Close';
         submitEl.disabled = false;
         submitEl.type = 'button';
