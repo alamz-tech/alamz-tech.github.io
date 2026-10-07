@@ -158,11 +158,9 @@ window.ALAMZ = {
     eyebrow: 'The scale-up reality',
     heading: 'Post-seed traction should not stall on fragile infrastructure or runaway USD cloud spend.',
     body: [
-      'Moving past the MVP phase into rapid growth is where technical debt catches up with African scale-ups. User traffic and transaction volumes spike, but revenue earned in local currency (naira, shillings, or rands) collides head-on with cloud bills charged in US dollars. Unoptimized compute clusters, idle volumes, and early architectural shortcuts quickly turn into severe margin killers.',
-      'At this stage, you do not need generic global cloud advice or bloated enterprise consultant decks. You need senior, hands-on platform engineering: cutting 30% to 50% of wasted cloud spend, replacing brittle manual deploys with automated Terraform pipelines, and hardening your perimeter against customer-facing outages.',
-      'Alamz Tech operates as the embedded cloud and AI engineering partner for growth-stage African businesses. We take on the heavy architectural work: Well-Architected FinOps reviews, zero-downtime migrations, security hardening, and production AI integration. This allows your core engineering team to focus entirely on customer acquisition and shipping product.',
-      'Hiring experienced platform and DevOps engineers across Lagos, Nairobi, or Johannesburg is difficult, slow, and expensive. When an unexpected outage disrupts user trust or your monthly AWS invoice doubles because of an unindexed query, you cannot afford to spend six months recruiting senior staff. We plug that gap on day one, bringing battle-tested patterns directly into your codebase and cloud console.',
-      'Crucially, we do not build proprietary black boxes or leave you dependent on external retainers. Every solution we build is committed to your repositories as modular Infrastructure as Code, complete with automated CI/CD pipelines, clear documentation, and runbooks. We work alongside your internal developers throughout the process, ensuring your team has full operational ownership as you scale.',
+      'Moving past the MVP phase is where technical debt catches up with African scale-ups. Transaction volumes spike, but revenue earned in local currency collides with cloud bills charged in US dollars. Unoptimized clusters, idle instances, and early shortcuts quickly turn into severe margin killers.',
+      'At this stage, you do not need generic consultant decks. You need senior, hands-on engineering: cutting 30% to 50% of wasted cloud spend, replacing brittle manual deploys with automated Terraform pipelines, and hardening your systems against customer-facing outages.',
+      'Alamz Tech operates as your embedded platform partner. We handle the architectural heavy lifting, from FinOps reviews to production AI, committing clean Infrastructure as Code directly to your repositories so your internal team retains full control.',
     ],
   },
 
@@ -212,10 +210,9 @@ window.ALAMZ = {
       ctaLabel: 'Start learning free',
       body:
         'A chat-based coach on Telegram that guides engineers from fundamentals to professional certification in cloud and DevOps: ' +
-        'AWS Cloud Practitioner, Google Associate Cloud Engineer, KCNA, Terraform Associate, and ' +
-        'GitHub Actions. Hands-on labs run in real cloud sandbox environments on free tiers without requiring a credit card. ' +
-        'Automated deterministic grading and spaced repetition help candidates master practical terminal skills alongside exam objectives, ' +
-        'creating a pipeline of vetted, job-ready platform talent.',
+        'AWS, Google Cloud, Kubernetes (KCNA), Terraform, and GitHub Actions. ' +
+        'Hands-on labs run in real cloud sandboxes on free tiers without requiring a credit card, ' +
+        'using automated grading and spaced repetition to build job-ready platform talent.',
       note:
         'Engineered text-first to run smoothly across low-bandwidth connections, helping companies source and upskill local platform talent.',
       facts: [
@@ -236,9 +233,8 @@ window.ALAMZ = {
       ctaLabel: 'Join the waitlist',
       body:
         'A localized IaaS control plane ("AWS of Nigeria"): a FastAPI and React management layer over an ' +
-        'open-source hypervisor data plane (such as Proxmox) running on bare-metal hardware in Nigerian data centers. ' +
-        'Built to resolve the dual challenge of foreign exchange currency risk and domestic data sovereignty requirements ' +
-        'for fintechs, banks, and high-volume digital businesses.',
+        'open-source hypervisor data plane running on bare-metal hardware in Nigerian data centers. ' +
+        'Built to eliminate currency volatility and satisfy data residency mandates for fintechs, banks, and digital businesses.',
       note:
         'Provides predictable local-currency billing to protect margins from currency depreciation, while keeping all data in-country to satisfy Central Bank and NDPC compliance requirements with single-digit millisecond domestic latency.',
       facts: [
@@ -410,9 +406,7 @@ window.ALAMZ = {
     eyebrow: 'Engineering principles',
     heading: 'A demo has to impress once. A production system has to hold up on a Tuesday afternoon during peak traffic.',
     body:
-      'Almost all the difficulty in cloud infrastructure and AI sits after the prototype. Surviving user traffic spikes, ' +
-      'insulating margins against currency depreciation, complying with local data regulations, ' +
-      'and operating inside a strict runway are the actual engineering challenges. These are the rules we hold our work to.',
+      'Most of the hard engineering in cloud and AI happens after the prototype. These are the principles that guide our work.',
     rules: [
       {
         rule: 'Ground it in the customer\'s own data',
