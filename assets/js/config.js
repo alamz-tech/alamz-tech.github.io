@@ -52,7 +52,6 @@ window.ALAMZ = {
      ====================================================================== */
   social: [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/company/alamz-technology/' },
-    { label: 'GitHub',   url: 'https://github.com/alamz-tech' },
   ],
 
   /* ==========================================================================
@@ -475,7 +474,7 @@ window.ALAMZ = {
      FOOTER
      ====================================================================== */
   footer: {
-    note: 'This site ships zero webfonts, zero tracking scripts, and minimal asset weight. Designed for performance, transparency, and speed.',
+    note: '',
   },
 
   /* ==========================================================================

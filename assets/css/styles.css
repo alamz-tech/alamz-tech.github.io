@@ -297,16 +297,20 @@ button { font: inherit; color: inherit; }
 .wordmark {
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   text-decoration: none;
-  /* --brass, not --brass-text: this matches the founder's supplied artwork
-     exactly (#C6851C light / #E5A33C dark). Logos are exempt from WCAG
-     contrast rules, so the darkened text variant is not needed here. */
   color: var(--brass);
 }
-/* The badge carries the name itself, so it is sized to be read, not to sit as
-   a small icon beside text. 46px is the largest that clears the header. */
-.wordmark__mark { width: 46px; height: 46px; flex: none; }
+.wordmark__mark { width: 42px; height: 42px; flex: none; }
 .wordmark__mark text { font-family: var(--sans); }
+.wordmark__text {
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  white-space: nowrap;
+}
 
 .nav { display: none; }
 @media (min-width: 860px) {
@@ -571,7 +575,7 @@ button { font: inherit; color: inherit; }
 }
 .badge__dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex: none; }
 
-.badge--cool  { color: var(--signal-text); border-color: var(--signal-edge); border-style: dashed; background: var(--signal-wash); }
+.badge--cool  { color: var(--ink-dim); border-color: var(--line); border-style: dashed; background: var(--ground-deep); }
 .badge--warm  { color: var(--brass-text);  border-color: var(--brass-edge);  background: var(--brass-wash); }
 .badge--live  { color: var(--brass-ink);   border-color: var(--brass);       background: var(--brass); }
 .badge--quiet { color: var(--ink-dim);     border-color: var(--line);        background: transparent; }
