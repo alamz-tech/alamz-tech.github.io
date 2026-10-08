@@ -419,9 +419,23 @@ button { font: inherit; color: inherit; }
   z-index: -1;
   background-image: radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0);
   background-size: 24px 24px;
-  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 22% 8%, #000 0%, transparent 72%);
-          mask-image: radial-gradient(ellipse 75% 65% at 22% 8%, #000 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 8%, #000 0%, transparent 72%);
+          mask-image: radial-gradient(ellipse 75% 65% at 50% 8%, #000 0%, transparent 72%);
   pointer-events: none;
+}
+
+.hero__lead-in {
+  text-align: center;
+  max-width: 980px;
+  margin-inline: auto;
+  margin-bottom: var(--s-8);
+}
+.hero__lead-in .hero__tag {
+  justify-content: center;
+  margin-inline: auto;
+}
+.hero__lead-in .hero__title {
+  margin-bottom: 0;
 }
 
 .hero__grid {

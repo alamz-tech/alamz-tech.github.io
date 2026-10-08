@@ -17,16 +17,16 @@
 <meta property="og:title" content="Alamz Tech Ltd | AI Product Studio for EdTech & AgriTech">
 <meta property="og:description" content="The big dream is the direction; the 1% is the work. Applied AI software to feed 100 million people and upskill 10 million minds: built from Nigeria, for the world.">
 <meta property="og:url" content="https://alamztech.com/">
-<meta property="og:image" content="https://alamztech.com/assets/og-image.png">
+<meta property="og:image" content="https://alamztech.com/assets/og-image.png?v=25">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Alamz Tech Ltd: AI Product Studio for EdTech & AgriTech.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://alamztech.com/assets/og-image.png">
+<meta name="twitter:image" content="https://alamztech.com/assets/og-image.png?v=25">
 
 <!-- Cache buster query token. Bump on any deploy changing CSS/JS. -->
-<link rel="icon" href="assets/favicon.svg?v=24" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/styles.css?v=24">
+<link rel="icon" href="assets/favicon.svg?v=25" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/styles.css?v=25">
 </head>
 <body>
 
@@ -91,34 +91,39 @@
        1. HERO: thesis & dual CTAs
        ==================================================================== -->
   <section class="hero" id="top">
-    <div class="shell hero__grid">
-      <div>
+    <div class="shell">
+      <div class="hero__lead-in">
         <p class="hero__tag">Global AI Product Studio · EdTech & AgriTech</p>
         <h1 class="hero__title">
           Applied AI products for global
           <em>education and agriculture</em>.
         </h1>
-        <p class="hero__sub" data-bind="brand.heroSub"></p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#products">
-            See our products
-            <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                 stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4"/>
-            </svg>
-          </a>
-          <a class="btn btn--ghost" href="#services">Explore services</a>
-        </div>
       </div>
 
-      <aside class="datasheet reveal" aria-label="Core capabilities">
-        <div class="datasheet__head">
-          <span data-bind="hero.capabilitiesLabel"></span>
-          <span class="datasheet__dot" aria-hidden="true"></span>
+      <div class="hero__grid">
+        <div class="hero__content">
+          <p class="hero__sub" data-bind="brand.heroSub"></p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#products">
+              See our products
+              <svg class="btn__arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                   stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+            <a class="btn btn--ghost" href="#services">Explore services</a>
+          </div>
         </div>
-        <div class="datasheet__list" id="hero-capabilities"></div>
-        <p class="datasheet__foot" data-bind="hero.capabilitiesFoot"></p>
-      </aside>
+
+        <aside class="datasheet reveal" aria-label="Core capabilities">
+          <div class="datasheet__head">
+            <span data-bind="hero.capabilitiesLabel"></span>
+            <span class="datasheet__dot" aria-hidden="true"></span>
+          </div>
+          <div class="datasheet__list" id="hero-capabilities"></div>
+          <p class="datasheet__foot" data-bind="hero.capabilitiesFoot"></p>
+        </aside>
+      </div>
     </div>
   </section>
 
