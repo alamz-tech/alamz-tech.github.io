@@ -13,9 +13,8 @@ window.ALAMZ = {
     wordmark: 'Alamz Tech',
     tagline: 'Global AI product studio for Education and Agriculture.',
     heroSub:
-      'The big dream is the direction. The 1% is the work. ' +
-      'Food security feeds the body; technical education feeds the future. ' +
-      'We build applied AI software to help feed 100 million people and upskill 10 million minds. Built in Nigeria, for the world.',
+      'Alamz Tech builds applied AI products for agriculture and technical education - helping businesses make better decisions and helping people build skills that lead to real opportunities.\n\n' +
+      'Our ambition is simple: help feed 100 million people and upskill 10 million minds. Made in Nigeria, Built for the world',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },

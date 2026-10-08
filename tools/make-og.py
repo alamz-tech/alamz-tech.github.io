@@ -162,7 +162,7 @@ body {{
 
 <div class="main-block">
   <h1 class="title">
-    Applied AI products for global<br>
+    AI products and solutions for global<br>
     <em>education and agriculture</em>.
   </h1>
   <div class="mission-wrap">
