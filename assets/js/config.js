@@ -13,8 +13,9 @@ window.ALAMZ = {
     wordmark: 'Alamz Tech',
     tagline: 'Global AI product studio for Education and Agriculture.',
     heroSub:
-      'By 2050, the world must feed ten billion people and upskill one billion minds for an automated economy. ' +
-      'Our studio mandate is to capture the critical 1%: engineering applied AI products to secure food supply for 100 million people and accelerate technical careers for 10 million minds.',
+      'The big dream is the direction: the 1% is the work. ' +
+      'Food security and accessible technical education are two sides of the same coin: one feeds the body, the other feeds the future. ' +
+      'We engineer applied AI software at that intersection to feed 100 million people and upskill 10 million minds: built from Nigeria, for the world.',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
@@ -43,7 +44,7 @@ window.ALAMZ = {
       { k: 'Impact Focus',    v: 'Food security and human potential' },
     ],
     capabilitiesFoot:
-      'We engineer proprietary software and partner with commercial agribusinesses and institutions to secure food supply for 100 million people and upskill 10 million minds.',
+      'Engineering applied AI software where food security and human potential meet: feeding 100 million people and upskilling 10 million minds, from Nigeria for the world.',
   },
 
   /* ==========================================================================
@@ -155,11 +156,11 @@ window.ALAMZ = {
      ====================================================================== */
   approach: {
     eyebrow: 'The studio thesis',
-    heading: 'The 1% Mandate: 100 million people fed. 10 million minds upskilled.',
+    heading: 'The big dream is the direction. The 1% is the work.',
     body: [
-      'By 2050, global population will surpass ten billion, while the automated economy will demand technical mastery from at least one billion workers. Rather than offering unfocused consulting, Alamz Tech measures its work against a concrete planetary benchmark: securing the foundational 1% of that transformation.',
-      'In agriculture, that means engineering data-driven systems that de-risk supply chains, forecast harvest yields, and eliminate productivity gaps across fertile lands to protect food security for 100 million people. In education, it means deploying interactive, low-bandwidth coaching that guides 10 million learners from zero to certified platform engineers without expensive hardware or tuition barriers.',
-      'Alamz Tech Ltd operates as an applied AI product studio. We identify high-friction bottlenecks in food systems and technical education, engineer proprietary software to eliminate them, and partner with commercial agribusinesses and institutions to deploy systems that scale.',
+      'Feeding ten billion people and upskilling one billion minds is a vision that points to our global future. But nobody builds a ten billion dream in a day. At Alamz Tech Ltd, our mission is anchored on the critical 1%: feeding 100 million people and upskilling 10 million minds.',
+      'Food security and accessible technical education are two sides of the same coin: one feeds the body, the other feeds the future. In agriculture, that means building data-driven systems that de-risk supply chains, forecast harvest yields, and eliminate productivity gaps across arable lands. In education, it means deploying interactive, low-bandwidth coaching that guides learners from zero to certified platform engineers without expensive hardware or tuition barriers.',
+      'Alamz Tech Ltd operates as an applied AI product studio. We identify high-friction bottlenecks in food systems and technical education, engineer proprietary software to solve them, and partner with commercial agribusinesses and institutions to deploy production systems that scale: built from Nigeria, for the world.',
     ],
   },
 
@@ -168,7 +169,7 @@ window.ALAMZ = {
      ====================================================================== */
   offerings: {
     eyebrow: 'What we do',
-    heading: 'Two complementary ways we build software for the 1% mandate.',
+    heading: 'Two complementary ways we build software for the 1% mission.',
     body:
       'We engineer proprietary software products in education and agriculture, and we partner with forward-looking enterprises to build custom AI systems.',
     items: [
