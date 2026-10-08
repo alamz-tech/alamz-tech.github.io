@@ -13,9 +13,8 @@ window.ALAMZ = {
     wordmark: 'Alamz Tech',
     tagline: 'Global AI product studio for Education and Agriculture.',
     heroSub:
-      'By 2050, the world must feed 10 billion people and upskill the next billion minds. ' +
-      'Africa holds 60% of the planet\'s uncultivated arable land and its youngest workforce. ' +
-      'We build practical AI products that turn these planetary challenges into economic growth.',
+      'Feeding ten billion people and equipping the next billion minds for an automated economy are the two defining challenges of our time. ' +
+      'We build applied AI software where these two levers intersect: interactive coaching platforms that unlock human potential, and agricultural intelligence that secures global food supply.',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
@@ -158,9 +157,9 @@ window.ALAMZ = {
     eyebrow: 'The studio thesis',
     heading: 'Feeding ten billion people and upskilling the next billion minds.',
     body: [
-      'By 2050, the global population will exceed ten billion. Meeting that demand requires a revolution in agricultural productivity, particularly across Africa, which holds 60% of the world\'s remaining uncultivated arable land yet remains a net food importer. At the same time, the global economy is rapidly automating, creating an urgent imperative to upskill hundreds of millions of young people into high-value technical careers.',
-      'Traditional classroom models and legacy agricultural consulting cannot scale fast enough to close these gaps. Solving these bottlenecks requires applied AI engineered for real-world constraints: software that runs smoothly over mobile messaging networks, tolerates low-bandwidth connectivity, and delivers measurable financial returns for growers and learners alike.',
-      'Alamz Tech Ltd operates as an applied AI product studio. We identify foundational friction points in food systems and human capital, engineer proprietary software to solve them, and partner with forward-looking agribusinesses and educational institutions to deploy high-impact AI systems worldwide.',
+      'By 2050, the global population will exceed ten billion. Feeding that world requires closing massive agricultural yield gaps, particularly across emerging markets that hold the majority of the planet\'s uncultivated arable land yet remain net food importers. In parallel, the global economy is automating rapidly, creating an urgent imperative to upskill hundreds of millions of young minds into high-value engineering careers.',
+      'Traditional classroom models and legacy agricultural consulting cannot move fast enough to solve either problem. Closing these gaps requires applied AI built for real-world conditions: software that operates seamlessly over ubiquitous mobile channels, tolerates intermittent connectivity, and delivers immediate economic value for growers and learners alike.',
+      'Alamz Tech Ltd operates as an applied AI product studio. We identify foundational friction points in global food systems and technical education, engineer proprietary software to eliminate them, and collaborate with commercial agribusinesses and institutions to deploy production systems that scale.',
     ],
   },
 
