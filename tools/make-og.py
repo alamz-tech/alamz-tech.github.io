@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Render the Open Graph card for Alamz Tech (1200x630) using headless Google Chrome.
 
-Generates a centered, high-contrast 1200x630 card reflecting the 60-30-10 Studio Color System:
-Deep Space Obsidian (#070B18 / #0B132B), Digital Chlorophyll (#10B981 / #34D399), and the 1% Mission.
+Generates a stripped-down, high-impact 1200x630 card reflecting the 60-30-10 Studio Color System:
+- Top: Logo badge side-by-side with studio eyebrow
+- Center: Applied AI products for global education and agriculture.
+- Mission: 100M PEOPLE FED, 10M MINDS UPSKILLED
+- Footer: Products and domain
 """
 import os
 import pathlib
@@ -28,7 +31,7 @@ body {{
   height: 630px;
   background-color: #070B18;
   background-image: 
-    radial-gradient(circle at 50% 35%, rgba(16, 185, 129, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 50% 45%, rgba(16, 185, 129, 0.16) 0%, transparent 65%),
     radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
   background-size: 100% 100%, 24px 24px;
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -38,24 +41,23 @@ body {{
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 48px 80px 42px;
+  padding: 56px 80px 44px;
   overflow: hidden;
 }}
 
-.top-section {{
-  display: flex;
-  flex-direction: column;
+.top-bar {{
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }}
 
 .logo-box {{
-  width: 60px;
-  height: 60px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
 }}
 
 .logo-box svg {{
@@ -65,19 +67,19 @@ body {{
 
 .eyebrow {{
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #34D399;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }}
 
 .dot {{
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #10B981;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35);
@@ -87,15 +89,16 @@ body {{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -4px;
 }}
 
 .title {{
-  font-size: 56px;
+  font-size: 64px;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.14;
   letter-spacing: -0.035em;
   color: #FFFFFF;
-  max-width: 1040px;
+  max-width: 1060px;
 }}
 
 .title em {{
@@ -106,47 +109,36 @@ body {{
   -webkit-text-fill-color: transparent;
 }}
 
-.quote {{
-  font-size: 24px;
-  font-weight: 600;
-  color: #F1F5F9;
-  line-height: 1.4;
-  margin-top: 36px;
-  letter-spacing: -0.01em;
+.mission-wrap {{
+  margin-top: 38px;
 }}
 
-.mission-badges {{
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 20px;
-}}
-
-.badge {{
+.mission-badge {{
   display: inline-flex;
   align-items: center;
-  padding: 8px 18px;
-  border-radius: 6px;
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid rgba(16, 185, 129, 0.42);
+  gap: 12px;
+  padding: 11px 26px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.45);
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #34D399;
 }}
 
-.badge--accent {{
-  background: #0B132B;
-  border: 1px solid #1E293B;
-  color: #F8FAFC;
+.mission-label {{
+  color: #FFFFFF;
+  opacity: 0.8;
+  font-weight: 700;
 }}
 
 .footer {{
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding-top: 16px;
+  padding-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -158,11 +150,11 @@ body {{
 </style>
 </head>
 <body>
-<div class="top-section">
+<div class="top-bar">
   <div class="logo-box">{GREEN_LOGO}</div>
   <div class="eyebrow">
     <span class="dot"></span>
-    <span>Alamz Tech Ltd · Global AI Product Studio</span>
+    <span>ALAMZ TECH LTD · GLOBAL AI PRODUCT STUDIO</span>
   </div>
 </div>
 
@@ -171,11 +163,11 @@ body {{
     Applied AI products for global<br>
     <em>education and agriculture</em>.
   </h1>
-  <p class="quote">“The big dream is the direction. The 1% is the work.”</p>
-  <div class="mission-badges">
-    <span class="badge">100M PEOPLE FED</span>
-    <span class="badge">10M MINDS UPSKILLED</span>
-    <span class="badge badge--accent">FROM NIGERIA, FOR THE WORLD</span>
+  <div class="mission-wrap">
+    <div class="mission-badge">
+      <span class="mission-label">MISSION -</span>
+      <span>100M PEOPLE FED, 10M MINDS UPSKILLED</span>
+    </div>
   </div>
 </div>
 
