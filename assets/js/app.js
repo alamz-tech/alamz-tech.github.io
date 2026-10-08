@@ -534,7 +534,7 @@
       var dark = current() === 'dark';
       btn.setAttribute('title', dark ? 'Switch to light' : 'Switch to dark');
       btn.setAttribute('aria-pressed', String(dark));
-      if (meta) meta.setAttribute('content', dark ? '#14110E' : '#FCFBF9');
+      if (meta) meta.setAttribute('content', dark ? '#070B18' : '#F8FAFC');
     }
 
     btn.addEventListener('click', function () {

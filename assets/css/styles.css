@@ -3,29 +3,17 @@
    ----------------------------------------------------------------------------
    Design notes for whoever edits this next:
 
-   PALETTE — built around the existing Alamz gold/black triangle mark, but the
-   page's ground is near-white, not black. The gold is pulled off metallic-
-   yellow toward a warmer brass and DARKENED on the light ground so accent text
-   actually passes contrast (see --brass-text vs --brass-display below: small
-   text and large display text need different values, which is why there are
-   two tokens rather than one).
+   PALETTE: 60-30-10 Studio System
+     * 60% Primary (Deep Space Blue #0B132B): Tech studio anchor, headlines,
+       body text, command-line terminal ground, and structural framing.
+     * 30% Supporting (Digital Chlorophyll #10B981): Emerald telemetry, active
+       states, live indicators, primary button fills, and brand mark.
+     * 10% Accent (Satellite Amber #F59E0B): Risk warnings, waitlist badges,
+       certifications, and high-visibility triggers.
+     * Neutral Background (Cloud Canvas #F8FAFC): Clean, high-contrast light
+       enterprise ground with Deep Space Obsidian (#070B18) in dark mode.
 
-   The neutral is NOT a pure grey or a pure white: it carries a faint brass bias
-   so it reads as chosen rather than inherited. A muted teal is the only other
-   hue, and it is semantic — cool means at-rest / in-development, warm means
-   active / shipped. Do not use the teal decoratively or that meaning stops
-   working.
-
-   Dark mode is a genuine alternate, not an inversion, and users can force
-   either with the header toggle.
-
-   Alternative palettes, if you ever want to move away from gold:
-     · Kola      — deep oxblood #8C2F26 accent on warm bone #FBF9F5
-     · Harmattan — dust ochre #B0761F on cool paper #F7F8F7 (more clinical)
-     · Ink       — near-black accent, brass reserved only for status badges
-   Each is a token swap in the :root blocks below; nothing else changes.
-
-   TYPE — deliberately zero webfonts. This site's entire argument is that
+   TYPE: deliberately zero webfonts. This site's entire argument is that
    software should be light enough to work on a bad connection; shipping 200 KB
    of fonts to say so would undercut it. Character comes from the mono utility
    face doing real work (labels, badges, all numerals, spec strips) against a
@@ -37,34 +25,34 @@
    ========================================================================== */
 
 :root {
-  /* — colour: LIGHT is the designed default; dark is the alternate — */
-  --ground:        #FCFBF9;   /* near-white, faint warm bias toward the brass */
-  --ground-deep:   #F3F1EC;   /* footer band, datasheet header */
+   /* colour: LIGHT is the designed default; dark is the alternate */
+  --ground:        #F8FAFC;   /* Cloud Canvas: clean enterprise ground */
+  --ground-deep:   #EEF2F6;   /* footer band, datasheet header */
   --surface:       #FFFFFF;   /* cards lift off the ground */
   --surface-hi:    #FFFFFF;
-  --line:          #E3DFD6;
-  --line-soft:     #EEEBE4;
+  --line:          #E2E8F0;
+  --line-soft:     #EDF2F7;
 
-  --ink:           #17140F;
-  --ink-mid:       #4B443A;
-  --ink-dim:       #736A5D;
+  --ink:           #0B132B;   /* Deep Space Blue: 17.8:1 on --ground */
+  --ink-mid:       #334155;   /* 7.6:1 on --ground */
+  --ink-dim:       #64748B;   /* 4.6:1 on --ground */
 
-  --brass:         #C6851C;   /* fill: buttons, badges */
-  --brass-soft:    #A96F13;   /* hover — darker on a light ground */
-  --brass-text:    #8A5713;   /* small accent text: 6.4:1 on --ground */
-  --brass-display: #A9651A;   /* large display accent: 4.6:1 on --ground */
-  --brass-ink:     #1A1409;   /* text sitting ON a brass fill: 6.6:1 */
-  --brass-wash:    rgba(198, 133,  28, 0.10);
-  --brass-edge:    rgba(198, 133,  28, 0.34);
+  --brass:         #10B981;   /* Digital Chlorophyll fill: buttons, badges, brand mark */
+  --brass-soft:    #059669;   /* hover fill */
+  --brass-text:    #047857;   /* text accent: 4.8:1 on --ground */
+  --brass-display: #065F46;   /* display title highlight: 7.2:1 on --ground */
+  --brass-ink:     #0B132B;   /* high-contrast dark text on chlorophyll fill: 7.9:1 */
+  --brass-wash:    rgba(16, 185, 129, 0.10);
+  --brass-edge:    rgba(16, 185, 129, 0.32);
 
-  --signal:        #2F7C74;   /* semantic: at-rest / in-development */
-  --signal-text:   #22605A;
-  --signal-wash:   rgba(47, 124, 116, 0.09);
-  --signal-edge:   rgba(47, 124, 116, 0.28);
+  --signal:        #F59E0B;   /* Satellite Amber: waitlist, risk alerts */
+  --signal-text:   #B45309;   /* text accent: 5.1:1 on --ground */
+  --signal-wash:   rgba(245, 158,  11, 0.10);
+  --signal-edge:   rgba(245, 158,  11, 0.35);
 
-  --dot:           rgba(176, 120, 28, 0.22);
-  --shadow:        0 1px 2px rgba(60,48,28,.05), 0 10px 28px -14px rgba(60,48,28,.18);
-  --focus:         #8A5713;
+  --dot:           rgba(11,  19,  43, 0.09);
+  --shadow:        0 1px 2px rgba(11,19,43,.04), 0 10px 28px -14px rgba(11,19,43,.12);
+  --focus:         #10B981;
 
   /* — type — */
   --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
@@ -107,41 +95,41 @@
      wrap the :root[data-theme="dark"] block below in
      `@media (prefers-color-scheme: dark) { :root { … } }` as well. — */
 
-/* — the explicit toggle must beat everything, in BOTH directions — */
+/* The explicit toggle must beat everything, in BOTH directions */
 :root[data-theme="light"] {
-  --ground:      #FCFBF9;  --ground-deep: #F3F1EC;
+  --ground:      #F8FAFC;  --ground-deep: #EEF2F6;
   --surface:     #FFFFFF;  --surface-hi:  #FFFFFF;
-  --line:        #E3DFD6;  --line-soft:   #EEEBE4;
-  --ink:         #17140F;  --ink-mid:     #4B443A;  --ink-dim: #736A5D;
-  --brass:       #C6851C;  --brass-soft:  #A96F13;  --brass-text: #8A5713;
-  --brass-display: #A9651A;
-  --brass-ink:   #1A1409;
-  --brass-wash:  rgba(198, 133, 28, 0.10);
-  --brass-edge:  rgba(198, 133, 28, 0.34);
-  --signal:      #2F7C74;  --signal-text: #22605A;
-  --signal-wash: rgba(47, 124, 116, 0.09);
-  --signal-edge: rgba(47, 124, 116, 0.28);
-  --dot:         rgba(176, 120, 28, 0.22);
-  --shadow:      0 1px 2px rgba(60,48,28,.05), 0 10px 28px -14px rgba(60,48,28,.18);
-  --focus:       #8A5713;
+  --line:        #E2E8F0;  --line-soft:   #EDF2F7;
+  --ink:         #0B132B;  --ink-mid:     #334155;  --ink-dim: #64748B;
+  --brass:       #10B981;  --brass-soft:  #059669;  --brass-text: #047857;
+  --brass-display: #065F46;
+  --brass-ink:   #0B132B;
+  --brass-wash:  rgba(16, 185, 129, 0.10);
+  --brass-edge:  rgba(16, 185, 129, 0.32);
+  --signal:      #F59E0B;  --signal-text: #B45309;
+  --signal-wash: rgba(245, 158, 11, 0.10);
+  --signal-edge: rgba(245, 158, 11, 0.35);
+  --dot:         rgba(11, 19, 43, 0.09);
+  --shadow:      0 1px 2px rgba(11,19,43,.04), 0 10px 28px -14px rgba(11,19,43,.12);
+  --focus:       #10B981;
 }
 
 :root[data-theme="dark"] {
-  --ground:      #14110E;  --ground-deep: #0D0B09;
-  --surface:     #1E1915;  --surface-hi:  #262019;
-  --line:        #322B23;  --line-soft:   #241F19;
-  --ink:         #F3EEE5;  --ink-mid:     #C4B9AA;  --ink-dim: #9A8F81;
-  --brass:       #E5A33C;  --brass-soft:  #F0C179;  --brass-text: #E5A33C;
-  --brass-display: #E5A33C;
-  --brass-ink:   #14110E;
-  --brass-wash:  rgba(229, 163, 60, 0.11);
-  --brass-edge:  rgba(229, 163, 60, 0.34);
-  --signal:      #6FA79F;  --signal-text: #7EB8B0;
-  --signal-wash: rgba(111, 167, 159, 0.10);
-  --signal-edge: rgba(111, 167, 159, 0.30);
-  --dot:         rgba(229, 163, 60, 0.16);
+  --ground:      #070B18;  --ground-deep: #040710;
+  --surface:     #0E162D;  --surface-hi:  #15203D;
+  --line:        #1E293B;  --line-soft:   #152033;
+  --ink:         #F8FAFC;  --ink-mid:     #94A3B8;  --ink-dim: #64748B;
+  --brass:       #10B981;  --brass-soft:  #34D399;  --brass-text: #34D399;
+  --brass-display: #34D399;
+  --brass-ink:   #070B18;
+  --brass-wash:  rgba(16, 185, 129, 0.12);
+  --brass-edge:  rgba(16, 185, 129, 0.36);
+  --signal:      #F59E0B;  --signal-text: #FBBF24;
+  --signal-wash: rgba(245, 158, 11, 0.12);
+  --signal-edge: rgba(245, 158, 11, 0.36);
+  --dot:         rgba(16, 185, 129, 0.14);
   --shadow:      0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.55);
-  --focus:       #F0C179;
+  --focus:       #34D399;
 }
 
 /* ============================================================================
