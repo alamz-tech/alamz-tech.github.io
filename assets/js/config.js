@@ -40,7 +40,7 @@ window.ALAMZ = {
       { k: 'AgriTech AI',     v: 'Outgrower tracking and yield forecasting' },
       { k: 'Computer Vision', v: 'Crop quality and pest diagnosis' },
       { k: 'Deployment',      v: 'Low-bandwidth, text-first, and mobile-native' },
-      { k: 'Cloud & MLOps',   v: 'Production AWS, GCP, and Azure pipelines' },
+      { k: 'Applied ML',      v: 'Edge inference, RAG, and fine-tuning' },
       { k: 'Impact Focus',    v: 'Food security and human potential' },
     ],
     capabilitiesFoot:
@@ -259,8 +259,8 @@ window.ALAMZ = {
     heading: 'Custom AI systems engineered for agribusinesses, education providers, and institutions.',
     body:
       'We partner with commercial enterprises and institutions to build production AI systems. ' +
-      'Whether deploying satellite vegetation pipelines across thousands of hectares, building conversational tutoring bots, ' +
-      'or deploying low-latency models on AWS and GCP, we engineer directly in your codebase.',
+      'Whether deploying satellite vegetation pipelines across thousands of hectares or building curriculum-grounded tutoring bots, ' +
+      'we engineer directly in your codebase.',
 
     certifications: [
       'Google Cloud Professional Cloud Architect',
@@ -394,46 +394,6 @@ window.ALAMZ = {
           },
         ],
       },
-
-      {
-        id: 'mlops-infrastructure',
-        name: 'Cloud & MLOps Infrastructure',
-        subtitle: 'Cost-controlled inference pipelines, private model hosting, and data governance',
-        description:
-          'Production infrastructure engineering across AWS, Google Cloud, and Microsoft Azure, backed by Google Cloud Professional Cloud Architect and Azure certifications.',
-        offerings: [
-          {
-            id: 'inference-optimization',
-            name: 'Cost-Controlled LLM Inference',
-            kicker: 'Token optimization, semantic prompt caching, and multi-model fallback routing to protect operational budgets.',
-            timeline: '1 to 3 weeks',
-            price: 'Price on request',
-            status: 'price-on-request',
-            cta: 'Request quote',
-            deliverables: [
-              'Semantic caching architectures that eliminate duplicate LLM calls for recurring queries',
-              'Intelligent model routing sending simple tasks to compact models and complex tasks to frontier LLMs',
-              'Prompt compression and structured output schemas that cut token consumption by 30% to 50%',
-              'Real-time token cost attribution per user, customer account, or feature',
-            ],
-          },
-          {
-            id: 'private-hosting',
-            name: 'Private Model Hosting & Fine-Tuning',
-            kicker: 'Secure, isolated VPC deployments for open-source foundation models with complete data residency.',
-            timeline: '2 to 5 weeks',
-            price: 'Price on request',
-            status: 'price-on-request',
-            cta: 'Request quote',
-            deliverables: [
-              'Containerized self-hosted model deployments on AWS (SageMaker), GCP (Vertex AI), or bare-metal',
-              'Parameter-efficient fine-tuning (PEFT/LoRA) on your proprietary domain datasets',
-              'Complete data residency keeping all customer queries and documents within private enterprise perimeters',
-              'Automated scaling and GPU cost management with zero-traffic scale-to-zero capabilities',
-            ],
-          },
-        ],
-      },
     ],
   },
 
@@ -510,7 +470,6 @@ window.ALAMZ = {
             'EarnWithDevOps Enterprise Inquiries',
             'Custom AgriTech AI Co-Build',
             'Custom EdTech AI Co-Build',
-            'Cloud & MLOps Infrastructure Advisory',
             'General inquiry',
           ] },
         { name: 'message', label: 'Message', type: 'textarea', required: true,
