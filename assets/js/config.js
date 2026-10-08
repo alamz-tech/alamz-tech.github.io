@@ -13,9 +13,9 @@ window.ALAMZ = {
     wordmark: 'Alamz Tech',
     tagline: 'Global AI product studio for Education and Agriculture.',
     heroSub:
-      'The big dream is the direction: the 1% is the work. ' +
-      'Food security and accessible technical education are two sides of the same coin: one feeds the body, the other feeds the future. ' +
-      'We engineer applied AI software at that intersection to feed 100 million people and upskill 10 million minds: built from Nigeria, for the world.',
+      'The big dream is the direction. The 1% is the work. ' +
+      'Food security feeds the body; technical education feeds the future. ' +
+      'We build applied AI software to help feed 100 million people and upskill 10 million minds. Built in Nigeria, for the world.',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
@@ -41,10 +41,10 @@ window.ALAMZ = {
       { k: 'Computer Vision', v: 'Crop quality and pest diagnosis' },
       { k: 'Deployment',      v: 'Low-bandwidth, text-first, and mobile-native' },
       { k: 'Applied ML',      v: 'Edge inference, RAG, and fine-tuning' },
-      { k: 'Impact Focus',    v: 'Food security and human potential' },
+      { k: 'Mission Target',  v: '100M people fed, 10M minds upskilled' },
     ],
     capabilitiesFoot:
-      'Engineering applied AI software where food security and human potential meet: feeding 100 million people and upskilling 10 million minds, from Nigeria for the world.',
+      'Applied AI software for food security and technical education: 100M fed, 10M upskilled, from Nigeria for the world.',
   },
 
   /* ==========================================================================
@@ -158,9 +158,9 @@ window.ALAMZ = {
     eyebrow: 'The studio thesis',
     heading: 'The big dream is the direction. The 1% is the work.',
     body: [
-      'Feeding ten billion people and upskilling one billion minds is a vision that points to our global future. But nobody builds a ten billion dream in a day. At Alamz Tech Ltd, our mission is anchored on the critical 1%: feeding 100 million people and upskilling 10 million minds.',
-      'Food security and accessible technical education are two sides of the same coin: one feeds the body, the other feeds the future. In agriculture, that means building data-driven systems that de-risk supply chains, forecast harvest yields, and eliminate productivity gaps across arable lands. In education, it means deploying interactive, low-bandwidth coaching that guides learners from zero to certified platform engineers without expensive hardware or tuition barriers.',
-      'Alamz Tech Ltd operates as an applied AI product studio. We identify high-friction bottlenecks in food systems and technical education, engineer proprietary software to solve them, and partner with commercial agribusinesses and institutions to deploy production systems that scale: built from Nigeria, for the world.',
+      'Feeding ten billion people and upskilling one billion minds is the big horizon. But nobody builds a ten billion dream overnight. At Alamz Tech, we focus on the practical 1%: helping feed 100 million people and upskilling 10 million minds.',
+      'Food security feeds the body; technical education feeds the future. In agriculture, that means software that processes satellite imagery, forecasts harvest volumes, and helps agribusinesses run reliable outgrower networks without guesswork. In education, it means coaching that runs over low bandwidth and takes people from absolute beginner to certified engineers without expensive laptops or tuition fees.',
+      'We build our own products, and we partner with agribusinesses and institutions to deploy production AI systems directly into their operations. Built in Nigeria, for the world.',
     ],
   },
 
@@ -169,26 +169,26 @@ window.ALAMZ = {
      ====================================================================== */
   offerings: {
     eyebrow: 'What we do',
-    heading: 'Two complementary ways we build software for the 1% mission.',
+    heading: 'Two ways we build software for the mission.',
     body:
-      'We engineer proprietary software products in education and agriculture, and we partner with forward-looking enterprises to build custom AI systems.',
+      'We develop our own AI products, and we partner with organizations to build custom systems in production.',
     items: [
       {
         name: 'Products',
-        state: 'Proprietary AI platforms',
+        state: 'Our Products',
         tone: 'warm',
         body:
-          'Software engineered for planetary-scale challenges. EarnWithDevOps trains and certifies technical talent; AgriYield provides enterprise yield forecasting and outgrower intelligence for commercial agribusinesses.',
+          'EarnWithDevOps coaches engineers into certified cloud and DevOps careers. AgriYield gives agribusinesses satellite yield forecasts and outgrower management.',
         icon: 'cube',
         href: '#products',
         linkLabel: 'Explore products',
       },
       {
         name: 'Services',
-        state: 'Enterprise Co-Builds & AI Solutions',
+        state: 'Custom Engineering',
         tone: 'warm',
         body:
-          'Selective engineering partnerships for commercial agribusinesses, food processors, and education platforms. We design and deploy custom computer vision, predictive modeling, and conversational AI pipelines.',
+          'We work directly with agribusinesses, food processors, and education providers to build custom vision models, forecasting pipelines, and tutoring systems inside their stack.',
         icon: 'plug',
         href: '#services',
         linkLabel: 'Explore services',
@@ -204,17 +204,17 @@ window.ALAMZ = {
     {
       id: 'earnwithdevops',
       name: 'EarnWithDevOps',
-      kicker: 'AI-driven technical training for the next generation of platform engineers',
+      kicker: 'Hands-on cloud and DevOps training delivered via chat',
       status: 'live',
       ctaUrl: 'https://ewd.alamztech.com',
       ctaLabel: 'Start learning free',
       body:
-        'A chat-based coach on Telegram that guides engineers from fundamentals to professional certification in cloud and DevOps: ' +
-        'AWS, Google Cloud, Kubernetes (KCNA), Terraform, and GitHub Actions. ' +
-        'Hands-on labs run in real cloud sandboxes on free tiers without requiring a credit card, ' +
-        'using automated grading and spaced repetition to build job-ready platform talent.',
+        'A chat-based coach on Telegram that guides engineers from fundamentals to recognized professional certifications in ' +
+        'AWS, Google Cloud, Kubernetes, Terraform, and GitHub Actions. ' +
+        'Hands-on labs run in real cloud environments without requiring a credit card, ' +
+        'with automated grading that tests your actual code and infrastructure.',
       note:
-        'Engineered text-first to run smoothly across low-bandwidth connections, helping companies source and upskill technical platform talent at scale.',
+        'Built text-first to run fast over low-bandwidth mobile connections.',
       facts: [
         'Five certification tracks',
         'Real cloud sandboxes with no credit card required',
@@ -227,16 +227,16 @@ window.ALAMZ = {
     {
       id: 'agriyield',
       name: 'AgriYield',
-      kicker: 'Enterprise outgrower and yield intelligence for agribusinesses and lenders',
+      kicker: 'Yield forecasting and outgrower intelligence for commercial agriculture',
       status: 'in-development',
       ctaUrl: '',
       ctaLabel: 'Join pilot waitlist',
       body:
-        'An enterprise B2B SaaS platform combining satellite vegetation telemetry, localized microclimate forecasts, and mobile field data. ' +
-        'AgriYield monitors contracted hectares, predicts harvest yields, and de-risks supply chains for commercial food processors, ' +
+        'A software platform combining satellite imagery, weather data, and mobile field updates. ' +
+        'AgriYield monitors farm clusters, estimates harvest volumes, and tracks outgrower networks for commercial food processors, ' +
         'commodity aggregators, and agricultural lenders.',
       note:
-        'Gives agricultural executives real-time visibility into outgrower networks, preventing post-harvest losses and securing commodity supply without costly manual field audits.',
+        'Gives teams clear visibility into crop progress and harvest timing across remote farms without relying on slow, expensive manual field audits.',
       facts: [
         'Satellite vegetation telemetry (NDVI/EVI)',
         'Predictive harvest yield modeling',
@@ -261,13 +261,6 @@ window.ALAMZ = {
       'We partner with commercial enterprises and institutions to build production AI systems. ' +
       'Whether deploying satellite vegetation pipelines across thousands of hectares or building curriculum-grounded tutoring bots, ' +
       'we engineer directly in your codebase.',
-
-    certifications: [
-      'Google Cloud Professional Cloud Architect',
-      'Google Cloud Associate Cloud Engineer',
-      'Microsoft Azure',
-      'Google Cloud Generative AI Leader',
-    ],
 
     lines: [
       {
@@ -402,29 +395,29 @@ window.ALAMZ = {
      ====================================================================== */
   edge: {
     eyebrow: 'Engineering principles',
-    heading: 'A demo has to impress once. A production system has to hold up on a Tuesday afternoon during peak traffic.',
+    heading: 'Demos only have to work once. Production systems have to hold up under real traffic.',
     body:
-      'Most of the hard engineering in applied AI happens after the prototype. These are the principles that guide our work.',
+      'Most of the hard engineering in AI happens after the prototype. These are the principles that guide our work.',
     rules: [
       {
-        rule: 'Ground it in field and proprietary data',
-        because: 'A model that relies on open web assumptions fails in rural agriculture or specialized technical education. Strict domain grounding and real-world telemetry beat generic prompts every time.',
+        rule: 'Ground models in real field data',
+        because: 'Generic internet prompts fall apart in farming and specialized technical training. Real-world telemetry and validated data beat clever prompt engineering every time.',
       },
       {
-        rule: 'Engineer for low-bandwidth and mobile reality',
-        because: 'If software requires high-speed fiber or high-end laptops, it excludes the majority of the world. Text-first interfaces and lightweight runtimes are active technical requirements.',
+        rule: 'Build for low bandwidth and mobile reality',
+        because: 'If software requires fiber speeds or high-end laptops, it excludes the majority of users. Lightweight runtimes and text-first interfaces are core requirements.',
       },
       {
-        rule: 'Control compute and token costs at the architectural level',
-        because: 'Unmonitored API calls and oversized compute clusters destroy software margins. Unit economics must be engineered directly into the system design.',
+        rule: 'Control compute and API costs from day one',
+        because: 'Unchecked API calls and oversized clusters burn through budgets fast. Unit economics have to be engineered into the system architecture from the start.',
       },
       {
-        rule: 'Ship working software, not speculative slide decks',
-        because: 'Deployed, monitored, versioned, and recoverable via Infrastructure as Code. Real impact happens when code runs reliably in production.',
+        rule: 'Ship working software, not pitch decks',
+        because: 'Code that is versioned, automated, and running in production creates real value. Not slide decks or prototypes that never touch real users.',
       },
       {
-        rule: 'Leave partners in complete operational control',
-        because: 'We commit modular code, automated pipelines, and thorough runbooks directly to our clients\' repositories. Architecture that requires indefinite external dependency is an operational risk.',
+        rule: 'Leave partners in complete control of their code',
+        because: 'We write clean, modular code and clear documentation directly in your repositories. Software that traps you in permanent contractor dependency is an operational liability.',
       },
     ],
   },
@@ -439,9 +432,9 @@ window.ALAMZ = {
     initials: 'HA',
     photo: 'assets/founder.jpg',
     body: [
-      'Systems engineer with over five years of hands-on production experience in cloud architecture, CI/CD automation, and applied AI systems delivery across international and US-facing teams.',
-      'Holds certifications as a Google Cloud Professional Cloud Architect, Google Cloud Associate Cloud Engineer, Microsoft Azure specialist, and Google Cloud Generative AI Leader, and serves as an Andela mentor for Kubernetes certifications.',
-      'Alamz Tech Ltd combines that deep infrastructure rigor with applied machine learning to build scalable software for the two most critical levers of global development: education and agriculture.',
+      'Systems engineer with over five years of hands-on experience designing cloud infrastructure, automated CI/CD pipelines, and applied AI systems for international teams.',
+      'Has mentored engineers through Kubernetes and cloud engineering programs, focusing on building practical, reliable systems rather than chasing tech trends.',
+      'Alamz Tech Ltd pairs infrastructure discipline with applied machine learning to solve real problems where it matters most: food production and technical education.',
     ],
   },
 
@@ -450,9 +443,9 @@ window.ALAMZ = {
      ====================================================================== */
   contact: {
     eyebrow: 'Work with us',
-    heading: 'Ready to build with our studio or deploy applied AI in your operations?',
+    heading: 'Ready to build together or deploy applied AI in your operations?',
     body:
-      'Whether you are an agribusiness seeking to de-risk outgrower supply, an education platform scaling interactive instruction, or an organization building custom AI, let us explore how we can work together.',
+      'Whether you run an agribusiness, manage a training program, or want to build custom AI software, get in touch.',
     cta: 'Send us a message',
     form: {
       heading: 'Get in touch',

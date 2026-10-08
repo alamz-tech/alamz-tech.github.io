@@ -29,19 +29,19 @@ HTML_TEMPLATE = f"""<!DOCTYPE html>
 body {{
   width: 1200px;
   height: 630px;
-  background-color: #070B18;
+  background-color: #F8FAFC;
   background-image: 
-    radial-gradient(circle at 50% 45%, rgba(16, 185, 129, 0.16) 0%, transparent 65%),
-    radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+    radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.12) 0%, transparent 65%),
+    radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
   background-size: 100% 100%, 24px 24px;
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #FFFFFF;
+  color: #0B132B;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 56px 80px 44px;
+  padding: 54px 80px 42px;
   overflow: hidden;
 }}
 
@@ -52,8 +52,8 @@ body {{
 }}
 
 .logo-box {{
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@ body {{
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #34D399;
+  color: #047857;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -82,14 +82,14 @@ body {{
   height: 8px;
   border-radius: 50%;
   background: #10B981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
 }}
 
 .main-block {{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -4px;
+  margin-top: -6px;
 }}
 
 .title {{
@@ -97,54 +97,56 @@ body {{
   font-weight: 800;
   line-height: 1.14;
   letter-spacing: -0.035em;
-  color: #FFFFFF;
+  color: #0B132B;
   max-width: 1060px;
 }}
 
 .title em {{
   font-style: normal;
-  color: #34D399;
-  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+  color: #059669;
+  background: linear-gradient(135deg, #047857 0%, #10B981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }}
 
 .mission-wrap {{
-  margin-top: 38px;
+  margin-top: 36px;
 }}
 
 .mission-badge {{
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 11px 26px;
-  border-radius: 8px;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.45);
+  gap: 16px;
+  padding: 16px 42px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.1), 0 1px 3px rgba(11, 19, 43, 0.06);
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 21px;
+  font-weight: 800;
   letter-spacing: 0.08em;
-  color: #34D399;
+  color: #047857;
 }}
 
 .mission-label {{
-  color: #FFFFFF;
-  opacity: 0.8;
-  font-weight: 700;
+  color: #0B132B;
+  opacity: 0.85;
+  font-weight: 800;
 }}
 
 .footer {{
   width: 100%;
   max-width: 1000px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid #E2E8F0;
   padding-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
   font-size: 13px;
-  color: #94A3B8;
+  font-weight: 600;
+  color: #64748B;
   letter-spacing: 0.08em;
 }}
 </style>
