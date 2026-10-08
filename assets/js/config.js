@@ -1,8 +1,6 @@
 /* ============================================================================
-   ALAMZ TECH: SITE CONFIG
-   ----------------------------------------------------------------------------
-   Positioning: Cloud Architecture, FinOps and AI Engineering for
-   Growth-Stage African Startups and Scale-ups.
+   ALAMZ TECH LTD: SITE CONFIG
+   Positioning: Global AI Product Studio for Education and Agriculture.
    ========================================================================== */
 
 window.ALAMZ = {
@@ -11,12 +9,13 @@ window.ALAMZ = {
      BRAND
      ====================================================================== */
   brand: {
-    name: 'Alamz Tech',
+    name: 'Alamz Tech Ltd',
     wordmark: 'Alamz Tech',
-    tagline: 'Cloud architecture, FinOps, and AI engineering for African scale-ups.',
+    tagline: 'Global AI product studio for Education and Agriculture.',
     heroSub:
-      'When revenue is earned in local currency but AWS and GCP bill in US dollars, unoptimized infrastructure eats your margins. ' +
-      'We help growing African tech companies eliminate cloud waste, prevent downtime, and run production-grade AI across AWS, GCP, and Azure.',
+      'By 2050, the world must feed 10 billion people and upskill the next billion minds. ' +
+      'Africa holds 60% of the planet\'s uncultivated arable land and its youngest workforce. ' +
+      'We build practical AI products that turn these planetary challenges into economic growth.',
     email: 'hussein@alamztech.com',
     location: 'Lagos, Nigeria',
   },
@@ -35,18 +34,17 @@ window.ALAMZ = {
      HERO: capability strip in the panel beside the headline
      ====================================================================== */
   hero: {
-    capabilitiesLabel: 'Core competencies',
+    capabilitiesLabel: 'Studio focus',
     capabilities: [
-      { k: 'FinOps',      v: 'Cut cloud waste and USD spend' },
-      { k: 'Cloud',       v: 'AWS, GCP and Azure' },
-      { k: 'Reliability', v: 'Zero-downtime CI/CD pipelines' },
-      { k: 'Security',    v: 'WAF, IAM and compliance' },
-      { k: 'AI Systems',  v: 'Production RAG and token budgets' },
-      { k: 'Operations',  v: 'Observability and runbooks' },
+      { k: 'EdTech AI',       v: 'Conversational tutors and auto-grading' },
+      { k: 'AgriTech AI',     v: 'Outgrower tracking and yield forecasting' },
+      { k: 'Computer Vision', v: 'Crop quality and pest diagnosis' },
+      { k: 'Deployment',      v: 'Low-bandwidth, text-first, and mobile-native' },
+      { k: 'Cloud & MLOps',   v: 'Production AWS, GCP, and Azure pipelines' },
+      { k: 'Impact Focus',    v: 'Food security and human potential' },
     ],
     capabilitiesFoot:
-      'Moving past the early stage puts real stress on your infrastructure and your balance sheet. ' +
-      'We embed with your team to fix performance bottlenecks and bring cloud spend under control.',
+      'We engineer proprietary software products and partner with commercial agribusinesses, education providers, and institutions to deploy applied AI.',
   },
 
   /* ==========================================================================
@@ -76,21 +74,25 @@ window.ALAMZ = {
   statuses: {
 
     'in-development': {
-      label: 'In development',
+      label: 'In development: waitlist open',
       tone: 'cool',
       action: 'form',
-      cta: 'Join the waitlist',
+      cta: 'Join pilot waitlist',
       form: {
-        heading: 'Join the waitlist',
-        intro: 'We will email you when CMP opens for private pilots. Priority onboarding for regulated fintechs and scale-ups.',
-        submit: 'Join the waitlist',
-        success: 'You are on the list. We will reach out directly with private alpha access details.',
+        heading: 'Join the AgriYield pilot waitlist',
+        intro: 'We are onboarding a select group of commercial agribusinesses, aggregators, and outgrower schemes for our private pilot. Tell us about your operations.',
+        submit: 'Join pilot waitlist',
+        success: 'You are on the list. We review every application personally and will reach out with pilot onboarding details.',
         fields: [
           { name: 'name',     label: 'Name',            type: 'text',     required: true  },
           { name: 'email',    label: 'Work email',      type: 'email',    required: true  },
-          { name: 'company',  label: 'Company name',    type: 'text',     required: true  },
-          { name: 'interest', label: 'Primary infrastructure challenge', type: 'textarea', required: false,
-            help: 'E.g., rising USD cloud bills, Central Bank data residency rules, or bare-metal performance.' },
+          { name: 'company',  label: 'Company / Agribusiness', type: 'text', required: true  },
+          { name: 'hectares', label: 'Approximate scale under management', type: 'select', required: true,
+            options: ['Under 1,000 hectares', '1,000 to 5,000 hectares', '5,000 to 20,000 hectares', 'Over 20,000 hectares', 'Institutional / Research'] },
+          { name: 'cropFocus', label: 'Primary agricultural sector', type: 'select', required: true,
+            options: ['Grains & Cereals (Maize, Rice, Sorghum)', 'Cash Crops (Cocoa, Coffee, Cashew, Sesame)', 'Oilseeds (Palm, Soya)', 'Horticulture & Fresh Produce', 'Agricultural Lending / Crop Insurance', 'Other'] },
+          { name: 'interest', label: 'Primary operational challenge', type: 'textarea', required: false,
+            help: 'E.g., harvest volume forecasting, outgrower side-selling, pest detection, or satellite acreage verification.' },
         ],
       },
     },
@@ -102,7 +104,7 @@ window.ALAMZ = {
       cta: 'Apply to beta-test',
       form: {
         heading: 'Apply to the pilot cohort',
-        intro: 'The pilot cohort is a small, selected group of scaling companies. We review every application personally.',
+        intro: 'The pilot cohort is a small, selected group of organizations. We review every application personally.',
         submit: 'Send application',
         success: 'Application received. We review in batches and will reply to your email directly.',
         fields: [
@@ -111,7 +113,7 @@ window.ALAMZ = {
           { name: 'commitment', label: 'Hours you can commit each week', type: 'select', required: true,
             options: ['Under 3 hours', '3 to 5 hours', '6 to 10 hours', 'More than 10 hours'] },
           { name: 'why', label: 'Why you?', type: 'textarea', required: true,
-            help: 'A few sentences on what your team is building and the infrastructure goals you want to achieve.' },
+            help: 'A few sentences on what your team is building and the operational goals you want to achieve.' },
         ],
       },
     },
@@ -129,22 +131,20 @@ window.ALAMZ = {
       action: 'form',
       cta: 'Request quote',
       form: {
-        heading: 'Request a project quote',
-        intro: 'Tell us about your infrastructure scale, monthly cloud spend, or AI initiative. We reply within two business days.',
+        heading: 'Request an enterprise AI co-build quote',
+        intro: 'Tell us about your organization, target deployment scale, and the problem you want to solve. We reply within two business days.',
         submit: 'Send inquiry',
-        success: 'Inquiry received. We will review your architecture scope and reply within two business days.',
+        success: 'Inquiry received. We will review your project scope and reply within two business days.',
         fields: [
           { name: 'name', label: 'Name', type: 'text', required: true },
           { name: 'email', label: 'Work email', type: 'email', required: true },
-          { name: 'company', label: 'Company name', type: 'text', required: true },
-          { name: 'cloud', label: 'Primary cloud provider', type: 'select', required: true,
-            options: ['AWS', 'Google Cloud (GCP)', 'Microsoft Azure', 'Multi-cloud / Hybrid', 'On-premises / Other'] },
-          { name: 'monthlySpend', label: 'Approximate monthly cloud spend', type: 'select', required: false,
-            options: ['Under $3,000/mo', '$3,000 to $10,000/mo', '$10,000 to $30,000/mo', 'Over $30,000/mo'] },
+          { name: 'company', label: 'Company / Institution name', type: 'text', required: true },
+          { name: 'sector', label: 'Industry sector', type: 'select', required: true,
+            options: ['Agribusiness / Food Supply Chain', 'EdTech / Higher Education', 'Agri-Fintech / Crop Insurance', 'Research / Foundation', 'Other'] },
           { name: 'timeline', label: 'Target timeline', type: 'select', required: false,
-            options: ['Immediate (under 2 weeks)', '1 to 2 months', '3 months or later', 'Exploratory'] },
-          { name: 'message', label: 'Primary technical challenge or scope', type: 'textarea', required: true,
-            help: 'E.g., cutting an out-of-control cloud bill, resolving recurrent outages, migrating workloads, or deploying an AI feature.' },
+            options: ['Immediate (under 1 month)', '1 to 3 months', '3 to 6 months', 'Exploratory'] },
+          { name: 'message', label: 'Project scope and objectives', type: 'textarea', required: true,
+            help: 'Describe your target data sources, scale of users or acreage, and the key outcome you want to achieve.' },
         ],
       },
     },
@@ -152,43 +152,43 @@ window.ALAMZ = {
   },
 
   /* ==========================================================================
-     APPROACH (The Scale-up Reality)
+     APPROACH (The Studio Thesis)
      ====================================================================== */
   approach: {
-    eyebrow: 'The scale-up reality',
-    heading: 'Post-seed traction should not stall on fragile infrastructure or runaway USD cloud spend.',
+    eyebrow: 'The studio thesis',
+    heading: 'Feeding ten billion people and upskilling the next billion minds.',
     body: [
-      'Moving past the MVP phase is where technical debt catches up with African scale-ups. Transaction volumes spike, but revenue earned in local currency collides with cloud bills charged in US dollars. Unoptimized clusters, idle instances, and early shortcuts quickly turn into severe margin killers.',
-      'At this stage, you do not need generic consultant decks. You need senior, hands-on engineering: cutting 30% to 50% of wasted cloud spend, replacing brittle manual deploys with automated Terraform pipelines, and hardening your systems against customer-facing outages.',
-      'Alamz Tech operates as your embedded platform partner. We handle the architectural heavy lifting, from FinOps reviews to production AI, committing clean Infrastructure as Code directly to your repositories so your internal team retains full control.',
+      'By 2050, the global population will exceed ten billion. Meeting that demand requires a revolution in agricultural productivity, particularly across Africa, which holds 60% of the world\'s remaining uncultivated arable land yet remains a net food importer. At the same time, the global economy is rapidly automating, creating an urgent imperative to upskill hundreds of millions of young people into high-value technical careers.',
+      'Traditional classroom models and legacy agricultural consulting cannot scale fast enough to close these gaps. Solving these bottlenecks requires applied AI engineered for real-world constraints: software that runs smoothly over mobile messaging networks, tolerates low-bandwidth connectivity, and delivers measurable financial returns for growers and learners alike.',
+      'Alamz Tech Ltd operates as an applied AI product studio. We identify foundational friction points in food systems and human capital, engineer proprietary software to solve them, and partner with forward-looking agribusinesses and educational institutions to deploy high-impact AI systems worldwide.',
     ],
   },
 
   /* ==========================================================================
-     WHAT WE DO
+     WHAT WE DO (Offerings Overview)
      ====================================================================== */
   offerings: {
     eyebrow: 'What we do',
-    heading: 'Two complementary ways we help growing companies scale reliably.',
+    heading: 'Two complementary ways we build software for global impact.',
     body:
-      'We develop specialized infrastructure software to solve regional market constraints, and we provide embedded cloud and AI engineering directly inside your production stack.',
+      'We engineer proprietary software products in education and agriculture, and we partner with forward-looking enterprises to build custom AI systems.',
     items: [
       {
         name: 'Products',
-        state: 'Infrastructure software and training',
+        state: 'Proprietary AI platforms',
         tone: 'warm',
         body:
-          'Software built for local infrastructure realities. CMP provides localized bare-metal IaaS in Nigerian data centers to eliminate currency volatility and satisfy data residency laws. EarnWithDevOps trains and prepares practical platform talent.',
+          'Software engineered for planetary-scale challenges. EarnWithDevOps trains and certifies technical talent; AgriYield provides enterprise yield forecasting and outgrower intelligence for commercial agribusinesses.',
         icon: 'cube',
         href: '#products',
         linkLabel: 'Explore products',
       },
       {
         name: 'Services',
-        state: 'Cloud, FinOps and AI solutions',
+        state: 'Enterprise Co-Builds & AI Solutions',
         tone: 'cool',
         body:
-          'Hands-on engineering engagements for teams running on AWS, GCP, and Azure. We audit and reduce cloud spend, execute zero-downtime migrations, prevent production downtime, and ship reliable AI features.',
+          'Selective engineering partnerships for commercial agribusinesses, food processors, and education platforms. We design and deploy custom computer vision, predictive modeling, and conversational AI pipelines.',
         icon: 'plug',
         href: '#services',
         linkLabel: 'Explore services',
@@ -204,7 +204,7 @@ window.ALAMZ = {
     {
       id: 'earnwithdevops',
       name: 'EarnWithDevOps',
-      kicker: 'Bridging the cloud and DevOps talent gap across African tech hubs',
+      kicker: 'AI-driven technical training for the next generation of platform engineers',
       status: 'live',
       ctaUrl: 'https://ewd.alamztech.com',
       ctaLabel: 'Start learning free',
@@ -214,10 +214,10 @@ window.ALAMZ = {
         'Hands-on labs run in real cloud sandboxes on free tiers without requiring a credit card, ' +
         'using automated grading and spaced repetition to build job-ready platform talent.',
       note:
-        'Engineered text-first to run smoothly across low-bandwidth connections, helping companies source and upskill local platform talent.',
+        'Engineered text-first to run smoothly across low-bandwidth connections, helping companies source and upskill technical platform talent at scale.',
       facts: [
         'Five certification tracks',
-        'Real cloud labs with no credit card required',
+        'Real cloud sandboxes with no credit card required',
         'Deterministic automated grading',
         'Delivered on Telegram (text-first)',
       ],
@@ -225,27 +225,27 @@ window.ALAMZ = {
     },
 
     {
-      id: 'cmp',
-      name: 'CMP (Cloud Management Platform)',
-      kicker: 'Localized IaaS control plane for African scale-ups, fintechs, and enterprises',
+      id: 'agriyield',
+      name: 'AgriYield',
+      kicker: 'Enterprise outgrower and yield intelligence for agribusinesses and lenders',
       status: 'in-development',
       ctaUrl: '',
-      ctaLabel: 'Join the waitlist',
+      ctaLabel: 'Join pilot waitlist',
       body:
-        'A localized IaaS control plane ("AWS of Nigeria"): a FastAPI and React management layer over an ' +
-        'open-source hypervisor data plane running on bare-metal hardware in Nigerian data centers. ' +
-        'Built to eliminate currency volatility and satisfy data residency mandates for fintechs, banks, and digital businesses.',
+        'An enterprise B2B SaaS platform combining satellite vegetation telemetry, localized microclimate forecasts, and mobile field data. ' +
+        'AgriYield monitors contracted hectares, predicts harvest yields, and de-risks supply chains for commercial food processors, ' +
+        'commodity aggregators, and agricultural lenders.',
       note:
-        'Provides predictable local-currency billing to protect margins from currency depreciation, while keeping all data in-country to satisfy Central Bank and NDPC compliance requirements with single-digit millisecond domestic latency.',
+        'Gives agricultural executives real-time visibility into outgrower networks, preventing post-harvest losses and securing commodity supply without costly manual field audits.',
       facts: [
-        'FastAPI and React control plane',
-        'Open-source hypervisor data plane',
-        'Bare-metal in Nigerian data centers',
-        'Full data residency and local currency billing',
+        'Satellite vegetation telemetry (NDVI/EVI)',
+        'Predictive harvest yield modeling',
+        'Mobile field data collection and geo-fencing',
+        'Supply chain risk and side-selling alerts',
       ],
       roadmap: [
-        'Private alpha in Q4 2026',
-        'Fintech and scale-up compliance pilot',
+        'Private alpha Q4 2026',
+        'Commercial outgrower pilot cohort',
       ],
     },
 
@@ -255,12 +255,12 @@ window.ALAMZ = {
      SERVICES (Top-level section)
      ====================================================================== */
   services: {
-    eyebrow: 'Engineering Services',
-    heading: 'Production cloud architecture, FinOps, and AI systems built for scale-ups.',
+    eyebrow: 'Enterprise Solutions',
+    heading: 'Custom AI systems engineered for agribusinesses, education providers, and institutions.',
     body:
-      'We work with engineering leaders managing active production environments on AWS, GCP, and Azure. ' +
-      'If your cloud bills are growing faster than your revenue, recurrent outages are hurting user trust, ' +
-      'or your team needs to deploy production AI without runaway API costs, we embed with your engineers to fix the foundation.',
+      'We partner with commercial enterprises and institutions to build production AI systems. ' +
+      'Whether deploying satellite vegetation pipelines across thousands of hectares, building conversational tutoring bots, ' +
+      'or deploying low-latency models on AWS and GCP, we engineer directly in your codebase.',
 
     certifications: [
       'Google Cloud Professional Cloud Architect',
@@ -271,127 +271,165 @@ window.ALAMZ = {
 
     lines: [
       {
-        id: 'cloud-solutions',
-        name: 'Cloud Solutions',
-        subtitle: 'Multi-cloud architecture, zero-downtime migration, security hardening, and FinOps',
+        id: 'agritech-solutions',
+        name: 'AgriTech AI Solutions',
+        subtitle: 'Satellite telemetry, predictive yield modeling, crop vision, and logistics intelligence',
         description:
-          'Backed by Google Cloud Professional Cloud Architect, Associate Cloud Engineer, and Microsoft Azure certifications, ' +
-          'with deep production experience managing Terraform, Kubernetes, and high-availability infrastructure in fast-growing startups.',
+          'Tailored AI solutions for commercial plantations, food processors, aggregators, and agri-fintechs seeking to de-risk procurement, monitor crop health, and automate field operations.',
         offerings: [
           {
-            id: 'cloud-health',
-            name: 'Cloud Health / Well-Architected Review',
-            kicker: 'Audit existing cloud environments on AWS, GCP, or Azure against established reliability, security, and cost frameworks.',
-            timeline: '1 to 2 weeks',
+            id: 'crop-telemetry',
+            name: 'Crop Health & Satellite Telemetry',
+            kicker: 'Automated satellite vegetation indexing (NDVI/EVI) and early risk detection across distributed acreage.',
+            timeline: '2 to 4 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Well-Architected audit across AWS, GCP, and Azure reliability and operational pillars',
-              'Clear inventory of downtime risks, single points of failure, and scalability bottlenecks',
-              'Immediate identification of idle disks, unattached IPs, and oversized compute instances inflating your monthly bill',
-              'Actionable, prioritized technical remediation roadmap your team can execute immediately',
+              'Automated Sentinel and Landsat satellite data ingestion pipelines with cloud masking',
+              'Vegetation vigor indexing (NDVI, EVI, NDRE) for zonal health monitoring',
+              'Early warning alerts for moisture stress, drought exposure, and potential pest outbreaks',
+              'Interactive executive dashboard and GIS map integration with field polygon overlays',
             ],
           },
           {
-            id: 'cloud-migration',
-            name: 'Cloud Migration and Modernization',
-            kicker: 'End-to-end migrations between on-prem and cloud, or across cloud providers, using Terraform and automated pipelines.',
-            timeline: '2 to 6 weeks',
+            id: 'yield-forecasting',
+            name: 'Predictive Yield Modeling',
+            kicker: 'Machine learning models combining weather, soil, and historical field data to forecast harvest volumes.',
+            timeline: '4 to 8 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Infrastructure as Code (Terraform) establishing modular, reproducible environments across staging and prod',
-              'Automated deployment pipelines (GitHub Actions, GitLab CI) with automated smoke tests',
-              'Phased database and workload cutover strategy with automated rollback contingencies and zero downtime',
-              'Post-migration telemetry, benchmark validation, and comprehensive operations runbook handover',
+              'Historical yield calibration and ground-truth validation with your agronomy team',
+              'Localized microclimate data integration for weather-adjusted harvest window prediction',
+              'Granular yield volume forecasts at the zone, cluster, and aggregate scheme levels',
+              'Risk scoring models to assist agricultural lenders and underwriters with credit decisions',
             ],
           },
           {
-            id: 'cloud-security',
-            name: 'Cloud Security Hardening and Compliance',
-            kicker: 'Security-first infrastructure setup: Web Application Firewalls, identity controls, and audit-ready network isolation.',
-            timeline: '1 to 3 weeks',
+            id: 'crop-vision',
+            name: 'Computer Vision Quality Grading',
+            kicker: 'Mobile and edge vision pipelines for automated crop grading, defect detection, and post-harvest inspection.',
+            timeline: '3 to 6 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Edge perimeter defense: Cloud WAF, DDoS mitigation, and CDN edge security rules',
-              'Least-privilege IAM policies, automated secret rotation, and strict role separation',
-              'Isolated VPC network topologies, private service endpoints, and secure database peering',
-              'Centralized audit logging, compliance baselines for fintech audits, and real-time incident alerting',
+              'Custom fine-tuned edge vision models for crop grading, defect detection, and maturity analysis',
+              'Mobile camera capture integration for field agents and collection center clerks',
+              'Automated quality classification matching export and industrial processing standards',
+              'Offline-tolerant on-device inference with cloud synchronization when connected',
             ],
           },
           {
-            id: 'cloud-cost',
-            name: 'Cloud Cost Optimization and FinOps',
-            kicker: 'Forensic cloud cost restructuring to eliminate waste, optimize commitments, and bring infrastructure spend under control.',
-            timeline: '1 to 2 weeks or ongoing',
+            id: 'agri-logistics',
+            name: 'Commodity Logistics & Procurement AI',
+            kicker: 'Intelligent matching, price transparency, and route optimization between rural collection points and processing hubs.',
+            timeline: '2 to 5 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Deep forensic audit of monthly AWS, GCP, and Azure bills to uncover hidden egress, unattached volumes, and oversized compute',
-              'Commitment portfolio optimization: Reserved Instances, Savings Plans, and Committed Use Discounts (CUD)',
-              'Marketplace procurement guidance to leverage partner tiers, cloud credits, and volume commitments',
-              'Automated budget anomaly alerts, team cost attribution, and unit-economic cost tracking per customer',
+              'Aggregator and buying station volume tracking with anomaly detection to prevent leakage',
+              'Fair market commodity price indexing to build farmer trust and improve retention',
+              'Optimized transportation scheduling from remote farms to processing factories',
+              'End-to-end traceability records ready for sustainability and trade compliance audits',
             ],
           },
         ],
       },
 
       {
-        id: 'ai-solutions',
-        name: 'AI Solutions',
-        subtitle: 'Production AI features integrated into your stack, grounded in your data, with strict cost controls',
+        id: 'edtech-solutions',
+        name: 'EdTech AI Solutions',
+        subtitle: 'Conversational learning, automated grading engines, and curriculum RAG systems',
         description:
-          'We bridge the gap between speculative AI prototypes and reliable revenue-driving software: ' +
-          'grounded in your proprietary business data, wired into existing workflows, and engineered for predictable token budgets.',
+          'Custom AI engines for educational institutions, online academies, and training programs seeking to scale interactive instruction without linearly hiring teaching staff.',
         offerings: [
           {
-            id: 'ai-feasibility',
-            name: 'AI Feasibility Sprint',
-            kicker: 'Stop burning runway on unproven AI ideas. Validate feasibility and unit economics on your actual data before writing code.',
-            timeline: '1 to 2 weeks',
+            id: 'conversational-tutoring',
+            name: 'Conversational Tutoring Systems',
+            kicker: 'Interactive pedagogical bots integrated into WhatsApp, Telegram, or web portals with strict guardrails.',
+            timeline: '3 to 6 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Use case technical audit and proprietary data readiness assessment',
-              'Working interactive prototype running on your actual business data samples',
-              'Granular unit-cost model: token projections, latency benchmarks, and hosting architecture',
-              'Objective build vs. do-not-build engineering recommendation backed by empirical test data',
+              'Multi-turn Socratic tutoring agents designed to guide learners toward answers rather than lecturing',
+              'Omnichannel deployment across Telegram, WhatsApp, and custom web frontends',
+              'Pedagogical safety guardrails to prevent off-topic drift, cheating, and hallucinations',
+              'Student mastery tracking, comprehension scoring, and instructor analytics dashboard',
             ],
           },
           {
-            id: 'ai-feature-build',
-            name: 'AI Feature Build',
-            kicker: 'Custom assistant, copilot, or retrieval system built and shipped inside your existing product stack.',
-            timeline: '4 to 8 weeks',
+            id: 'automated-grading',
+            name: 'Automated Code & Exam Evaluation',
+            kicker: 'Deterministic grading engines with automated test harness execution and individualized feedback generation.',
+            timeline: '2 to 4 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Production-grade RAG pipeline grounded in your internal documents, database records, or API endpoints',
-              'Secure, low-latency API integration directly into your product frontend and microservices',
-              'Hallucination guardrails, automated fallbacks, and comprehensive evaluation test suites',
-              'Production observability, access controls, prompt versioning, and complete team handover',
+              'Deterministic code sandboxes that run and grade student submissions in isolated environments',
+              'LLM-assisted formative feedback explaining errors, edge cases, and optimization tips',
+              'Plagiarism and AI-generation heuristic analysis for academic integrity',
+              'Automated certificate issuance and progress milestone verification',
             ],
           },
           {
-            id: 'ai-in-production',
-            name: 'AI in Production (Managed Retainer)',
-            kicker: 'Ongoing evaluations, token cost controls, model version upgrades, and reliability management.',
-            timeline: 'Monthly retainer',
+            id: 'curriculum-rag',
+            name: 'Curriculum-Grounded RAG Systems',
+            kicker: 'Retrieval-augmented generation pipelines grounded strictly in proprietary textbooks and course materials.',
+            timeline: '2 to 4 weeks',
             price: 'Price on request',
             status: 'price-on-request',
             cta: 'Request quote',
             deliverables: [
-              'Continuous output evaluation, drift detection, and real-time response quality monitoring',
-              'Aggressive token spend optimization, semantic prompt caching, and latency reduction',
-              'Zero-downtime model version upgrades and multi-provider redundancy (fallback routing)',
-              'Prompt security patching, incident triage, and SLA-backed uptime maintenance',
+              'Document chunking, vector embedding, and semantic indexing of proprietary syllabi and lecture notes',
+              'Strict citation retrieval requiring every response to quote specific lesson references',
+              'Multi-lingual support allowing students to ask questions and learn in their preferred language',
+              'Evaluation benchmarks measuring factual accuracy and retrieval latency under peak load',
+            ],
+          },
+        ],
+      },
+
+      {
+        id: 'mlops-infrastructure',
+        name: 'Cloud & MLOps Infrastructure',
+        subtitle: 'Cost-controlled inference pipelines, private model hosting, and data governance',
+        description:
+          'Production infrastructure engineering across AWS, Google Cloud, and Microsoft Azure, backed by Google Cloud Professional Cloud Architect and Azure certifications.',
+        offerings: [
+          {
+            id: 'inference-optimization',
+            name: 'Cost-Controlled LLM Inference',
+            kicker: 'Token optimization, semantic prompt caching, and multi-model fallback routing to protect operational budgets.',
+            timeline: '1 to 3 weeks',
+            price: 'Price on request',
+            status: 'price-on-request',
+            cta: 'Request quote',
+            deliverables: [
+              'Semantic caching architectures that eliminate duplicate LLM calls for recurring queries',
+              'Intelligent model routing sending simple tasks to compact models and complex tasks to frontier LLMs',
+              'Prompt compression and structured output schemas that cut token consumption by 30% to 50%',
+              'Real-time token cost attribution per user, customer account, or feature',
+            ],
+          },
+          {
+            id: 'private-hosting',
+            name: 'Private Model Hosting & Fine-Tuning',
+            kicker: 'Secure, isolated VPC deployments for open-source foundation models with complete data residency.',
+            timeline: '2 to 5 weeks',
+            price: 'Price on request',
+            status: 'price-on-request',
+            cta: 'Request quote',
+            deliverables: [
+              'Containerized self-hosted model deployments on AWS (SageMaker), GCP (Vertex AI), or bare-metal',
+              'Parameter-efficient fine-tuning (PEFT/LoRA) on your proprietary domain datasets',
+              'Complete data residency keeping all customer queries and documents within private enterprise perimeters',
+              'Automated scaling and GPU cost management with zero-traffic scale-to-zero capabilities',
             ],
           },
         ],
@@ -406,27 +444,27 @@ window.ALAMZ = {
     eyebrow: 'Engineering principles',
     heading: 'A demo has to impress once. A production system has to hold up on a Tuesday afternoon during peak traffic.',
     body:
-      'Most of the hard engineering in cloud and AI happens after the prototype. These are the principles that guide our work.',
+      'Most of the hard engineering in applied AI happens after the prototype. These are the principles that guide our work.',
     rules: [
       {
-        rule: 'Ground it in the customer\'s own data',
-        because: 'A confident hallucination from open web training is fatal in fintech or healthcare. Retrieval and strict domain grounding beat generic model recall every time.',
+        rule: 'Ground it in field and proprietary data',
+        because: 'A model that relies on open web assumptions fails in rural agriculture or specialized technical education. Strict domain grounding and real-world telemetry beat generic prompts every time.',
       },
       {
-        rule: 'Ship it to production, not to a demo',
-        because: 'Deployed, monitored, versioned, and recoverable via Infrastructure as Code. Anything less is a prototype that will fail under production load.',
+        rule: 'Engineer for low-bandwidth and mobile reality',
+        because: 'If software requires high-speed fiber or high-end laptops, it excludes the majority of the world. Text-first interfaces and lightweight runtimes are active technical requirements.',
       },
       {
-        rule: 'Architect for African operating realities',
-        because: 'Currency depreciation, metered bandwidth, and regulatory data sovereignty must be foundational architectural constraints, never afterthoughts.',
+        rule: 'Control compute and token costs at the architectural level',
+        because: 'Unmonitored API calls and oversized compute clusters destroy software margins. Unit economics must be engineered directly into the system design.',
       },
       {
-        rule: 'Control costs at the architectural level',
-        because: 'Unmonitored cloud and token bills are balance-sheet emergencies for companies earning in local currency. FinOps guardrails are active technical requirements.',
+        rule: 'Ship working software, not speculative slide decks',
+        because: 'Deployed, monitored, versioned, and recoverable via Infrastructure as Code. Real impact happens when code runs reliably in production.',
       },
       {
-        rule: 'Leave it operable by your internal team',
-        because: 'Modular Terraform, automated CI/CD, and transparent documentation. Architecture that only external consultants can maintain is an operational liability.',
+        rule: 'Leave partners in complete operational control',
+        because: 'We commit modular code, automated pipelines, and thorough runbooks directly to our clients\' repositories. Architecture that requires indefinite external dependency is an operational risk.',
       },
     ],
   },
@@ -437,13 +475,13 @@ window.ALAMZ = {
   founder: {
     eyebrow: 'Who is behind it',
     name: 'Hussein Alamutu',
-    role: 'Founder & Principal Engineer',
+    role: 'Founder & Principal Systems Engineer',
     initials: 'HA',
     photo: 'assets/founder.jpg',
     body: [
-      'Platform and cloud engineer with five years of hands-on production experience in infrastructure engineering, multi-cloud architecture, and technical delivery, including remote infrastructure leadership for international and US-facing teams.',
-      'Holds certifications as a Google Cloud Professional Cloud Architect, Google Cloud Associate Cloud Engineer, Microsoft Azure specialist, and Google Cloud Generative AI Leader, and serves as an Andela mentor for KCNA and CKAD certification readiness.',
-      'Alamz Tech applies that operational standard to companies scaling in Africa. Every client engagement is delivered hands-on with Terraform, automated CI/CD, and proven FinOps methodologies.',
+      'Systems engineer with over five years of hands-on production experience in cloud architecture, CI/CD automation, and applied AI systems delivery across international and US-facing teams.',
+      'Holds certifications as a Google Cloud Professional Cloud Architect, Google Cloud Associate Cloud Engineer, Microsoft Azure specialist, and Google Cloud Generative AI Leader, and serves as an Andela mentor for Kubernetes certifications.',
+      'Alamz Tech Ltd combines that deep infrastructure rigor with applied machine learning to build scalable software for the two most critical levers of global development: education and agriculture.',
     ],
   },
 
@@ -452,9 +490,9 @@ window.ALAMZ = {
      ====================================================================== */
   contact: {
     eyebrow: 'Work with us',
-    heading: 'Ready to cut your cloud spend or stabilize your production infrastructure?',
+    heading: 'Ready to build with our studio or deploy applied AI in your operations?',
     body:
-      'Whether you are navigating currency volatility on AWS or GCP, recurrent outages, data residency compliance, or planning a production AI feature, let us review your architecture.',
+      'Whether you are an agribusiness seeking to de-risk outgrower supply, an education platform scaling interactive instruction, or an organization building custom AI, let us explore how we can work together.',
     cta: 'Send us a message',
     form: {
       heading: 'Get in touch',
@@ -465,18 +503,18 @@ window.ALAMZ = {
         { name: 'name',  label: 'Name',  type: 'text',  required: true },
         { name: 'email', label: 'Work email', type: 'email', required: true,
           help: 'So we can reply. Never shared.' },
-        { name: 'organisation', label: 'Company name', type: 'text', required: true },
+        { name: 'organisation', label: 'Company / Organization name', type: 'text', required: true },
         { name: 'reason', label: 'What is this about?', type: 'select', required: true,
           options: [
-            'Cloud Cost & FinOps Audit (Cut cloud spend)',
-            'Cloud Infrastructure & Reliability (AWS, GCP, Azure)',
-            'Cloud Security Hardening & Compliance',
-            'Production AI Integration',
-            'CMP Localized IaaS Waitlist',
+            'AgriYield Pilot / Agribusiness Partnership',
+            'EarnWithDevOps Enterprise Inquiries',
+            'Custom AgriTech AI Co-Build',
+            'Custom EdTech AI Co-Build',
+            'Cloud & MLOps Infrastructure Advisory',
             'General inquiry',
           ] },
         { name: 'message', label: 'Message', type: 'textarea', required: true,
-          help: 'A few details about your stack, monthly cloud spend, or current technical bottlenecks.' },
+          help: 'A few details about your operational scale, target data sources, or key goals.' },
       ],
     },
   },
