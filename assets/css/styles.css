@@ -497,9 +497,9 @@ button { font: inherit; color: inherit; }
 }
 .datasheet__dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--signal);
+  background: var(--brass);
   flex: none;
-  box-shadow: 0 0 0 3px var(--signal-wash);
+  box-shadow: 0 0 0 3px var(--brass-wash);
 }
 .datasheet__list { padding: var(--s-2) var(--s-4) var(--s-4); }
 .datasheet__row {
